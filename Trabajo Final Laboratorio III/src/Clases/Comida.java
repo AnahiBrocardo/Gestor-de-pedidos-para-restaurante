@@ -2,7 +2,7 @@ package Clases;
 
 public abstract class Comida {
 
-    private String nombreComida;
+    private String nombreComida; //comentario aparte
     private double precioComida;
 
     public Comida(String nombreComida, double precioComida) {  //metodo constructor
