@@ -8,4 +8,13 @@ public class PagoEfectivo extends Pago{
         this.descuento = descuento;
     }
 
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
+    }
+
+    public float getDescuento() {
+        return descuento;
+    }
+
+
 }
