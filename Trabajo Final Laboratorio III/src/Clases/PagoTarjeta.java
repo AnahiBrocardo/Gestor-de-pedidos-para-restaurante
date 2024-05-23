@@ -56,4 +56,14 @@ public class PagoTarjeta extends Pago{
                 ", tipoDeCuenta='" + tipoDeCuenta + '\'' +
                 '}';
     }
+
+    @Override
+    public double calcularMontoTotalAPagar() {
+        double montoTotal= getMonto();
+        return montoTotal;
+    }
+
+    
+
+
 }
