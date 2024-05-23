@@ -18,6 +18,15 @@ public class Postre extends Comida {
         return descripcion;
     }
 
+    public void setNombreDelPostre(String nombreDelPostre) {
+        this.nombreDelPostre = nombreDelPostre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+
     @Override
     public String toString() {
         return "Postre{" +
