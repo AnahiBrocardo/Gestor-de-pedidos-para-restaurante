@@ -39,5 +39,12 @@ public class PagoTarjeta extends Pago{
 
     //ver setters
 
+    //metodo para establecer la cantidad de cuotas si la tarjeta es de credito
+    public void establecerCuotas (int cantCuotas){
+        if(tipoDeCuenta.equalsIgnoreCase("credito")){
+            cantidadCuotas= cantCuotas;
+        }
+    }
+
 
 }
