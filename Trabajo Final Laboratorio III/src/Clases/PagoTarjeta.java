@@ -1,12 +1,13 @@
 package Clases;
 
 public class PagoTarjeta extends Pago{
-    private Persona cliente;
+    private Persona cliente; //persona que realiza el pago
     private int numeroTarjeta;
     private int cantidadCuotas;
-    private String tipoDeTarjeta; //Visa,Mastercard
+    private String tipoDeTarjeta; //Visa,Mastercard, Favacard, otros.
     private String tipoDeCuenta; //credito o debito
 
+   //Metodo constructor
     public PagoTarjeta(double monto, Persona cliente, int numeroTarjeta, int cantidadCuotas, String tipoDeTarjeta, String tipoDeCuenta) {
         super(monto);
         this.cliente = cliente;
@@ -15,6 +16,28 @@ public class PagoTarjeta extends Pago{
         this.tipoDeTarjeta = tipoDeTarjeta;
         this.tipoDeCuenta = tipoDeCuenta;
     }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public int getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public int getCantidadCuotas() {
+        return cantidadCuotas;
+    }
+
+    public String getTipoDeTarjeta() {
+        return tipoDeTarjeta;
+    }
+
+    public String getTipoDeCuenta() {
+        return tipoDeCuenta;
+    }
+
+    //ver setters
 
 
 }
