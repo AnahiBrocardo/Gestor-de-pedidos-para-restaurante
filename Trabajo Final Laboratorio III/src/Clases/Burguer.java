@@ -28,7 +28,7 @@ public class Burguer extends ElementoMenu{
 
     @Override
     public String toString() {
-        return "Burguer{" +
+        return super.toString()+ " Burguer{" +
                 "descripcion='" + descripcion + '\'' +
                 ", tipoHamburguesa='" + tipoHamburguesa + '\'' +
                 '}';
