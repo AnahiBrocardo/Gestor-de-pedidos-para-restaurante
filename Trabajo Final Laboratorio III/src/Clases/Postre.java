@@ -1,9 +1,11 @@
 package Clases;
 
 public class Postre extends Comida {
-    private String nombreDelPostre;
+    private String nombreDelPostre; //Brownie con helado,  Volcan de chocolate, CheeseCake de  frutos rojos
     private String descripcion;  //descripcion de los ingredientes que contiene el postre.
 
+
+    //Metodo constructor
     public Postre(String nombreComida, double precioComida,String nombreDelPostre,String descripcion) {
         super(nombreComida, precioComida);
         this.nombreDelPostre = nombreDelPostre;
@@ -25,8 +27,6 @@ public class Postre extends Comida {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-
     @Override
     public String toString() {
         return "Postre{" +
