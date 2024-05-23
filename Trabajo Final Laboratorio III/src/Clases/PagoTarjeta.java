@@ -46,5 +46,14 @@ public class PagoTarjeta extends Pago{
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "PagoTarjeta{" +
+                "cliente=" + cliente +
+                ", numeroTarjeta=" + numeroTarjeta +
+                ", cantidadCuotas=" + cantidadCuotas +
+                ", tipoDeTarjeta='" + tipoDeTarjeta + '\'' +
+                ", tipoDeCuenta='" + tipoDeCuenta + '\'' +
+                '}';
+    }
 }
