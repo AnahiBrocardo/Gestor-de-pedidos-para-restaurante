@@ -1,6 +1,6 @@
 package Clases;
 
-public class Postre extends Comida {
+public class Postre {
     private String nombreDelPostre; //Brownie con helado,  Volcan de chocolate, CheeseCake de  frutos rojos
     private String descripcion;  //descripcion de los ingredientes que contiene el postre.
 
