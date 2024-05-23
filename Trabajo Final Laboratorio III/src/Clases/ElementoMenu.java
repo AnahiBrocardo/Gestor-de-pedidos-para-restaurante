@@ -22,7 +22,7 @@ public abstract class ElementoMenu {
 
     @Override
     public String toString() {
-        return "ElementoMenu{" +
+        return "\n ElementoMenu{" +
                 "nombreElementoMenu='" + nombreElementoMenu + '\'' +
                 ", precioElementoMenu=" + precioElementoMenu +
                 '}';
