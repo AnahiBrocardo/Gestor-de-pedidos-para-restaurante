@@ -10,7 +10,7 @@ public  abstract class Bebida extends ElementoMenu {
 
     @Override
     public String toString() {
-        return "Bebida{" +
+        return super.toString()+ " Bebida{" +
                 "capacidad=" + capacidad +
                 '}';
     }
