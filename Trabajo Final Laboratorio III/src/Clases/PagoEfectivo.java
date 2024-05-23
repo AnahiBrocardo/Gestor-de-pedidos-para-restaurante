@@ -17,4 +17,13 @@ public class PagoEfectivo extends Pago{
     }
 
 
+    @Override
+    public double calcularMontoTotalAPagar() {
+        double montoAPagar=getMonto();
+
+        if(getDescuento()!=0){
+            montoAPagar -= (montoAPagar*descuento)/100;
+        }
+        return montoAPagar;
+    }
 }
