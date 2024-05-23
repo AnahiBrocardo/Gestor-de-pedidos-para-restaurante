@@ -7,5 +7,5 @@ public class PagoEfectivo extends Pago{
         super(monto);
         this.descuento = descuento;
     }
-    
+
 }
