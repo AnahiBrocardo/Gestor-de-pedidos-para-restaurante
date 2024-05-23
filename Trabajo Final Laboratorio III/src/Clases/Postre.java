@@ -1,13 +1,15 @@
 package Clases;
 
-public class Postre {
+public class Postre extends ElementoMenu{
     private String nombreDelPostre; //Brownie con helado,  Volcan de chocolate, CheeseCake de  frutos rojos
     private String descripcion;  //descripcion de los ingredientes que contiene el postre.
 
 
     //Metodo constructor
-    public Postre(String nombreComida, double precioComida,String nombreDelPostre,String descripcion) {
-        super(nombreComida, precioComida);
+
+
+    public Postre(String nombreElementoMenu, double precioElementoMenu, String nombreDelPostre, String descripcion) {
+        super(nombreElementoMenu, precioElementoMenu);
         this.nombreDelPostre = nombreDelPostre;
         this.descripcion = descripcion;
     }
