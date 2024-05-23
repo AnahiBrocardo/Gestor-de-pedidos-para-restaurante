@@ -6,8 +6,8 @@ public class Cerveza extends Bebida{
     private int amargura; //indice de amargura (por ejemplo, IBU)
 
 
-    public Cerveza(float capacidad, String marca, double nivelAlcohol, int amargura) {
-        super(capacidad);
+    public Cerveza(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, double nivelAlcohol, int amargura) {
+        super(nombreElementoMenu, precioElementoMenu, capacidad);
         this.marca = marca;
         this.nivelAlcohol = nivelAlcohol;
         this.amargura = amargura;
