@@ -20,7 +20,7 @@ public class Cerveza extends Bebida{
     public String getAmargura() {
         return amargura;
     }
-    
+
     @Override
     public String toString() {
         return super.toString()+" Cerveza{" +

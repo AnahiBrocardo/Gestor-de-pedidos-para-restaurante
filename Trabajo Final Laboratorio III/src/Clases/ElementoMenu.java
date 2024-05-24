@@ -1,7 +1,7 @@
 package Clases;
 
 public abstract class ElementoMenu {
-    private String nombreElementoMenu;
+    private String nombreElementoMenu; //la categoria
     private double precioElementoMenu;
 
     public ElementoMenu(String nombreElementoMenu, double precioElementoMenu) {
