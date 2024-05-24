@@ -2,10 +2,10 @@ package Clases;
 
 public class Cerveza extends Bebida{
     private double nivelAlcohol; // Nivel de alcohol en porcentaje
-    private int amargura; //indice de amargura (por ejemplo, IBU)
+    private String amargura; //bajo, alto, modererado, medio
 
 
-    public Cerveza(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, String sabor, double nivelAlcohol, int amargura) {
+    public Cerveza(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, String sabor, double nivelAlcohol, String amargura) {
         super(nombreElementoMenu, precioElementoMenu, capacidad, marca, sabor);
         this.nivelAlcohol = nivelAlcohol;
         this.amargura = amargura;
@@ -17,11 +17,10 @@ public class Cerveza extends Bebida{
     }
 
 
-    public int getAmargura() {
+    public String getAmargura() {
         return amargura;
     }
-
-
+    
     @Override
     public String toString() {
         return super.toString()+" Cerveza{" +
