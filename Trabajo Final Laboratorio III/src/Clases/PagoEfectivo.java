@@ -7,5 +7,23 @@ public class PagoEfectivo extends Pago{
         super(monto);
         this.descuento = descuento;
     }
-    //dejo un comentario prueba 
+
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
+    }
+
+    public float getDescuento() {
+        return descuento;
+    }
+
+
+    @Override
+    public double calcularMontoTotalAPagar() {
+        double montoAPagar=getMonto();
+
+        if(getDescuento()!=0){
+            montoAPagar -= (montoAPagar*descuento)/100;
+        }
+        return montoAPagar;
+    }
 }

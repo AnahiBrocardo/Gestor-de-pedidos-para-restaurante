@@ -17,4 +17,6 @@ public abstract class Pago {
                 "monto=" + monto +
                 '}';
     }
+
+    public abstract double calcularMontoTotalAPagar();
 }
