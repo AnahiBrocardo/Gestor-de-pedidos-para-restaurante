@@ -1,26 +1,28 @@
 package Clases;
 
+import FuncionesMapa.GenericidadMapa;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public abstract class Pedido {
+public class Pedido extends GenericidadMapa {
     private int id;
     private Date fecha;
     private Pago tipoDePago;
     private boolean pagado;
     private Double totalCompra;
     private String sugerencia;
-    private HashMap <String, ArrayList<ElementoMenu>> conjuntoDeElementos;
+    private GenericidadMapa conjuntoDeElementos;
 
-    public Pedido(int id, Date fecha, Pago tipoDePago, boolean pagado, Double totalCompra, String sugerencia, HashMap<String, ArrayList<ElementoMenu>> conjuntoDeElementos) {
+    public Pedido(int id, Date fecha, Pago tipoDePago, boolean pagado, Double totalCompra, String sugerencia) {
         this.id = id;
         this.fecha = fecha;
         this.tipoDePago = tipoDePago;
         this.pagado = pagado;
         this.totalCompra = totalCompra;
         this.sugerencia = sugerencia;
-        conjuntoDeElementos = new HashMap<>();
+        conjuntoDeElementos = new GenericidadMapa();
     }
 
     public int getId() {
@@ -47,7 +49,7 @@ public abstract class Pedido {
         return sugerencia;
     }
 
-    public HashMap<String, ArrayList<ElementoMenu>> getConjuntoDeElementos() {
+    public GenericidadMapa getConjuntoDeElementos() {
         return conjuntoDeElementos;
     }
 
@@ -81,6 +83,6 @@ public abstract class Pedido {
                 ", totalCompra=" + totalCompra +
                 ", sugerencia='" + sugerencia + '\'' +
                 ", conjuntoDeElementos=" + conjuntoDeElementos +
-                '}';
+                '}' +" \n";
     }
 }
