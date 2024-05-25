@@ -69,4 +69,12 @@ public class GenericidadMapa <E> implements IFunciones {
         return rta;
     }
 
+    @Override
+    public void eliminar(Object o, String key) {
+        ArrayList<Object> datosArreglo;
+        if(nuevomapa.containsKey(key)){
+            datosArreglo= nuevomapa.get(key);
+            datosArreglo.remove(o);
+        }
+    }
 }
