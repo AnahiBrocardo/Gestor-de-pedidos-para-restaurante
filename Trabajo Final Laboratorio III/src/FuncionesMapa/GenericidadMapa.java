@@ -5,7 +5,7 @@ import Interfaces.IFunciones;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
+import java.util.Map.Entry;
 public class GenericidadMapa <E> implements IFunciones {
     private HashMap <String, ArrayList<Object>> nuevomapa;
 
@@ -58,7 +58,8 @@ public class GenericidadMapa <E> implements IFunciones {
         return existencia;
     }
     @Override
-    public String listar(String key) {
+    public String listar(String key)
+    {
         String rta="";
         ArrayList<Object> nuevoArreglo= nuevomapa.get(key);
         //Iterator<Object> iterator= nuevoArreglo.iterator();
@@ -76,5 +77,9 @@ public class GenericidadMapa <E> implements IFunciones {
             datosArreglo= nuevomapa.get(key);
             datosArreglo.remove(o);
         }
+    }
+
+    public Iterable<Object> entrySet() {
+        return null;
     }
 }

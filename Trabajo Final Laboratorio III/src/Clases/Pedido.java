@@ -2,9 +2,13 @@ package Clases;
 
 import FuncionesMapa.GenericidadMapa;
 
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class Pedido extends GenericidadMapa {
     private int id; //
@@ -13,7 +17,7 @@ public class Pedido extends GenericidadMapa {
     private boolean pagado;
     private Double totalCompra;
     private String sugerencia;
-    private GenericidadMapa conjuntoDeElementos;
+    private GenericidadMapa<ElementoMenu> conjuntoDeElementos;
 
     public Pedido(int id, Date fecha) {
         this.id = id; // buscar funcion que autoincremente
@@ -86,4 +90,19 @@ public class Pedido extends GenericidadMapa {
                 '}' +" \n";
     }
     ///Metodo para calcular el total de la compra
+    public void CalcularTotaldelPedido(){
+        double aux=0;
+        Iterator<Object> entryIterator = conjuntoDeElementos.entrySet().iterator();
+        while (entryIterator.hasNext()) {
+            Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
+            ArrayList<ElementoMenu> menuItems = entry.getValue();
+            for (ElementoMenu item : menuItems) {
+                aux += item.getPrecioElementoMenu();
+            }
+        }
+        totalCompra= aux;
+
+    }
+    ///
+    
 }
