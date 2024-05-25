@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Pedido extends GenericidadMapa {
-    private int id;
+    private int id; //
     private Date fecha;
     private Pago tipoDePago;
     private boolean pagado;
@@ -15,13 +15,13 @@ public class Pedido extends GenericidadMapa {
     private String sugerencia;
     private GenericidadMapa conjuntoDeElementos;
 
-    public Pedido(int id, Date fecha, Pago tipoDePago, boolean pagado, Double totalCompra, String sugerencia) {
-        this.id = id;
+    public Pedido(int id, Date fecha) {
+        this.id = id; // buscar funcion que autoincremente
         this.fecha = fecha;
-        this.tipoDePago = tipoDePago;
-        this.pagado = pagado;
-        this.totalCompra = totalCompra;
-        this.sugerencia = sugerencia;
+        this.tipoDePago = null;
+        this.pagado = false;
+        this.totalCompra = (double) 0;
+        this.sugerencia = " ";
         conjuntoDeElementos = new GenericidadMapa();
     }
 
@@ -61,8 +61,8 @@ public class Pedido extends GenericidadMapa {
         this.tipoDePago = tipoDePago;
     }
 
-    public void setPagado(boolean pagado) {
-        this.pagado = pagado;
+    public void setPagado() {
+        this.pagado = true;
     }
 
     public void setTotalCompra(Double totalCompra) {
@@ -85,4 +85,5 @@ public class Pedido extends GenericidadMapa {
                 ", conjuntoDeElementos=" + conjuntoDeElementos +
                 '}' +" \n";
     }
+    ///Metodo para calcular el total de la compra
 }
