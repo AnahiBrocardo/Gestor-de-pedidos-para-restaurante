@@ -44,5 +44,17 @@ public class GenericidadMapa <E> implements IFunciones {
         }
         return rta;
     }
-
+    @Override
+    public boolean buscar(Object buscado, String key) {
+        boolean existencia= false;
+        if(nuevomapa.containsKey(key)){
+            ArrayList<Object> datosArreglo = nuevomapa.get(key);
+            if (buscado != null){
+                if (datosArreglo.contains(buscado)) {
+                    existencia= true;
+                }
+            }
+        }
+        return existencia;
+    }
 }
