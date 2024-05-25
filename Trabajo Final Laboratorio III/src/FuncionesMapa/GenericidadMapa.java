@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class GenericidadMapa  <E> implements IFunciones {
+public class GenericidadMapa <E> implements IFunciones {
     private HashMap <String, ArrayList<Object>> nuevomapa;
 
     public GenericidadMapa() {
@@ -27,7 +27,22 @@ public class GenericidadMapa  <E> implements IFunciones {
 
     }
 
-
-
+    @Override
+    public String modificar(Object o, String key, Object objetoBuscado) {
+        String rta="";
+        if (nuevomapa.containsKey(key)){
+            ArrayList<Object> datosArreglo = nuevomapa.get(key);
+            if (datosArreglo.contains(objetoBuscado)) {
+                int indice = datosArreglo.indexOf(objetoBuscado);
+                datosArreglo.set(indice, o);
+                rta="Objeto modificado con exito";
+            } else {
+                rta="El objeto no se encuentra en el arreglo.";
+            }
+        } else {
+            rta="La clave no existe en el mapa";
+        }
+        return rta;
+    }
 
 }
