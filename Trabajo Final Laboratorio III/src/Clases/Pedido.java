@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Map.Entry;
 
 public class Pedido extends GenericidadMapa {
     private int id; //
@@ -90,19 +91,25 @@ public class Pedido extends GenericidadMapa {
                 '}' +" \n";
     }
     ///Metodo para calcular el total de la compra
-    public void CalcularTotaldelPedido(){
+    public double calcularTotaldelPedido(){
         double aux=0;
-        Iterator<Object> entryIterator = conjuntoDeElementos.entrySet().iterator();
+
+        Iterator<Entry<String, ArrayList<Object>>> entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
+
         while (entryIterator.hasNext()) {
-            Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
-            ArrayList<ElementoMenu> menuItems = entry.getValue();
-            for (ElementoMenu item : menuItems) {
-                aux += item.getPrecioElementoMenu();
+            Map.Entry<String, ArrayList<Object>> entry = entryIterator.next();
+            ArrayList<Object> menuItems = entry.getValue();
+            for (int i=0; i<menuItems.size(); i++) {
+                if(menuItems.get(i) instanceof  ElementoMenu) {
+                    ElementoMenu item= (ElementoMenu) menuItems.get(i);
+                    aux += item.getPrecioElementoMenu();
+                }
+
             }
         }
         totalCompra= aux;
 
+        return totalCompra;
     }
-    ///
     
 }
