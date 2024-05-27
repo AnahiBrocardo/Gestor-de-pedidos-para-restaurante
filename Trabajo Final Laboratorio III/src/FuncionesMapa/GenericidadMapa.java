@@ -82,4 +82,8 @@ public class GenericidadMapa <E> implements IFunciones {
     public Iterable<Object> entrySet() {
         return null;
     }
+
+    public HashMap<String, ArrayList<Object>> getNuevomapa() {
+        return nuevomapa;
+    }
 }
