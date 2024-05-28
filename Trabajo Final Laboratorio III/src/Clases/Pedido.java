@@ -88,28 +88,30 @@ public class Pedido extends GenericidadMapa {
                 ", totalCompra=" + totalCompra +
                 ", sugerencia='" + sugerencia + '\'' +
                 ", conjuntoDeElementos=" + conjuntoDeElementos +
-                '}' +" \n";
+                '}' +" \n"; //hacer funcion listar todos !!!
     }
     ///Metodo para calcular el total de la compra
     public double calcularTotaldelPedido(){
         double aux=0;
 
-        Iterator<Entry<String, ArrayList<Object>>> entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
+        Iterator<Entry<String, ArrayList<ElementoMenu>>>entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
 
         while (entryIterator.hasNext()) {
-            Map.Entry<String, ArrayList<Object>> entry = entryIterator.next();
-            ArrayList<Object> menuItems = entry.getValue();
+            Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
+            ArrayList<ElementoMenu> menuItems = entry.getValue();
             for (int i=0; i<menuItems.size(); i++) {
-                if(menuItems.get(i) instanceof  ElementoMenu) {
                     ElementoMenu item= (ElementoMenu) menuItems.get(i);
                     aux += item.getPrecioElementoMenu();
                 }
 
             }
-        }
         totalCompra= aux;
 
         return totalCompra;
+    }
+
+    public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave){
+        getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
     }
     
 }
