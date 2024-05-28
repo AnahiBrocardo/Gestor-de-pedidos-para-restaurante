@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-public class GenericidadMapa <E> implements IFunciones {
-    private HashMap <String, ArrayList<Object>> nuevomapa;
+public class GenericidadMapa <E> implements IFunciones<E> {
+    private HashMap <String, ArrayList<E>> nuevomapa;
 
     public GenericidadMapa() {
         nuevomapa = new HashMap<>();
     }
 
     @Override
-    public void agregar(Object o, String key) {
-        ArrayList<Object> datosArreglo;
+    public void agregar(E o, String key) {
+        ArrayList<E> datosArreglo;
         if(nuevomapa.containsKey(key)){
             datosArreglo= nuevomapa.get(key);
             datosArreglo.add(o);
@@ -28,10 +28,10 @@ public class GenericidadMapa <E> implements IFunciones {
     }
 
     @Override
-    public String modificar(Object o, String key, Object objetoBuscado) {
+    public String modificar(E o, String key, E objetoBuscado) {
         String rta="";
         if (nuevomapa.containsKey(key)){
-            ArrayList<Object> datosArreglo = nuevomapa.get(key);
+            ArrayList<E> datosArreglo = nuevomapa.get(key);
             if (datosArreglo.contains(objetoBuscado)) {
                 int indice = datosArreglo.indexOf(objetoBuscado);
                 datosArreglo.set(indice, o);
@@ -45,10 +45,10 @@ public class GenericidadMapa <E> implements IFunciones {
         return rta;
     }
     @Override
-    public boolean buscar(Object buscado, String key) {
+    public boolean buscar(E buscado, String key) {
         boolean existencia= false;
         if(nuevomapa.containsKey(key)){
-            ArrayList<Object> datosArreglo = nuevomapa.get(key);
+            ArrayList<E> datosArreglo = nuevomapa.get(key);
             if (buscado != null){
                 if (datosArreglo.contains(buscado)) {
                     existencia= true;
@@ -61,7 +61,7 @@ public class GenericidadMapa <E> implements IFunciones {
     public String listar(String key)
     {
         String rta="";
-        ArrayList<Object> nuevoArreglo= nuevomapa.get(key);
+        ArrayList<E> nuevoArreglo= nuevomapa.get(key);
         //Iterator<Object> iterator= nuevoArreglo.iterator();
         for(int i=0; i< nuevoArreglo.size(); i++)
         {
@@ -71,19 +71,16 @@ public class GenericidadMapa <E> implements IFunciones {
     }
 
     @Override
-    public void eliminar(Object o, String key) {
-        ArrayList<Object> datosArreglo;
+    public void eliminar(E o, String key) {
+        ArrayList<E> datosArreglo;
         if(nuevomapa.containsKey(key)){
             datosArreglo= nuevomapa.get(key);
             datosArreglo.remove(o);
         }
     }
 
-    public Iterable<Object> entrySet() {
-        return null;
-    }
 
-    public HashMap<String, ArrayList<Object>> getNuevomapa() {
+    public HashMap<String, ArrayList<E>> getNuevomapa() {
         return nuevomapa;
     }
 }
