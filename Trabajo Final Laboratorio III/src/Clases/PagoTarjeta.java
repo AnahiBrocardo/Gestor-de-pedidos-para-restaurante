@@ -66,7 +66,7 @@ public class PagoTarjeta extends Pago{
     public double calcularMontoCuotasAPagar() {
         double montoCuota=0;
         if(getCantidadCuotas()!=0){
-            montoCuota= getMonto()/getCantidadCuotas();
+            montoCuota=getMonto()/getCantidadCuotas();
         }
 
         return montoCuota;
