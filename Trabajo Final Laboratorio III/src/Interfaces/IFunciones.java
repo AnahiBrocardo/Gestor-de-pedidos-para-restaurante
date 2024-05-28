@@ -1,13 +1,13 @@
 package Interfaces;
 
-public interface IFunciones{
-public void agregar(Object o, String key);
+public interface IFunciones<E>{
+public void agregar(E o, String key);
 
-public String modificar(Object o, String key, Object objetoBuscado);
+public String modificar(E o, String key, E objetoBuscado);
 
-public boolean buscar(Object buscado, String key);
+public boolean buscar(E buscado, String key);
 
 public String listar(String key);
 
-public void eliminar(Object o, String key);
+public void eliminar(E o, String key);
 }
