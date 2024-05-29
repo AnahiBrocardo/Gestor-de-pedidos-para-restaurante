@@ -94,7 +94,7 @@ public class Pedido extends GenericidadMapa {
     public double calcularTotaldelPedido(){
         double aux=0;
 
-        Iterator<Entry<String, ArrayList<ElementoMenu>>>entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
+        Iterator<Map.Entry<String, ArrayList<ElementoMenu>>>entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
 
         while (entryIterator.hasNext()) {
             Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
