@@ -4,7 +4,13 @@ public class Burger extends ElementoMenu {
         private String descripcion;
         private String tipoHamburguesa; //puede ser Mexicana, americana, argenta o liviana
 
-        public Burger (String nombreElementoMenu, double precioElementoMenu, String descripcion, String tipoHamburguesa) {
+    public Burger ()
+    {
+        descripcion = "";
+        tipoHamburguesa= "";
+    }
+    
+    public Burger (String nombreElementoMenu, double precioElementoMenu, String descripcion, String tipoHamburguesa) {
             super(nombreElementoMenu, precioElementoMenu);
             this.descripcion = descripcion;
             this.tipoHamburguesa = tipoHamburguesa;
