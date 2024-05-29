@@ -4,6 +4,11 @@ public abstract class ElementoMenu {
     private String nombreElementoMenu; //la categoria
     private double precioElementoMenu;
 
+    public ElementoMenu(){
+        nombreElementoMenu="";
+        precioElementoMenu=0;
+    }
+
     public ElementoMenu(String nombreElementoMenu, double precioElementoMenu) {
         this.nombreElementoMenu = nombreElementoMenu;
         this.precioElementoMenu = precioElementoMenu;
