@@ -5,6 +5,7 @@ import Interfaces.IFunciones;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 public class GenericidadMapa <E> implements IFunciones<E> {
     private HashMap <String, ArrayList<E>> nuevomapa;
@@ -79,6 +80,17 @@ public class GenericidadMapa <E> implements IFunciones<E> {
         }
     }
 
+    public String listarTodo(){
+        String rta="";
+        Iterator<Map.Entry<String, ArrayList<E>>> iteratormap= nuevomapa.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, ArrayList<E>> entry = iteratormap.next();
+            String key = entry.getKey();
+            rta += listar(key);
+        }
+
+        return rta;
+    }
 
     public HashMap<String, ArrayList<E>> getNuevomapa() {
         return nuevomapa;
