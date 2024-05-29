@@ -18,8 +18,9 @@ public class ControladoraJson {
         String jsonRespuesta= JsonUtiles.leer("archivoMenu.bin");
 
         //variables compartidas
-        String descripcion, nombreElementoMenu;
-        Double precioElementoMenu;
+        String descripcion, nombreElementoMenu, marca, sabor, amargura;
+        Double precioElementoMenu, nivelAlcohol;
+        float capacidad;
 
         HashMap<String, ArrayList<ElementoMenu>> mapaMenu= new HashMap<>();
 
@@ -75,7 +76,30 @@ public class ControladoraJson {
                 }
             }
 
+            JSONArray arregloCerveza = jsonObject.getJSONArray("cerveza");
+            for(int i=0; i<arregloCerveza.length(); i++){
+                JSONObject cerveza= arregloCerveza.getJSONObject(i);
+                marca= cerveza.getString("marca");
+                sabor= cerveza.getString("sabor");
+                amargura= cerveza.getString("amargura");
+                nombreElementoMenu= cerveza.getString("nombreElementoMenu");
+                nivelAlcohol= cerveza.getDouble("nivelAlcohol");
+                precioElementoMenu= cerveza.getDouble("precioElementoMenu");
+                capacidad=(float) cerveza.getDouble("capacidad");
 
+                ElementoMenu cervezanueva= new Cerveza(nombreElementoMenu,precioElementoMenu, capacidad,marca, sabor,nivelAlcohol, amargura);
+                if (mapaMenu.containsKey("cerveza"))
+                {
+                    datosArreglo = mapaMenu.get("cerveza");
+                    datosArreglo.add(cervezanueva);
+                }
+                else
+                {
+                    datosArreglo = new ArrayList<>();
+                    datosArreglo.add(cervezanueva);
+                    mapaMenu.put("cerveza", datosArreglo);
+                }
+            }
 
 
         }
