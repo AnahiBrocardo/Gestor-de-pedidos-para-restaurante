@@ -25,6 +25,10 @@ public abstract class ElementoMenu {
         this.nombreElementoMenu = nombreElementoMenu;
     }
 
+    public void setPrecioElementoMenu(double precioElementoMenu) {
+        this.precioElementoMenu = precioElementoMenu;
+    }
+
     @Override
     public String toString() {
         return "\n ElementoMenu{" +
