@@ -2,12 +2,7 @@ package Clases;
 
 public class Gaseosa extends Bebida{
     private boolean tieneEndulzante;
-
-    public Gaseosa ()
-    {
-        super();
-        tieneEndulzante = false;
-    }
+    
 
     public Gaseosa(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, String sabor, boolean tieneEndulzante) {
         super(nombreElementoMenu, precioElementoMenu, capacidad, marca, sabor);
