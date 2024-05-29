@@ -16,24 +16,31 @@ public class ControladoraJson {
     {
 
         String jsonRespuesta= JsonUtiles.leer("archivoMenu.bin");
+
+        //variables compartidas
+        String descripcion, nombreElementoMenu;
+        Double precioElementoMenu;
+
         HashMap<String, ArrayList<ElementoMenu>> mapaMenu= new HashMap<>();
 
         try{
             JSONObject jsonObject= new JSONObject(jsonRespuesta);
 
+            //CLAVE POSTRE
             JSONArray arregloPostres= jsonObject.getJSONArray("postre");
+            ArrayList<ElementoMenu> datosArreglo;
 
             for (int i=0; i<arregloPostres.length(); i++){
-                ArrayList<ElementoMenu> datos;
+
                 JSONObject jsonObjetArregloPostre= arregloPostres.getJSONObject(i);
 
-                String nombreElementoMenu=jsonObjetArregloPostre.getString("nombreElementoMenu");
-                Double precioElementoMenu= jsonObjetArregloPostre.getDouble("precioElementoMenu");
+                 nombreElementoMenu=jsonObjetArregloPostre.getString("nombreElementoMenu");
+                 precioElementoMenu= jsonObjetArregloPostre.getDouble("precioElementoMenu");
                 String nombrePostre= jsonObjetArregloPostre.getString("nombreDelPostre");
-                String descripcion=  jsonObjetArregloPostre.getString("descripcion");
+                 descripcion=  jsonObjetArregloPostre.getString("descripcion");
                 ElementoMenu nuevoE= new Postre(nombreElementoMenu, precioElementoMenu,nombrePostre,descripcion);
 
-                ArrayList<ElementoMenu> datosArreglo;
+
                 if(mapaMenu.containsKey("postre")){
                     datosArreglo= mapaMenu.get("postre");
                     datosArreglo.add(nuevoE);
@@ -44,8 +51,33 @@ public class ControladoraJson {
                 }
             }
 
+            JSONArray arregloDeBurges = jsonObject.getJSONArray("burger");
+            String tipoHamburguesa;
+            for(int i=0; i<arregloDeBurges.length(); i++)
+            {
+                JSONObject jsonObjetArregloBurger = arregloDeBurges.getJSONObject(i);
+                descripcion = jsonObjetArregloBurger.getString("descripcion");
+                tipoHamburguesa = jsonObjetArregloBurger.getString("tipoHamburguesa");
+                nombreElementoMenu = jsonObjetArregloBurger.getString("nombreElementoMenu");
+                precioElementoMenu = jsonObjetArregloBurger.getDouble("precioElementoMenu");
+                ElementoMenu nuevoElementoBurger = new Burger(nombreElementoMenu, precioElementoMenu, descripcion, tipoHamburguesa);
 
-            
+                if (mapaMenu.containsKey("burger"))
+                {
+                    datosArreglo = mapaMenu.get("burger");
+                    datosArreglo.add(nuevoElementoBurger);
+                }
+                else
+                {
+                    datosArreglo = new ArrayList<>();
+                    datosArreglo.add(nuevoElementoBurger);
+                    mapaMenu.put("burger", datosArreglo);
+                }
+            }
+
+
+
+
         }
         catch (JSONException exception){
             exception.printStackTrace();
