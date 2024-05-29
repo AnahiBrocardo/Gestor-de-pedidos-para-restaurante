@@ -22,6 +22,7 @@ public class ControladoraJson {
             JSONObject jsonObject= new JSONObject(jsonRespuesta);
 
             JSONArray arregloPostres= jsonObject.getJSONArray("postre");
+
             for (int i=0; i<arregloPostres.length(); i++){
                 ArrayList<ElementoMenu> datos;
                 JSONObject jsonObjetArregloPostre= arregloPostres.getJSONObject(i);
@@ -41,9 +42,10 @@ public class ControladoraJson {
                     datosArreglo.add(nuevoE);
                     mapaMenu.put("postre", datosArreglo);
                 }
-
-
             }
+
+
+            
         }
         catch (JSONException exception){
             exception.printStackTrace();
