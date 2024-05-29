@@ -9,7 +9,7 @@ public class Burger extends ElementoMenu {
         descripcion = "";
         tipoHamburguesa= "";
     }
-    
+
     public Burger (String nombreElementoMenu, double precioElementoMenu, String descripcion, String tipoHamburguesa) {
             super(nombreElementoMenu, precioElementoMenu);
             this.descripcion = descripcion;
