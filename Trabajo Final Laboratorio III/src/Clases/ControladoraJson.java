@@ -12,7 +12,7 @@ public class ControladoraJson {
     /*Este metodo leer el archivo archivoMenu.bin  y lo codifica a la clase Menu
      * @return el mapa de elementosMenu (comida) del archivo*/
 
-    public HashMap<String, ArrayList<ElementoMenu>> lecturaArchivo()
+    public static HashMap<String, ArrayList<ElementoMenu>> lecturaArchivo()
     {
 
         String jsonRespuesta= JsonUtiles.leer("archivoMenu.bin");
@@ -129,7 +129,7 @@ public class ControladoraJson {
             ///////AGUA SABORIZADA
             JSONArray arregloaguaSaborizada = jsonObject.getJSONArray("aguaSaborizada");
             for(int i=0; i<arregloaguaSaborizada.length(); i++){
-                JSONObject agua= arregloGaseosas.getJSONObject(i);
+                JSONObject agua= arregloaguaSaborizada.getJSONObject(i);
                 marca= agua.getString("marca");
                 sabor= agua.getString("sabor");
                 nombreElementoMenu= agua.getString("nombreElementoMenu");
