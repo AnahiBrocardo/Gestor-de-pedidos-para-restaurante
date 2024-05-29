@@ -1,4 +1,4 @@
-import Clases.Burguer;
+import Clases.Burger;
 import Clases.Cerveza;
 import Clases.ElementoMenu;
 
