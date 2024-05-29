@@ -1,15 +1,39 @@
 package Clases;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
-public class Menu {
+public class Menu{
  private HashMap<String, ArrayList<ElementoMenu>> mapaDelMenu;
 
-    public Menu(HashMap<String, ArrayList<ElementoMenu>> mapaDelMenu) {
-        this.mapaDelMenu = mapaDelMenu;
+
+    public Menu()
+    {
+        this.mapaDelMenu =ControladoraJson.lecturaArchivo();
     }
 
-    
+
+
+    public String listarTodoMenu(){
+        String rta="";
+        Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> iteratormap= mapaDelMenu.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, ArrayList<ElementoMenu>> entry = iteratormap.next();
+            String key = entry.getKey();
+            rta += listarMenu(key);
+        }
+
+        return rta;
+    }
+
+    public String listarMenu(String key)
+    {
+        String rta="";
+        ArrayList<ElementoMenu> nuevoArreglo= mapaDelMenu.get(key);
+        //Iterator<Object> iterator= nuevoArreglo.iterator();
+        for(int i=0; i< nuevoArreglo.size(); i++)
+        {
+            rta += nuevoArreglo.get(i).toString() + "\n";
+        }
+        return rta;
+    }
 }
