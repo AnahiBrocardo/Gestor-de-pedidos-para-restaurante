@@ -5,6 +5,7 @@ public class Gaseosa extends Bebida{
 
     public Gaseosa ()
     {
+        super();
         tieneEndulzante = false;
     }
 
