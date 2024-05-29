@@ -5,6 +5,11 @@ public  abstract class Bebida extends ElementoMenu {
     private String marca; // antares, corona, quilmes
     private String sabor;// rubia, roja
 
+    public Bebida(){
+        capacidad=0;
+        marca="";
+        sabor="";
+    }
     public Bebida(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, String sabor) {
         super(nombreElementoMenu, precioElementoMenu);
         this.capacidad = capacidad;

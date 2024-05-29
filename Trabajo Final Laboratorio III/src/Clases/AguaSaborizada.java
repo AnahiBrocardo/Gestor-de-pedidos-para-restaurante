@@ -3,6 +3,11 @@ package Clases;
 public class AguaSaborizada extends Bebida{
     private boolean tieneGas;
 
+    public AguaSaborizada()
+    {
+        tieneGas = false;
+    }
+
     public AguaSaborizada(String nombreElementoMenu, double precioElementoMenu, float capacidad, String marca, String sabor, boolean tieneGas) {
         super(nombreElementoMenu, precioElementoMenu, capacidad, marca, sabor);
         this.tieneGas = tieneGas;
@@ -10,6 +15,10 @@ public class AguaSaborizada extends Bebida{
 
     public boolean isTieneGas() {
         return tieneGas;
+    }
+
+    public void setTieneGas(boolean tieneGas) {
+        this.tieneGas = tieneGas;
     }
 
     @Override

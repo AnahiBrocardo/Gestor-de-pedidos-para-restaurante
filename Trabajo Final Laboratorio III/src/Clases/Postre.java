@@ -7,6 +7,11 @@ public class Postre extends ElementoMenu{
 
     //Metodo constructor
 
+    public Postre(){
+        super();
+        nombreDelPostre="";
+        descripcion= "";
+    }
 
     public Postre(String nombreElementoMenu, double precioElementoMenu, String nombreDelPostre, String descripcion) {
         super(nombreElementoMenu, precioElementoMenu);
