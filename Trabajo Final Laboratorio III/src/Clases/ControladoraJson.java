@@ -21,6 +21,7 @@ public class ControladoraJson {
         String descripcion, nombreElementoMenu, marca, sabor, amargura;
         Double precioElementoMenu, nivelAlcohol;
         float capacidad;
+        boolean tieneEndulzante;
 
         HashMap<String, ArrayList<ElementoMenu>> mapaMenu= new HashMap<>();
 
@@ -98,6 +99,31 @@ public class ControladoraJson {
                     datosArreglo = new ArrayList<>();
                     datosArreglo.add(cervezanueva);
                     mapaMenu.put("cerveza", datosArreglo);
+                }
+            }
+
+            ///////GASEOSA
+            JSONArray arregloGaseosas = jsonObject.getJSONArray("gaseosa");
+            for(int i=0; i<arregloGaseosas.length(); i++){
+                JSONObject gaseo= arregloGaseosas.getJSONObject(i);
+                marca= gaseo.getString("marca");
+                sabor= gaseo.getString("sabor");
+                tieneEndulzante= gaseo.getBoolean("tieneEndulzante");
+                nombreElementoMenu= gaseo.getString("nombreElementoMenu");
+                precioElementoMenu= gaseo.getDouble("precioElementoMenu");
+                capacidad=(float) gaseo.getDouble("capacidad");
+
+                ElementoMenu gaseoN= new Gaseosa(nombreElementoMenu, precioElementoMenu, capacidad, marca, sabor, tieneEndulzante);
+                if (mapaMenu.containsKey("gaseosa"))
+                {
+                    datosArreglo = mapaMenu.get("gaseosa");
+                    datosArreglo.add(gaseoN);
+                }
+                else
+                {
+                    datosArreglo = new ArrayList<>();
+                    datosArreglo.add(gaseoN);
+                    mapaMenu.put("gaseosa", datosArreglo);
                 }
             }
 
