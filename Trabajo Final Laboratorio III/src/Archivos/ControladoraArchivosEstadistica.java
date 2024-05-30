@@ -1,9 +1,7 @@
 package Archivos;
 import Clases.Estadistica;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ControladoraArchivosEstadistica {
@@ -22,7 +20,70 @@ public class ControladoraArchivosEstadistica {
             }
 
         }catch (IOException exception){
+            System.out.println(exception.getMessage());
+        }
+        finally {
+            try {
+                if (fileOutputStream != null)
+                    fileOutputStream.close();
+
+                if (objectOutputStream != null)
+                    objectOutputStream.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public static ArrayList<Estadistica> leerArchivo()
+    {
+        ArrayList<Estadistica> estadisticasArrayList = new ArrayList<>();
+
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+
+        try
+        {
+            fileInputStream = new FileInputStream("estadisticas.dat");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+
+            while (true)
+            {
+                /*El objectInputStream se utiliza para leer objetos serializados y con el metodo readObject me devuelve (retorna) ese objeto leido.
+                Se guarda y castea en una variable estadistica ya que el objeto retornado esta Bytes.*/
+                Estadistica aux = (Estadistica) objectInputStream.readObject();
+                estadisticasArrayList.add(aux);
+            }
+        }
+        catch (EOFException ex)
+        {
+            System.out.println("FIN del ARCHIVO");
+        }
+        catch (ClassNotFoundException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if (fileInputStream!=null)
+                    fileInputStream.close();
+
+                if (objectInputStream!=null)
+                    objectInputStream.close();
+            }
+            catch (IOException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
 
         }
+
+        return estadisticasArrayList;
     }
 }
