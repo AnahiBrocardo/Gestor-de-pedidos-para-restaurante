@@ -87,8 +87,8 @@ public class Pedido extends GenericidadMapa {
                 ", pagado=" + pagado +
                 ", totalCompra=" + totalCompra +
                 ", sugerencia='" + sugerencia + '\'' +
-                ", conjuntoDeElementos=" + conjuntoDeElementos +
-                '}' +" \n"; //hacer funcion listar todos !!!
+                ", conjuntoDeElementos=" + conjuntoDeElementos.listarTodo() +
+                '}' +" \n";
     }
     ///Metodo para calcular el total de la compra
     public double calcularTotaldelPedido(){
@@ -113,5 +113,6 @@ public class Pedido extends GenericidadMapa {
     public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave){
         getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
     }
-    
+
+
 }
