@@ -29,7 +29,6 @@ public class Menu{
     {
         String rta="";
         ArrayList<ElementoMenu> nuevoArreglo= mapaDelMenu.get(key);
-        //Iterator<Object> iterator= nuevoArreglo.iterator();
         for(int i=0; i< nuevoArreglo.size(); i++)
         {
             rta += nuevoArreglo.get(i).toString() + "\n";
