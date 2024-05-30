@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-/* PRUEBA MENU
+// PRUEBA MENU
         ElementoMenu n1 = new Burger("Burger", 2340, "chees and bacom", "Mexicana");
         ElementoMenu n2 = new Postre("Postre", 2370, "brownie con helado", "brofje");
         Pedido c2 = new Pedido(123, new Date());
@@ -17,7 +17,7 @@ public class Main {
         System.out.println(c2.toString());
 
         Menu nuevoMenu= new Menu();
-        System.out.println(nuevoMenu.listarTodoMenu());*/
+        System.out.println(nuevoMenu.listarTodoMenu());
     }
 
     }
