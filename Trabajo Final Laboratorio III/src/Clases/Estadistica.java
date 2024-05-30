@@ -1,15 +1,16 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Estadistica {
+public class Estadistica implements Serializable {
     private Date fecha; //fecha de la caja del dia
     private double totalRecaudacion; //total de la recaudacion de la caja del dia
     private HashMap <String, Integer> mapaEstadisticas;// clave-> tipo de producto y el valor cant de ese producto
     /* cuando se cierra caja se crea un new de estadistica y se guarda en el archivo*/
 
-    public Estadistica(Date fecha, double totalRecaudacio) {
+    public Estadistica(Date fecha, double totalRecaudacion) {
         this.fecha = fecha;
         this.totalRecaudacion = totalRecaudacion;
         this.mapaEstadisticas = new HashMap<>();
