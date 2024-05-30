@@ -10,6 +10,13 @@ public class GenericidadArray <E> implements IFuncionesArreglos<E> {
         this.nuevoArreglo = new ArrayList<>();
     }
 
+    public ArrayList<E> getNuevoArreglo() {
+        return nuevoArreglo;
+    }
+
+    public E getPos(int i){
+        return nuevoArreglo.get(i);
+    }
     @Override
     public void agregar(E o) {
         nuevoArreglo.add(o);
