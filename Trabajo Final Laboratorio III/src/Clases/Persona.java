@@ -4,9 +4,9 @@ public class Persona {
     private String nombreYapellido;
     private int dni;
     private String direccion;
-    private int telefono;
+    private String telefono;
 
-    public Persona(String nombreYapellido, int dni, String direccion, int telefono) {
+    public Persona(String nombreYapellido, int dni, String direccion, String telefono) {
         this.nombreYapellido = nombreYapellido;
         this.dni = dni;
         this.direccion = direccion;
@@ -25,11 +25,11 @@ public class Persona {
         return direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
