@@ -2,6 +2,7 @@ package Clases;
 
 import FuncionesMapa.GenericidadArray;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -71,6 +72,59 @@ public class Caja extends GenericidadArray {
         return tarjeta;
     }
 
+    public boolean agregarApedido(String key, ElementoMenu nuevoElementoMenu, int idBuscado) {
+        boolean agregado= false;
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if(pedido.getId() == idBuscado ){
+                if(!pedido.isPagado()){//Quiero lograr que si el estado del pedido es sin pagar puedo agregar productos
+                    pedido.agregarApedido(nuevoElementoMenu, key);
+                    agregado= true;
+                }
+            }
+
+        }
+        return agregado;
+    }
+
+    public boolean modificarPedido(String key, int idbuscado, ElementoMenu aCambiar, ElementoMenu aAgregar) {
+        boolean agregado = false;
+        for (int i = 0; i < pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido = (Pedido) pedidosDia.getPos(i);
+            if ((pedido.getId() == idbuscado) && (!pedido.isPagado())) {
+                pedido.modificarPedido(aCambiar, aAgregar, key);
+                agregado = true;
+            }
+        }
+        return agregado;
+    }
+
+    public boolean buscarPedido(String key, int idbuscado, ElementoMenu aBuscado){
+        boolean buscado= false;
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if((pedido.getId() == idbuscado) && (!pedido.isPagado()) ){
+                buscado=pedido.buscar(aBuscado, key);
+            }
+        }
+        return buscado;
+    }
+
+
+    public String listarTodoelPedido(String key, int idbuscado){
+        String rta="";
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if((pedido.getId() == idbuscado) ){
+                rta=pedido.listar(key);
+            }
+        }
+        return rta;
+    }
+
+    public
+
+    
 
     
 
