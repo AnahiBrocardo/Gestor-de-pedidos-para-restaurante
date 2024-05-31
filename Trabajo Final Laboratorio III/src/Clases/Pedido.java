@@ -88,31 +88,51 @@ public class Pedido extends GenericidadMapa {
                 ", totalCompra=" + totalCompra +
                 ", sugerencia='" + sugerencia + '\'' +
                 ", conjuntoDeElementos=" + conjuntoDeElementos.listarTodo() +
-                '}' +" \n";
+                '}' + " \n";
     }
-    ///Metodo para calcular el total de la compra
-    public double calcularTotaldelPedido(){
-        double aux=0;
 
-        Iterator<Map.Entry<String, ArrayList<ElementoMenu>>>entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
+    ///Metodo para calcular el total de la compra
+    public double calcularTotaldelPedido() {
+        double aux = 0;
+
+        Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> entryIterator = conjuntoDeElementos.getNuevomapa().entrySet().iterator();
 
         while (entryIterator.hasNext()) {
             Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
             ArrayList<ElementoMenu> menuItems = entry.getValue();
-            for (int i=0; i<menuItems.size(); i++) {
-                    ElementoMenu item= (ElementoMenu) menuItems.get(i);
-                    aux += item.getPrecioElementoMenu();
-                }
-
+            for (int i = 0; i < menuItems.size(); i++) {
+                ElementoMenu item = (ElementoMenu) menuItems.get(i);
+                aux += item.getPrecioElementoMenu();
             }
-        totalCompra= aux;
+
+        }
+        totalCompra = aux;
 
         return totalCompra;
     }
 
-    public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave){
+    public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave) {
         getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
+    }
+
+    public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo){
+        conjuntoDeElementos.modificar(aCambiar, aCambiar.getNombreElementoMenu(), nuevo);
+    }
+
+    public boolean buscar(ElementoMenu buscado){
+        boolean rta= conjuntoDeElementos.buscar(buscado, buscado.getNombreElementoMenu()) ;
+        return rta;
+    }
+
+    public String listar(String key){
+        String rta= conjuntoDeElementos.listar(key);
+        return rta;
+    }
+
+    public void eliminar(ElementoMenu aEliminar){
+        conjuntoDeElementos.eliminar(aEliminar, aEliminar.getNombreElementoMenu());
     }
 
 
 }
+

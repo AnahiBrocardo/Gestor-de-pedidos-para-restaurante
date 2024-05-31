@@ -8,11 +8,13 @@ import java.util.Date;
 public class Caja extends GenericidadArray {
     private double totalRecuadado;
     private Date fecha;
+    private Boolean estado; //Esto nos permite ver si la caja esta activa o ya la cerramos
     private GenericidadArray<Pedido> pedidosDia;
 
     public Caja() {
         totalRecuadado=0;
         fecha= new Date();
+        estado= true;
         pedidosDia= new GenericidadArray<>();
     }
 
@@ -22,6 +24,10 @@ public class Caja extends GenericidadArray {
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public Boolean getEstado() {
+        return estado;
     }
 
     public GenericidadArray<Pedido> getPedidosDia() {
@@ -36,6 +42,7 @@ public class Caja extends GenericidadArray {
         }
         return getTotalRecuadado();
     }
+
 
     
 
