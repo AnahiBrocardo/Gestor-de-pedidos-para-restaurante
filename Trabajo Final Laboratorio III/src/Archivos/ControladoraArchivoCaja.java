@@ -19,7 +19,7 @@ public class ControladoraArchivoCaja {
             }
 
         }catch (IOException exception){
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
         }
         finally {
             try {
@@ -29,7 +29,7 @@ public class ControladoraArchivoCaja {
                 if (objectOutputStream != null)
                     objectOutputStream.close();
             } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }
@@ -56,15 +56,15 @@ public class ControladoraArchivoCaja {
         }
         catch (EOFException ex)
         {
-            System.out.println("FIN del ARCHIVO");
+            ex.printStackTrace();
         }
         catch (ClassNotFoundException ex)
         {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         catch (IOException ex)
         {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         finally
         {
@@ -78,7 +78,7 @@ public class ControladoraArchivoCaja {
             }
             catch (IOException ex)
             {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
 
         }
