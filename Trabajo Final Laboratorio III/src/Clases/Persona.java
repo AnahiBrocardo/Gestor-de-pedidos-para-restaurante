@@ -1,12 +1,14 @@
 package Clases;
 
+import Excepciones.InvalidNameExcepcion;
+
 public class Persona {
     private String nombreYapellido;
-    private int dni;
+    private String dni;
     private String direccion;
     private String telefono;
 
-    public Persona(String nombreYapellido, int dni, String direccion, String telefono) {
+    public Persona(String nombreYapellido, String dni, String direccion, String telefono) {
         this.nombreYapellido = nombreYapellido;
         this.dni = dni;
         this.direccion = direccion;
@@ -17,7 +19,7 @@ public class Persona {
         return nombreYapellido;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
@@ -50,4 +52,8 @@ public class Persona {
                 ", telefono=" + telefono +
                 '}';
     }
+
+
+
+
 }
