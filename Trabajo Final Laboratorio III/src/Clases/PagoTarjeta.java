@@ -2,13 +2,13 @@ package Clases;
 
 public class PagoTarjeta extends Pago{
     private Persona cliente; //persona que realiza el pago
-    private int numeroTarjeta; //tiene que tener 16 digitos
+    private String numeroTarjeta; //tiene que tener  19 digitos en este formato XXXX XXXX XXXX XXXX
     private int cantidadCuotas;
     private Tarjeta tipoDeTarjeta; //Visa,Mastercard, Favacard, otros.
     private String tipoDeCuenta; //credito o debito
 
    //Metodo constructor
-    public PagoTarjeta(double monto, Persona cliente, int numeroTarjeta, int cantidadCuotas, Tarjeta tipoDeTarjeta, String tipoDeCuenta) {
+    public PagoTarjeta(double monto, Persona cliente, String numeroTarjeta, int cantidadCuotas, Tarjeta tipoDeTarjeta, String tipoDeCuenta) {
         super(monto);
         this.cliente = cliente;
         this.numeroTarjeta = numeroTarjeta;
@@ -21,7 +21,7 @@ public class PagoTarjeta extends Pago{
         return cliente;
     }
 
-    public int getNumeroTarjeta() {
+    public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
