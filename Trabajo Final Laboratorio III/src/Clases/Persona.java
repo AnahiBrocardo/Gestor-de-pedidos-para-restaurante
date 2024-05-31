@@ -72,5 +72,13 @@ public class Persona {
         }
     }
 
+    public static void validarTelefonoPersona (String telefonoPersona) throws InvalidCardNumberException {
+
+        if(telefonoPersona.isEmpty() || telefonoPersona.length()<10){
+            throw new InvalidCardNumberException("Telefono invalido menor a 10 digitos");
+        }
+    }
+
+
 
 }
