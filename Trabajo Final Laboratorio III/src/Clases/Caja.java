@@ -34,6 +34,11 @@ public class Caja extends GenericidadArray {
         return pedidosDia;
     }
 
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+
     public Double calcularTotalCaja(){
 
         for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
@@ -41,6 +46,29 @@ public class Caja extends GenericidadArray {
            totalRecuadado += pedido.calcularTotaldelPedido();
         }
         return getTotalRecuadado();
+    }
+
+    public double calcularTotalEfectivo(){
+        double efectivo=0;
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if(pedido.getTipoDePago() instanceof PagoEfectivo){
+                efectivo += pedido.getTotalCompra();
+            }
+
+        }
+        return efectivo;
+    }
+    public double calcularTotalTarjeta(){
+        double tarjeta= 0;
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if(pedido.getTipoDePago() instanceof PagoTarjeta){
+                tarjeta += pedido.getTotalCompra();
+            }
+
+        }
+        return tarjeta;
     }
 
 
