@@ -67,18 +67,15 @@ public class Persona {
 
     public static void validarDniPersona (String dniPersona) throws InvalidDniExcepcion {
 
-        if(dniPersona.isEmpty() || dniPersona.length()<6){
+        if(dniPersona.isEmpty() || dniPersona.length()<6 || dniPersona.length()>8){
             throw new InvalidDniExcepcion("Dni invalido menor a 6 digitos");
         }
     }
 
     public static void validarTelefonoPersona (String telefonoPersona) throws InvalidCardNumberException {
 
-        if(telefonoPersona.isEmpty() || telefonoPersona.length()<10){
+        if(telefonoPersona.isEmpty() || telefonoPersona.length()<10 || telefonoPersona.length()>10){
             throw new InvalidCardNumberException("Telefono invalido menor a 10 digitos");
         }
     }
-
-
-
 }
