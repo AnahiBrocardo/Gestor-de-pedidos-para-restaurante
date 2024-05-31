@@ -1,6 +1,7 @@
 package Clases;
 
 import Excepciones.InvalidCardNumberException;
+import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
 
 import java.util.regex.Matcher;
@@ -61,6 +62,13 @@ public class Persona {
 
         if(nombreApellido.isEmpty()){
             throw new InvalidNameExcepcion("Nombre Invalido"); //lanza la excepcion
+        }
+    }
+
+    public static void validarDniPersona (String dniPersona) throws InvalidDniExcepcion {
+
+        if(dniPersona.isEmpty() || dniPersona.length()<6){
+            throw new InvalidDniExcepcion("Dni invalido menor a 6 digitos");
         }
     }
 
