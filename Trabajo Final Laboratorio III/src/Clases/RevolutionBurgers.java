@@ -2,6 +2,7 @@ package Clases;
 //cuando lo queremos usar en el main hacemos: RevolutionBurguer + . y el metodo global
 public class RevolutionBurgers {
     private static Caja cajaDia;
+    private static boolean valor;
 
     ////CAJA DEL DIA
     public static void abrirCaja(){
@@ -25,9 +26,26 @@ public class RevolutionBurgers {
         return tarjeta;
     }
     ///PEDIDOS
-    public static void agregarPedido(){
-        cajaDia.
+    public static boolean agregarPedido(String key, int idPedido, ElementoMenu nuevoElementoMenu){
+        return valor= cajaDia.agregarApedido(key, nuevoElementoMenu, idPedido);
     }
+    public static boolean modificarPedido(String key, int idPedido, ElementoMenu aCambiar, ElementoMenu aAgregar){
+        return valor= cajaDia.modificarPedido(key, idPedido, aCambiar, aAgregar);
+    }
+    public static boolean buscarPedido(String key, int idPedido, ElementoMenu aBuscado){
+        return valor= cajaDia.buscarPedido(key, idPedido, aBuscado);
+    }
+    public static boolean eliminardelPedido(String key, int idPedido, ElementoMenu aEliminar){
+        return valor= cajaDia.eliminardePedido(key, idPedido, aEliminar);
+    }
+    public static String listarPedido(String key, int idPedido){
+        String pedido= "";
+        pedido=cajaDia.listarTodoelPedido(key, idPedido);
+        return
+    }
+
     ///PAGOS
+
     ///ESTADISTICAS
+
 }
