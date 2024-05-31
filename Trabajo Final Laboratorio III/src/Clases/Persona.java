@@ -1,6 +1,10 @@
 package Clases;
 
+import Excepciones.InvalidCardNumberException;
 import Excepciones.InvalidNameExcepcion;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Persona {
     private String nombreYapellido;
@@ -53,7 +57,12 @@ public class Persona {
                 '}';
     }
 
+    public static void validarNombrePersona (String nombreApellido) throws InvalidNameExcepcion {
 
+        if(nombreApellido.isEmpty()){
+            throw new InvalidNameExcepcion("Nombre Invalido"); //lanza la excepcion
+        }
+    }
 
 
 }
