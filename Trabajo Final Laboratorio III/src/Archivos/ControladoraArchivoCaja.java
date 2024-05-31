@@ -3,6 +3,7 @@ package Archivos;
 
 import java.io.*;
 import java.util.ArrayList;
+import Clases.Caja;
 
 public class ControladoraArchivoCaja {
     public static void grabarArchivoCaja (ArrayList<Caja> arrayListDeCajas){
