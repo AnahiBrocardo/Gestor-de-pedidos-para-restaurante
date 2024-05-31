@@ -20,7 +20,7 @@ public class ControladoraArchivosEstadistica {
             }
 
         }catch (IOException exception){
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
         }
         finally {
             try {
@@ -30,7 +30,7 @@ public class ControladoraArchivosEstadistica {
                 if (objectOutputStream != null)
                     objectOutputStream.close();
             } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }
@@ -57,15 +57,15 @@ public class ControladoraArchivosEstadistica {
         }
         catch (EOFException ex)
         {
-            System.out.println("FIN del ARCHIVO");
+            ex.printStackTrace();
         }
         catch (ClassNotFoundException ex)
         {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         catch (IOException ex)
         {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         finally
         {
@@ -79,7 +79,7 @@ public class ControladoraArchivosEstadistica {
             }
             catch (IOException ex)
             {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
 
         }
