@@ -115,12 +115,12 @@ public class Pedido extends GenericidadMapa {
         getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
     }
 
-    public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo){
-        conjuntoDeElementos.modificar(aCambiar, aCambiar.getNombreElementoMenu(), nuevo);
+    public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo, String clave){
+        conjuntoDeElementos.modificar(aCambiar, clave, nuevo);
     }
 
-    public boolean buscar(ElementoMenu buscado){
-        boolean rta= conjuntoDeElementos.buscar(buscado, buscado.getNombreElementoMenu()) ;
+    public boolean buscar(ElementoMenu buscado, String clave){
+        boolean rta= conjuntoDeElementos.buscar(buscado, clave) ;
         return rta;
     }
 
@@ -129,9 +129,10 @@ public class Pedido extends GenericidadMapa {
         return rta;
     }
 
-    public void eliminar(ElementoMenu aEliminar){
-        conjuntoDeElementos.eliminar(aEliminar, aEliminar.getNombreElementoMenu());
+    public void eliminar(ElementoMenu aEliminar, String clave){
+        conjuntoDeElementos.eliminar(aEliminar, clave);
     }
+
 
 
 }
