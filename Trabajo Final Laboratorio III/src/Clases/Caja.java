@@ -122,7 +122,17 @@ public class Caja extends GenericidadArray {
         return rta;
     }
 
-    public
+    public boolean eliminardePedido(String key, int idbuscado, ElementoMenu aEliminar){
+        boolean eliminado= false;
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if((pedido.getId() == idbuscado) && (!pedido.isPagado()) ){
+                pedido.eliminar(aEliminar, key);
+                eliminado= true;
+            }
+        }
+        return eliminado;
+    }
 
     
 
