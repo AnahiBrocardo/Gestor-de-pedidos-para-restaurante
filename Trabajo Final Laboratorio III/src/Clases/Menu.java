@@ -8,6 +8,7 @@ public class Menu{
 
     public Menu()
     {
+
         this.mapaDelMenu =ControladoraJson.lecturaArchivo();
     }
 
