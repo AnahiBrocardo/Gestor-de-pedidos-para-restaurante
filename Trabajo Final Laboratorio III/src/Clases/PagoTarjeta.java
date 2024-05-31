@@ -2,7 +2,7 @@ package Clases;
 
 public class PagoTarjeta extends Pago{
     private Persona cliente; //persona que realiza el pago
-    private int numeroTarjeta;
+    private int numeroTarjeta; //tiene que tener 16 digitos
     private int cantidadCuotas;
     private Tarjeta tipoDeTarjeta; //Visa,Mastercard, Favacard, otros.
     private String tipoDeCuenta; //credito o debito
@@ -72,5 +72,6 @@ public class PagoTarjeta extends Pago{
         return montoCuota;
     }
 
+    
 
 }
