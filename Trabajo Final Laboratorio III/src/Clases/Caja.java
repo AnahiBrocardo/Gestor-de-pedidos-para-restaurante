@@ -111,12 +111,23 @@ public class Caja extends GenericidadArray {
     }
 
 
-    public String listarTodoelPedido(String key, int idbuscado){
+    public String listarBuscadoenelPedido(String key, int idbuscado){
         String rta="";
         for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
             if((pedido.getId() == idbuscado) ){
                 rta=pedido.listar(key);
+            }
+        }
+        return rta;
+    }
+
+    public String listarTodounPedido(int idbuscado){
+        String rta="";
+        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+            if((pedido.getId() == idbuscado) ){
+                rta=pedido.listarTodoelPedido();
             }
         }
         return rta;
@@ -134,7 +145,7 @@ public class Caja extends GenericidadArray {
         return eliminado;
     }
 
-    
+
 
     
 

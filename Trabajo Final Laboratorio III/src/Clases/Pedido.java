@@ -133,6 +133,11 @@ public class Pedido extends GenericidadMapa {
         conjuntoDeElementos.eliminar(aEliminar, clave);
     }
 
+    public String listarTodoelPedido(){
+        String rta="";
+        rta=conjuntoDeElementos.listarTodo();
+        return rta;
+    }
 
 
 }

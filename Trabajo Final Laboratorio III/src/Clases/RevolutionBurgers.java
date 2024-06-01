@@ -38,10 +38,16 @@ public class RevolutionBurgers {
     public static boolean eliminardelPedido(String key, int idPedido, ElementoMenu aEliminar){
         return valor= cajaDia.eliminardePedido(key, idPedido, aEliminar);
     }
-    public static String listarPedido(String key, int idPedido){
+    public static String listarbuscadoenPedido(String key, int idPedido){
         String pedido= "";
-        pedido=cajaDia.listarTodoelPedido(key, idPedido);
-        return
+        pedido=cajaDia.listarBuscadoenelPedido(key, idPedido);
+        return pedido;
+    }
+
+    public static String listarTodounPedido(int idPedido){
+        String pedido= "";
+        pedido=cajaDia.listarTodounPedido(idPedido);
+        return pedido;
     }
 
     ///PAGOS
