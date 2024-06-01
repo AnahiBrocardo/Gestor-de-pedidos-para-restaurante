@@ -10,7 +10,7 @@ public class Estadistica implements Serializable {
     private HashMap <String, Integer> mapaEstadisticas;// clave-> tipo de producto y el valor cant de ese producto
     /* cuando se cierra caja se crea un new de estadistica y se guarda en el archivo*/
 
-    public Estadistica(Date fecha, double totalRecaudacion) {
+    public Estadistica(Date fecha, HashMap<String, Integer> mapaEstadisticas, double totalRecaudacion) {
         this.fecha = fecha;
         this.totalRecaudacion = totalRecaudacion;
         this.mapaEstadisticas = new HashMap<>();

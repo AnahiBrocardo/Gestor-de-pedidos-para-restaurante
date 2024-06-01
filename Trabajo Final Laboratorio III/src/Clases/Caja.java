@@ -39,6 +39,10 @@ public class Caja extends GenericidadArray {
         this.estado = estado;
     }
 
+    public void crearPedido(int id) {
+        Pedido nuevoPedido = new Pedido(id);
+        pedidosDia.agregar(nuevoPedido);
+    }
 
     public Double calcularTotalCaja(){
 

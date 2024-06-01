@@ -2,6 +2,7 @@ package Clases;
 
 import FuncionesMapa.GenericidadMapa;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,16 +14,16 @@ import java.util.Map.Entry;
 
 public class Pedido extends GenericidadMapa {
     private int id; //
-    private Date fecha;
+    private LocalDate fecha;
     private Pago tipoDePago;
     private boolean pagado;
     private Double totalCompra;
     private String sugerencia;
     private GenericidadMapa<ElementoMenu> conjuntoDeElementos;
 
-    public Pedido(int id, Date fecha) {
+    public Pedido(int id) {
         this.id = id; // buscar funcion que autoincremente
-        this.fecha = fecha;
+        this.fecha = LocalDate.now();
         this.tipoDePago = null;
         this.pagado = false;
         this.totalCompra = (double) 0;
@@ -34,7 +35,7 @@ public class Pedido extends GenericidadMapa {
         return id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -58,7 +59,7 @@ public class Pedido extends GenericidadMapa {
         return conjuntoDeElementos;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -112,7 +113,7 @@ public class Pedido extends GenericidadMapa {
     }
 
     public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave) {
-        getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
+        conjuntoDeElementos.agregar(nuevoElementoMenu, clave);
     }
 
     public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo, String clave){
