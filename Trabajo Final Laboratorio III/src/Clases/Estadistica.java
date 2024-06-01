@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Estadistica implements Serializable {
     private Date fecha; //fecha de la caja del dia
@@ -40,5 +41,23 @@ public class Estadistica implements Serializable {
         this.mapaEstadisticas = mapaEstadisticas;
     }
 
+    @Override
+    public String toString() {
+        return "Estadistica{" +
+                "fecha=" + fecha +
+                ", totalRecaudacion=" + totalRecaudacion + "\n"+
+                " MapaEstadisticas=" + listarTodoEstadistica() +
+                '}';
+    }
+    public String listarTodoEstadistica() {
+        String resultado = "";
 
+        for (Map.Entry<String, Integer> entrada : mapaEstadisticas.entrySet()) {
+            String clave = entrada.getKey();
+            Integer cantidad = entrada.getValue();
+            resultado += clave + ": " + cantidad + "\n";
+        }
+
+        return resultado;
+    }
 }
