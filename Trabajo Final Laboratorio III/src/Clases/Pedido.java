@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.Map.Entry;
 
-public class Pedido extends GenericidadMapa {
+public class Pedido {
     private int id; //
     private LocalDate fecha;
     private Pago tipoDePago;
@@ -35,6 +35,9 @@ public class Pedido extends GenericidadMapa {
         return id;
     }
 
+    public GenericidadMapa<ElementoMenu> getMapa (){
+        return conjuntoDeElementos;
+    }
     public LocalDate getFecha() {
         return fecha;
     }

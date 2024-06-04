@@ -2,10 +2,8 @@ package FuncionesMapa;
 
 
 import Interfaces.IFunciones;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
+import java.util.*;
 import java.util.Map.Entry;
 public class GenericidadMapa <E> implements IFunciones<E> {
     private HashMap <String, ArrayList<E>> nuevomapa;
@@ -26,6 +24,10 @@ public class GenericidadMapa <E> implements IFunciones<E> {
             nuevomapa.put(key,datosArreglo);
         }
 
+    }
+
+    public Set<Entry<String, ArrayList<E>>> getEntrySet(){
+        return nuevomapa.entrySet();
     }
 
     @Override

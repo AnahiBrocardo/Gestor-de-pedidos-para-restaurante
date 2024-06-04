@@ -10,13 +10,12 @@ public class Caja extends GenericidadArray {
     private double totalRecuadado;
     private Date fecha;
     private Boolean estado; //Esto nos permite ver si la caja esta activa o ya la cerramos
-    private GenericidadArray<Pedido> pedidosDia;
+   // private GenericidadArray<Pedido> pedidosDia; -> no va este metodo porque el array esta en el padre
 
     public Caja() {
         totalRecuadado=0;
         fecha= new Date();
         estado= true;
-        pedidosDia= new GenericidadArray<>();
     }
 
     public double getTotalRecuadado() {
@@ -31,23 +30,21 @@ public class Caja extends GenericidadArray {
         return estado;
     }
 
-    public GenericidadArray<Pedido> getPedidosDia() {
-        return pedidosDia;
-    }
-
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
     public void crearPedido(int id) {
         Pedido nuevoPedido = new Pedido(id);
-        pedidosDia.agregar(nuevoPedido);
+        agregar(nuevoPedido);
+
+        //pedidosDia.agregar(nuevoPedido);
     }
 
     public Double calcularTotalCaja(){
 
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-           Pedido pedido= (Pedido)     pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+           Pedido pedido= (Pedido) getPos(i) ;
            totalRecuadado += pedido.calcularTotaldelPedido();
         }
         return getTotalRecuadado();
@@ -55,8 +52,8 @@ public class Caja extends GenericidadArray {
 
     public double calcularTotalEfectivo(){
         double efectivo=0;
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i< getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if(pedido.getTipoDePago() instanceof PagoEfectivo){
                 efectivo += pedido.getTotalCompra();
             }
@@ -66,8 +63,8 @@ public class Caja extends GenericidadArray {
     }
     public double calcularTotalTarjeta(){
         double tarjeta= 0;
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if(pedido.getTipoDePago() instanceof PagoTarjeta){
                 tarjeta += pedido.getTotalCompra();
             }
@@ -78,8 +75,8 @@ public class Caja extends GenericidadArray {
 
     public boolean agregarApedido(String key, ElementoMenu nuevoElementoMenu, int idBuscado) {
         boolean agregado= false;
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if(pedido.getId() == idBuscado ){
                 if(!pedido.isPagado()){//Quiero lograr que si el estado del pedido es sin pagar puedo agregar productos
                     pedido.agregarApedido(nuevoElementoMenu, key);
@@ -93,8 +90,8 @@ public class Caja extends GenericidadArray {
 
     public boolean modificarPedido(String key, int idbuscado, ElementoMenu aCambiar, ElementoMenu aAgregar) {
         boolean agregado = false;
-        for (int i = 0; i < pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido = (Pedido) pedidosDia.getPos(i);
+        for (int i = 0; i < getNuevoArreglo().size(); i++) {
+            Pedido pedido = (Pedido) getPos(i);
             if ((pedido.getId() == idbuscado) && (!pedido.isPagado())) {
                 pedido.modificarPedido(aCambiar, aAgregar, key);
                 agregado = true;
@@ -105,8 +102,8 @@ public class Caja extends GenericidadArray {
 
     public boolean buscarPedido(String key, int idbuscado, ElementoMenu aBuscado){
         boolean buscado= false;
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == idbuscado) && (!pedido.isPagado()) ){
                 buscado=pedido.buscar(aBuscado, key);
             }
@@ -117,8 +114,8 @@ public class Caja extends GenericidadArray {
 
     public String listarBuscadoenelPedido(String key, int idbuscado){
         String rta="";
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == idbuscado) ){
                 rta=pedido.listar(key);
             }
@@ -128,8 +125,8 @@ public class Caja extends GenericidadArray {
 
     public String listarTodounPedido(int idbuscado){
         String rta="";
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == idbuscado) ){
                 rta=pedido.listarTodoelPedido();
             }
@@ -139,8 +136,8 @@ public class Caja extends GenericidadArray {
 
     public boolean eliminardePedido(String key, int idbuscado, ElementoMenu aEliminar){
         boolean eliminado= false;
-        for (int i=0; i<pedidosDia.getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) pedidosDia.getPos(i) ;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == idbuscado) && (!pedido.isPagado()) ){
                 pedido.eliminar(aEliminar, key);
                 eliminado= true;
@@ -150,8 +147,6 @@ public class Caja extends GenericidadArray {
     }
 
 
-
-    
 
 
 }

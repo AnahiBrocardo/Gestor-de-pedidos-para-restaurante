@@ -40,4 +40,8 @@ public class Cerveza extends Bebida{
                 ", amargura=" + amargura +
                 '}';
     }
+
+    public String getTipoBebida(){
+        return "Cerveza";
+    }
 }

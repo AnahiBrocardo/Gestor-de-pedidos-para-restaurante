@@ -1,9 +1,7 @@
 package Clases;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Estadistica implements Serializable {
     private Date fecha; //fecha de la caja del dia
@@ -14,7 +12,7 @@ public class Estadistica implements Serializable {
     public Estadistica(Date fecha, HashMap<String, Integer> mapaEstadisticas, double totalRecaudacion) {
         this.fecha = fecha;
         this.totalRecaudacion = totalRecaudacion;
-        this.mapaEstadisticas = new HashMap<>();
+        this.mapaEstadisticas = mapaEstadisticas;
     }
 
     public Date getFecha() {
@@ -52,12 +50,19 @@ public class Estadistica implements Serializable {
     public String listarTodoEstadistica() {
         String resultado = "";
 
-        for (Map.Entry<String, Integer> entrada : mapaEstadisticas.entrySet()) {
+        /*for (Map.Entry<String, Integer> entrada : mapaEstadisticas.entrySet()) {
             String clave = entrada.getKey();
             Integer cantidad = entrada.getValue();
             resultado += clave + ": " + cantidad + "\n";
+        }*/
+        Iterator<Map.Entry<String, Integer>> iteratormap= mapaEstadisticas.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, Integer> entry = iteratormap.next();
+            String key = entry.getKey();
+            resultado += key+ entry.getValue();
         }
-
         return resultado;
     }
+
+
 }

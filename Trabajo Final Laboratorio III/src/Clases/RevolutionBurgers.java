@@ -10,8 +10,9 @@ public class RevolutionBurgers {
     private static Caja cajaDia;
     private static boolean valor;
     private static int idpedido= 100;
-    private static HashMap<String, Integer> mapaEstadisticas = null;
+    private static HashMap<String, Integer> mapaEstadisticas;
     private static Estadistica nuevaEstadistica;
+
     ////CAJA DEL DIA
     public static void abrirCaja(){
         cajaDia = new Caja();
@@ -104,41 +105,48 @@ public class RevolutionBurgers {
     }*/
 
     public static void deCajaaEstadistica() {
-        for (int i = 0; i < cajaDia.getPedidosDia().getNuevoArreglo().size(); i++) {
-            Pedido pedido = (Pedido) cajaDia.getPedidosDia().getPos(i);
-            Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> entryIterator = pedido.getNuevomapa().entrySet().iterator();
+        //ingresar a la caja del dia
+        for (int i = 0; i < cajaDia.getNuevoArreglo().size(); i++) {
+            //Antes de castear if(instanceof Pedido)ap
+            Pedido pedido = (Pedido) cajaDia.getPos(i);
+            //acceder a map
+            Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> entryIterator = pedido.getMapa().getEntrySet().iterator();
+            //recorrer map
+            //instanciamos el mapa de estadisticas porque esta funcion se llama una sola vez al final del dia
+            mapaEstadisticas = new HashMap<>();
             while (entryIterator.hasNext()) {
                 Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
                 ArrayList<ElementoMenu> menuItems = entry.getValue();
+                //recorrer arreglo de productos
                 for (int b = 0; b < menuItems.size(); b++) {
                     ElementoMenu item = menuItems.get(b);
+                    //agregar elementos al mapa de estadisticas
                     if (item instanceof Postre) {
-                        agregarElementos(((Postre) item).getNombreDelPostre(), mapaEstadisticas);
+                        agregarElementos(((Postre) item).getNombreDelPostre());
                     } else if (item instanceof Burger) {
-                        agregarElementos(((Burger) item).getTipoHamburguesa(), mapaEstadisticas);
-                    } else if (item instanceof Cerveza) {
-                        agregarElementos("Cerveza", mapaEstadisticas);
-                    } else if (item instanceof Gaseosa) {
-                        agregarElementos("Gaseosa", mapaEstadisticas);
-                    } else if (item instanceof AguaSaborizada) {
-                        agregarElementos("Agua Saborizada", mapaEstadisticas);
+                        agregarElementos(((Burger) item).getTipoHamburguesa());
+                    } else if (item instanceof Bebida) {
+                        agregarElementos(((Bebida) item).getTipoBebida());
                     }
                 }
             }
         }
-
+        //System.out.println(nuevaEstadistica.toString());
         nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
+        System.out.println(nuevaEstadistica.toString());
+        System.out.println(listarEstatidistica());
+
     }
 
 
-    private static void agregarElementos(String key, HashMap<String, Integer> estadistica){
-        if (estadistica.containsKey(key)) {
+    private static void agregarElementos(String key){
+        if (mapaEstadisticas.containsKey(key)) {
             // Si la llave ya existe, incrementar su valor en 1
-            int valorActual = estadistica.get(key);
-            estadistica.put(key, valorActual + 1);
+            int valorActual = mapaEstadisticas.get(key);
+            mapaEstadisticas.put(key, valorActual + 1);
         } else {
             // Si la llave no existe, crearla con un valor inicial de 1
-            estadistica.put(key, 1);
+            mapaEstadisticas.put(key, 1);
         }
 
     }

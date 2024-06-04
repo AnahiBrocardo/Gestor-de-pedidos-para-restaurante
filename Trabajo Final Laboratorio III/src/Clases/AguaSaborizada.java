@@ -28,4 +28,10 @@ public class AguaSaborizada extends Bebida{
                 '}';
     }
 
+    @Override
+    public String getTipoBebida() {
+        return "Agua Saborizada";
+    }
+
+
 }

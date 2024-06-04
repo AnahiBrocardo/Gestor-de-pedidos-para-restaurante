@@ -37,4 +37,6 @@ public  abstract class Bebida extends ElementoMenu {
                 ", sabor='" + sabor + '\'' +
                 '}';
     }
+
+    public abstract String getTipoBebida();
 }
