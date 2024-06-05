@@ -131,10 +131,10 @@ public class RevolutionBurgers {
                 }
             }
         }
-        //System.out.println(nuevaEstadistica.toString());
+
         nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-        System.out.println(nuevaEstadistica.toString());
-        System.out.println(listarEstatidistica());
+        //System.out.println(nuevaEstadistica.toString());
+        //System.out.println(listarEstatidistica());
 
     }
 
@@ -157,5 +157,6 @@ public class RevolutionBurgers {
         return rta;
     }
 
+    
 
 }

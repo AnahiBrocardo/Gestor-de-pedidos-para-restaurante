@@ -25,16 +25,17 @@ public class Main {
         System.out.println(nuevoMenu.listarTodoMenu());*/
         RevolutionBurgers.abrirCaja();
         RevolutionBurgers.crearPedido();
+        RevolutionBurgers.agregarPedido("Burger", 101, n1);
+        RevolutionBurgers.agregarPedido("Postre", 101, n2);
+        RevolutionBurgers.agregarPedido("Burger", 101, n4);
+        RevolutionBurgers.agregarPedido("Burger", 101, n1);
+        RevolutionBurgers.totalRecaudacion();
+        //System.out.println(RevolutionBurgers.listarTodounPedido(101));
 
-        System.out.println(RevolutionBurgers.agregarPedido("Burger", 101, n1));
-        System.out.println(RevolutionBurgers.agregarPedido("Postre", 101, n2));
-        System.out.println(RevolutionBurgers.agregarPedido("Burger", 101, n4));
-        System.out.println(RevolutionBurgers.agregarPedido("Burger", 101, n1));
-        System.out.println(RevolutionBurgers.listarTodounPedido(101));
-        System.out.println(RevolutionBurgers.totalRecaudacion());
         RevolutionBurgers.deCajaaEstadistica();
-        System.out.println("-----------------");
+
         System.out.println(RevolutionBurgers.listarEstatidistica());
+
 
 
 
