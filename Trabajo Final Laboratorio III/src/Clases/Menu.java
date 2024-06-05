@@ -9,7 +9,7 @@ public class Menu{
     public Menu()
     {
 
-        this.mapaDelMenu =ControladoraJson.lecturaArchivo();
+        this.mapaDelMenu =ControladoraJson.lecturaArchivoJson();
     }
 
 
