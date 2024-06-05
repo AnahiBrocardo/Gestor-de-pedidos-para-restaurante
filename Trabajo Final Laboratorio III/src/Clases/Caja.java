@@ -134,6 +134,17 @@ public class Caja extends GenericidadArray {
         return rta;
     }
 
+    public String listarPedidosNoPagos(){
+        String rta="";
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if(!pedido.isPagado()){
+                rta=pedido.listarTodoelPedido();
+            }
+        }
+        return rta;
+    }
+
     public boolean eliminardePedido(String key, int idbuscado, ElementoMenu aEliminar){
         boolean eliminado= false;
         for (int i=0; i<getNuevoArreglo().size(); i++) {
