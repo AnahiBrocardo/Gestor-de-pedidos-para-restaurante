@@ -12,7 +12,7 @@ public class ControladoraJson {
     /*Este metodo leer el archivo archivoMenu.bin  y lo codifica a la clase Menu
      * @return el mapa de elementosMenu (comida) del archivo*/
 
-    public static HashMap<String, ArrayList<ElementoMenu>> lecturaArchivo()
+    public static HashMap<String, ArrayList<ElementoMenu>> lecturaArchivoJson()
     {
 
         String jsonRespuesta= JsonUtiles.leer("archivoMenu.bin");
