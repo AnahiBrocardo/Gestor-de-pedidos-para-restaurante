@@ -2,6 +2,7 @@ package Clases;
 
 import FuncionesMapa.GenericidadMapa;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,18 +12,18 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.Map.Entry;
 
-public class Pedido extends GenericidadMapa {
+public class Pedido {
     private int id; //
-    private Date fecha;
+    private LocalDate fecha;
     private Pago tipoDePago;
     private boolean pagado;
     private Double totalCompra;
     private String sugerencia;
     private GenericidadMapa<ElementoMenu> conjuntoDeElementos;
 
-    public Pedido(int id, Date fecha) {
+    public Pedido(int id) {
         this.id = id; // buscar funcion que autoincremente
-        this.fecha = fecha;
+        this.fecha = LocalDate.now();
         this.tipoDePago = null;
         this.pagado = false;
         this.totalCompra = (double) 0;
@@ -34,7 +35,10 @@ public class Pedido extends GenericidadMapa {
         return id;
     }
 
-    public Date getFecha() {
+    public GenericidadMapa<ElementoMenu> getMapa (){
+        return conjuntoDeElementos;
+    }
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -58,7 +62,7 @@ public class Pedido extends GenericidadMapa {
         return conjuntoDeElementos;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -112,15 +116,15 @@ public class Pedido extends GenericidadMapa {
     }
 
     public void agregarApedido(ElementoMenu nuevoElementoMenu, String clave) {
-        getConjuntoDeElementos().agregar(nuevoElementoMenu, clave);
+        conjuntoDeElementos.agregar(nuevoElementoMenu, clave);
     }
 
-    public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo){
-        conjuntoDeElementos.modificar(aCambiar, aCambiar.getNombreElementoMenu(), nuevo);
+    public void modificarPedido (ElementoMenu aCambiar, ElementoMenu nuevo, String clave){
+        conjuntoDeElementos.modificar(aCambiar, clave, nuevo);
     }
 
-    public boolean buscar(ElementoMenu buscado){
-        boolean rta= conjuntoDeElementos.buscar(buscado, buscado.getNombreElementoMenu()) ;
+    public boolean buscar(ElementoMenu buscado, String clave){
+        boolean rta= conjuntoDeElementos.buscar(buscado, clave) ;
         return rta;
     }
 
@@ -129,8 +133,14 @@ public class Pedido extends GenericidadMapa {
         return rta;
     }
 
-    public void eliminar(ElementoMenu aEliminar){
-        conjuntoDeElementos.eliminar(aEliminar, aEliminar.getNombreElementoMenu());
+    public void eliminar(ElementoMenu aEliminar, String clave){
+        conjuntoDeElementos.eliminar(aEliminar, clave);
+    }
+
+    public String listarTodoelPedido(){
+        String rta="";
+        rta=conjuntoDeElementos.listarTodo();
+        return rta;
     }
 
 

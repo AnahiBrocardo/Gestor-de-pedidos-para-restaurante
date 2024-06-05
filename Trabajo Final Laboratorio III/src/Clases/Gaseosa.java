@@ -23,4 +23,8 @@ public class Gaseosa extends Bebida{
                 "tieneEndulzante=" + tieneEndulzante +
                 '}';
     }
+
+    public String getTipoBebida(){
+        return "Gaseosa";
+    }
 }
