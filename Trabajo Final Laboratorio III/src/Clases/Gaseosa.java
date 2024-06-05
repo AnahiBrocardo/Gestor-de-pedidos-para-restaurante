@@ -13,15 +13,24 @@ public class Gaseosa extends Bebida{
         return tieneEndulzante;
     }
 
+    public String infoTieneEndulzante(){
+        String info="";
+        if(tieneEndulzante){
+            info="Con azucar";
+        }else{
+            info="Sin azucar";
+        }
+        return info;
+    }
+
     public void setTieneEndulzante(boolean tieneEndulzante) {
         this.tieneEndulzante = tieneEndulzante;
     }
 
     @Override
     public String toString() {
-        return super.toString()+ " Gaseosa{" +
-                "tieneEndulzante=" + tieneEndulzante +
-                '}';
+        return super.toString()+
+               "\n"+ infoTieneEndulzante();
     }
 
     public String getTipoBebida(){

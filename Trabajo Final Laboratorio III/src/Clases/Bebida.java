@@ -31,11 +31,9 @@ public  abstract class Bebida extends ElementoMenu {
 
     @Override
     public String toString() {
-        return super.toString()+ "Bebida{" +
-                "capacidad=" + capacidad +
-                ", marca='" + marca + '\'' +
-                ", sabor='" + sabor + '\'' +
-                '}';
+        return super.toString()+"\nCapacidad: " + capacidad + "ml\n"+
+                "Marca: " + marca +
+                "\nSabor: " + sabor;
     }
 
     public abstract String getTipoBebida();

@@ -36,9 +36,7 @@ public class Postre extends ElementoMenu{
     }
     @Override
     public String toString() {
-        return super.toString()+" Postre{" +
-                "nombreDelPostre='" + nombreDelPostre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return super.toString()+ "\n"+nombreDelPostre+
+                "\nDescripcion: " + descripcion;
     }
 }

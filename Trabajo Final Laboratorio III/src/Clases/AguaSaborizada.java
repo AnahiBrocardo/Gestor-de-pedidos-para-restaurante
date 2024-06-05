@@ -21,11 +21,19 @@ public class AguaSaborizada extends Bebida{
         this.tieneGas = tieneGas;
     }
 
+    public String infoTieneGas(){
+        String info="";
+        if(tieneGas){
+            info="Con gas";
+        }else{
+            info="Sin gas";
+        }
+        return info;
+    }
+
     @Override
     public String toString() {
-        return super.toString()+ " AguaSaborizada{" +
-                "tieneGas=" + tieneGas +
-                '}';
+        return super.toString()+ "\n"+infoTieneGas();
     }
 
     @Override

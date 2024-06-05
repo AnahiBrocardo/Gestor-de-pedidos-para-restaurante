@@ -35,10 +35,8 @@ public class Cerveza extends Bebida{
 
     @Override
     public String toString() {
-        return super.toString()+" Cerveza{" +
-                "nivelAlcohol=" + nivelAlcohol +
-                ", amargura=" + amargura +
-                '}';
+        return super.toString()+"\nNivel de alcohol: " + nivelAlcohol +
+                "\nAmargura: " + amargura;
     }
 
     public String getTipoBebida(){
