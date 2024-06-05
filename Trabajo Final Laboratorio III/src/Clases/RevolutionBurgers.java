@@ -67,6 +67,12 @@ public class RevolutionBurgers {
         return pedido;
     }
 
+    public static String listarTodosLosPedidosNoPagos(){
+        String pedido= "";
+        pedido=cajaDia.listarPedidosNoPagos();
+        return pedido;
+    }
+
     ///PAGOS
 
     ///ESTADISTICAS
