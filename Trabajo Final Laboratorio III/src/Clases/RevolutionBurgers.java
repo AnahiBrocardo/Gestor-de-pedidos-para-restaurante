@@ -71,41 +71,9 @@ public class RevolutionBurgers {
 
     ///ESTADISTICAS
 
-    /*public static void deCajaaEstadistica(){
-
-
-        for (int i=0; i<cajaDia.getPedidosDia().getNuevoArreglo().size(); i++) {   ///Esto recorre los elementos de la caja
-            Pedido pedido= (Pedido)  cajaDia.getPedidosDia().getPos(i) ;  ///me genera el dato tipo pedido
-            //recorro el pedido con el iterador
-            Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> entryIterator = cajaDia.getPedidosDia().getPos(i).getNuevomapa().entrySet().iterator();
-            while (entryIterator.hasNext()) {
-                Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
-                ArrayList<ElementoMenu> menuItems = entry.getValue();
-                for (int b = 0; b < menuItems.size(); b++) {
-                    ElementoMenu item = (ElementoMenu) menuItems.get(b);
-                    if(item instanceof Postre){
-                        agregarElementos(((Postre) item).getNombreDelPostre(), mapaEstadisticas);
-                    } else if (item instanceof Burger) {
-                        agregarElementos(((Burger) item).getTipoHamburguesa(), mapaEstadisticas);
-                    } else if (item instanceof Cerveza) {
-                        agregarElementos("Cerveza", mapaEstadisticas);
-                    } else if (item instanceof Gaseosa) {
-                        agregarElementos("Gaseosa", mapaEstadisticas);
-                    }else if (item instanceof AguaSaborizada){
-                        agregarElementos("Agua Saborizada", mapaEstadisticas);
-                    }
-
-                }
-
-            }
-        }
-
-        nuevaEstadistica= new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-
-    }*/
-
     public static void deCajaaEstadistica() {
         //ingresar a la caja del dia
+        mapaEstadisticas = new HashMap<>();
         for (int i = 0; i < cajaDia.getNuevoArreglo().size(); i++) {
             //Antes de castear if(instanceof Pedido)ap
             Pedido pedido = (Pedido) cajaDia.getPos(i);
@@ -113,7 +81,7 @@ public class RevolutionBurgers {
             Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> entryIterator = pedido.getMapa().getEntrySet().iterator();
             //recorrer map
             //instanciamos el mapa de estadisticas porque esta funcion se llama una sola vez al final del dia
-            mapaEstadisticas = new HashMap<>();
+            //mapaEstadisticas = new HashMap<>();
             while (entryIterator.hasNext()) {
                 Map.Entry<String, ArrayList<ElementoMenu>> entry = entryIterator.next();
                 ArrayList<ElementoMenu> menuItems = entry.getValue();
@@ -131,10 +99,10 @@ public class RevolutionBurgers {
                 }
             }
         }
-        //System.out.println(nuevaEstadistica.toString());
+
         nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-        System.out.println(nuevaEstadistica.toString());
-        System.out.println(listarEstatidistica());
+        //System.out.println(nuevaEstadistica.toString());
+        //System.out.println(listarEstatidistica());
 
     }
 
@@ -156,6 +124,7 @@ public class RevolutionBurgers {
         rta= nuevaEstadistica.toString();
         return rta;
     }
+
 
 
 }
