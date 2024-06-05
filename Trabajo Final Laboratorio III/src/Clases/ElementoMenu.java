@@ -31,9 +31,8 @@ public abstract class ElementoMenu {
 
     @Override
     public String toString() {
-        return "\n ElementoMenu{" +
-                "nombreElementoMenu='" + nombreElementoMenu + '\'' +
-                ", precioElementoMenu=" + precioElementoMenu +
-                '}';
+        return ".....\n "+nombreElementoMenu + "\n" +
+                "Precio : $" + precioElementoMenu;
+
     }
 }
