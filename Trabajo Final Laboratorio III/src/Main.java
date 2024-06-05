@@ -27,26 +27,22 @@ public class Main {
         RevolutionBurgers.crearPedido();
         RevolutionBurgers.agregarPedido("Burger", 101, n1);
         RevolutionBurgers.agregarPedido("Postre", 101, n2);
-        RevolutionBurgers.agregarPedido("Burger", 101, n4);
-        RevolutionBurgers.agregarPedido("Burger", 101, n1);
+        RevolutionBurgers.crearPedido();
+        RevolutionBurgers.agregarPedido("Burger", 102, n4);
+        RevolutionBurgers.agregarPedido("Burger", 102, n1);
         RevolutionBurgers.totalRecaudacion();
-        //System.out.println(RevolutionBurgers.listarTodounPedido(101));
-
+        System.out.println(RevolutionBurgers.listarTodounPedido(101));
+        System.out.println(RevolutionBurgers.listarTodounPedido(102));
+        System.out.println("---------------");
         RevolutionBurgers.deCajaaEstadistica();
 
         System.out.println(RevolutionBurgers.listarEstatidistica());
 
 
-
-
-
-
-
-        /*HashMap<String, Integer> nuevomapa= new HashMap<>();
-        nuevomapa.put("Postre", 4);
-        nuevomapa.put("Burguer", 5);
-        Estadistica estadistica= new Estadistica(new Date(), nuevomapa, 10000);
-        System.out.println(estadistica.listarTodoEstadistica());  Esta funcion anda bien*/
     }
+
+
+
+
 }
 
