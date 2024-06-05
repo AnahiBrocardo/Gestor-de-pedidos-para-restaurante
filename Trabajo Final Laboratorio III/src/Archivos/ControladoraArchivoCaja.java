@@ -6,17 +6,16 @@ import java.util.ArrayList;
 import Clases.Caja;
 
 public class ControladoraArchivoCaja {
-    public static void grabarArchivoCaja (ArrayList<Caja> arrayListDeCajas){
+    public static void grabarArchivoCaja (Caja caja){
         FileOutputStream fileOutputStream= null;
         ObjectOutputStream objectOutputStream= null;
 
         try{
-            fileOutputStream= new FileOutputStream("cajas.dat");
+            fileOutputStream= new FileOutputStream("caja.dat");
             objectOutputStream= new ObjectOutputStream(fileOutputStream);
 
-            for(int i=0;i<arrayListDeCajas.size(); i++){ //recorre el arreglo, obtiene el objeto estadistica por el indice
-                objectOutputStream.writeObject(arrayListDeCajas.get(i));
-            }
+            objectOutputStream.writeObject(caja);
+
 
         }catch (IOException exception){
             exception.printStackTrace();
@@ -34,16 +33,16 @@ public class ControladoraArchivoCaja {
         }
     }
 
-    public static ArrayList<Caja> leerArchivoCaja()
+    public static Caja leerArchivoCaja()
     {
-        ArrayList<Caja> cajaArrayList = new ArrayList<>();
+        Caja caja= new Caja();
 
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
 
         try
         {
-            fileInputStream = new FileInputStream("cajas.dat");
+            fileInputStream = new FileInputStream("caja.dat");
             objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true)
@@ -51,7 +50,7 @@ public class ControladoraArchivoCaja {
                 /*El objectInputStream se utiliza para leer objetos serializados y con el metodo readObject me devuelve (retorna) ese objeto leido.
                 Se guarda y castea en una variable caja ya que el objeto retornado esta Bytes.*/
                 Caja aux = (Caja) objectInputStream.readObject();
-                cajaArrayList.add(aux);
+
             }
         }
         catch (EOFException ex)
@@ -83,6 +82,6 @@ public class ControladoraArchivoCaja {
 
         }
 
-        return cajaArrayList;
+        return caja;
     }
 }
