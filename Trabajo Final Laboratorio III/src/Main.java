@@ -13,16 +13,7 @@ public class Main {
      Menu miMenu=  new Menu();
         int opcion;
         char seguir = 's';
-      RevolutionBurgers.abrirCaja();
-      RevolutionBurgers.crearPedido();
-        int idNuevoPedido = RevolutionBurgers.obtenerUltimoIdPedido();
-        System.out.println("El ID del nuevo pedido es: " + idNuevoPedido);
-        ElementoMenu nuevoE= new Burger("burger", 1500, "rico", "Mexicana");
-        RevolutionBurgers.agregarPedido("burger", idNuevoPedido, nuevoE);
-        RevolutionBurgers.crearPedido();
-        ElementoMenu nuevoP= new Postre("postre", 2500, "brownie", "con chocolate");
-        RevolutionBurgers.agregarPedido("burger", RevolutionBurgers.obtenerUltimoIdPedido(), nuevoP);
-        System.out.println(RevolutionBurgers.listarTodosLosPedidosNoPagos());
+
 
         while (seguir=='s') {
             System.out.println("...Menú de opciones...");
@@ -278,12 +269,6 @@ public class Main {
         TipoCuenta tipoC= null;
         String numTarjeta;
         Persona cliente= cargarDatosPersona();
-
-
-        do {
-            System.out.println("Ingrese monto");
-            monto = scanner.nextDouble();
-        } while (monto < 0);
 
         System.out.println("Tipo de tarjeta: 1.VISA | 2.MASTERCARD | 3.NARANJA | 4.FAVACARD | 5.CABAL");
         opcion = scanner.nextInt();
