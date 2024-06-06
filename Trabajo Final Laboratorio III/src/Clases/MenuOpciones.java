@@ -318,8 +318,20 @@ public class MenuOpciones {
         String numTarjeta;
         Persona cliente= cargarDatosPersona();
 
+
+
+         tipoC= ingresarTipoCuenta();
+
+        numTarjeta= ingresarTarjeta();
+        Pago tarjeta= new PagoTarjeta(monto,cliente, numTarjeta,tipo,tipoC);
+        return tarjeta;
+    }
+
+    public static Tarjeta ingresarTipoTarjeta(){
+        int opcion;
         System.out.println("Tipo de tarjeta: 1.VISA | 2.MASTERCARD | 3.NARANJA | 4.FAVACARD | 5.CABAL");
         opcion = scanner.nextInt();
+        Tarjeta tipo=null;
         switch (opcion) {
             case 1:
                 tipo = Tarjeta.VISA;
@@ -343,11 +355,17 @@ public class MenuOpciones {
 
             default:
                 System.out.println("Opcion invalida");
+                ingresarTarjeta();
                 break;
         }
+        return tipo;
+    }
 
+    public static TipoCuenta ingresarTipoCuenta(){
+        int opcion;
         System.out.println("Tipo de cuenta: 1.CREDITO | 2.DEBITO");
         opcion = scanner.nextInt();
+        TipoCuenta tipoC= null;
         switch (opcion) {
             case 1:
                 tipoC = TipoCuenta.CREDITO;
@@ -359,14 +377,11 @@ public class MenuOpciones {
 
             default:
                 System.out.println("Opcion invalida");
+                ingresarTipoCuenta();
                 break;
         }
-
-        numTarjeta= ingresarTarjeta();
-        Pago tarjeta= new PagoTarjeta(monto,cliente, numTarjeta,tipo,tipoC);
-        return tarjeta;
+        return tipoC;
     }
-
     public static String ingresarTarjeta(){
         String numTarjeta;
 
