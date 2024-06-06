@@ -86,13 +86,17 @@ public class ControladoraArchivoCaja {
         return caja;
     }
 
-    public static boolean existeArchivoCaja (String rutaArchivo)
+    public static boolean verificarSiEstaVacioArchivoCaja ()
     {
-        File archivo = new File(rutaArchivo);
-        return archivo.exists();
+        boolean rta = false;
+        File archivo = new File("caja.dat");
+        if (archivo.length()==0)
+        {
+            rta= true;
+        }
+        return rta;
     }
-
-
+    
     public static void vaciarArchivoCaja (){
 
         FileOutputStream fileOutputStream= null;
