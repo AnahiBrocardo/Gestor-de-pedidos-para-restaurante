@@ -154,11 +154,11 @@ public class MenuOpciones {
         }
     }
 
-<<<<<<< HEAD
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
         RevolutionBurgers.listarTodounPedido(id);
-=======
+    }
+
     public static Cuota obtenerCuotas(){
         Cuota nuevaC=null;
         int cantCuotas;
@@ -183,7 +183,6 @@ public class MenuOpciones {
                 break;
         }
         return  nuevaC;
->>>>>>> ModificarPagos
     }
 
     //FUNCIONES MODIFICAR---------------------------------------------------
