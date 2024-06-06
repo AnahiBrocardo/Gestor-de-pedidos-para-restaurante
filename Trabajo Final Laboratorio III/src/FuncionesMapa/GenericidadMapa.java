@@ -88,6 +88,7 @@ public class GenericidadMapa <E> implements IFunciones<E> {
         while (iteratormap.hasNext()){
             Map.Entry<String, ArrayList<E>> entry = iteratormap.next();
             String key = entry.getKey();
+
             rta += listar(key);
         }
 
