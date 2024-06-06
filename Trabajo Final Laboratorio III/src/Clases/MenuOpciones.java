@@ -155,7 +155,7 @@ public class MenuOpciones {
 
     public static void agregarProductoAPedido(int id, Menu miMenu){
         System.out.println("Indique que producto desea agregar al pedido: \n1- Burger" +
-                "\n2- Bebida"+ "\n3-Postre");
+                "\n2- Bebida"+ "\n3- Postre");
         int opcion= scanner.nextInt();
         switch (opcion){
             case 1:
@@ -194,10 +194,35 @@ public class MenuOpciones {
                 agregarBebidaGaseosa(id, miMenu);
                 break;
             case 3:
-                //agregarBebidaAguaSaborizada(id, miMenu);
+                agregarBebidaAguaSaborizada(id, miMenu);
                 break;
 
         }
+    }
+
+    public static void agregarBebidaAguaSaborizada (int id, Menu miMenu)
+    {
+        ArrayList<ElementoMenu> arregloDeAguasSab= miMenu.devolverArrayListPorClaveDeMenu("aguaSaborizada");
+        int tamaño= arregloDeAguasSab.size();
+        char repetir='s';
+        int opcion;
+
+        do{
+            limpiarConsola();
+            System.out.println(miMenu.listarMenuPorDigitos("aguaSaborizada"));
+            do{
+                System.out.println("Ingrese una de las opciones disponibles: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu nuevaAgua= arregloDeAguasSab.get(opcion-1);
+            System.out.println(nuevaAgua.toString());
+            AguaSaborizada aguaSab= (AguaSaborizada) nuevaAgua;
+            String tipo= aguaSab.getTipoBebida();
+            RevolutionBurgers.agregarPedido(tipo, id,nuevaAgua);
+            System.out.println("Presione 's' para agregar una gaseosa...");
+            repetir= scanner.next().charAt(0);
+        }while (repetir=='s');
     }
 
     public static void agregarBebidaGaseosa (int id, Menu miMenu)
