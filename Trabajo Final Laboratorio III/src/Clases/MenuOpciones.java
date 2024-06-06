@@ -245,22 +245,22 @@ public class MenuOpciones {
     }
 
     public static String cargarDatoNombre(){
-        String nombre;
+        String nombreYapellido;
 
         System.out.println("\nPresione enter....");
         scanner.nextLine();
-        System.out.println("Ingrese su nombre y apellido completo");
-        nombre = scanner.nextLine();
+        System.out.println("Ingrese nombre y apellido completo: ");
+        nombreYapellido = scanner.nextLine();
 
         try  {
-            Persona.validarNombrePersona(nombre);
+            Persona.validarNombrePersona(nombreYapellido);
         }
         catch (InvalidNameExcepcion ex){
             System.out.println(ex.getMessage());
-            nombre= cargarDatoNombre();
+            nombreYapellido= cargarDatoNombre();
 
         }
-        return nombre;
+        return nombreYapellido;
     }
 
     public static String cargarDatosDni(){
@@ -310,15 +310,13 @@ public class MenuOpciones {
         return direccion;
     }
 
-    public static Pago obtenerPago() { 
+    public static Pago obtenerPago() {
         double monto = 0;
         int opcion;
         Tarjeta tipo= null;
         TipoCuenta tipoC= null;
         String numTarjeta;
         Persona cliente= cargarDatosPersona();
-
-
 
          tipoC= ingresarTipoCuenta();
 
