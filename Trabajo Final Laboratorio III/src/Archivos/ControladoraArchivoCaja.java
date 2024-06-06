@@ -96,31 +96,17 @@ public class ControladoraArchivoCaja {
         }
         return rta;
     }
-    
-    public static void vaciarArchivoCaja (){
 
-        FileOutputStream fileOutputStream= null;
-        ObjectOutputStream objectOutputStream= null;
+    public static void vaciarArchivoCaja () {
 
-        try{
-            fileOutputStream= new FileOutputStream("caja.dat");
-            objectOutputStream= new ObjectOutputStream(fileOutputStream);
-
-            objectOutputStream.writeObject(" ");
-
-        }catch (IOException exception){
-            exception.printStackTrace();
-        }
-        finally {
-            try {
-                if (fileOutputStream != null)
-                    fileOutputStream.close();
-
-                if (objectOutputStream != null)
-                    objectOutputStream.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        File archivo = new File("caja.dat");
+        try {
+            if (archivo.exists()) {
+                archivo.delete(); // Elimina el archivo si ya existe
             }
+            archivo.createNewFile(); // Crea un nuevo archivo vacío con el mismo nombre.
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
