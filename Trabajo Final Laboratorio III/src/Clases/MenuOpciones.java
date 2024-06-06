@@ -171,7 +171,6 @@ public class MenuOpciones {
                 System.out.println("Opción no valida");
                 break;
         }
-
     }
 
     public static void mostrarUnPedido(int id){
@@ -192,13 +191,38 @@ public class MenuOpciones {
                 agregarBedidaCerveza (id, miMenu);
                 break;
             case 2:
-               // agregarBebidaGaseosa(id, miMenu);
+                agregarBebidaGaseosa(id, miMenu);
                 break;
             case 3:
                 //agregarBebidaAguaSaborizada(id, miMenu);
                 break;
 
         }
+    }
+
+    public static void agregarBebidaGaseosa (int id, Menu miMenu)
+    {
+        ArrayList<ElementoMenu> arregloDeGaseosas= miMenu.devolverArrayListPorClaveDeMenu("gaseosa");
+        int tamaño= arregloDeGaseosas.size();
+        char repetir='s';
+        int opcion;
+
+        do{
+            limpiarConsola();
+            System.out.println(miMenu.listarMenuPorDigitos("gaseosa"));
+            do{
+                System.out.println("Ingrese una de las opciones disponibles: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu nuevaGaseosa= arregloDeGaseosas.get(opcion-1);
+            System.out.println(nuevaGaseosa.toString());
+            Gaseosa gaseosa= (Gaseosa) nuevaGaseosa;
+            String tipo= gaseosa.getTipoBebida();
+            RevolutionBurgers.agregarPedido(tipo, id,nuevaGaseosa);
+            System.out.println("Presione 's' para agregar una gaseosa...");
+            repetir= scanner.next().charAt(0);
+        }while (repetir=='s');
     }
 
     public static void agregarBedidaCerveza (int id, Menu miMenu) {
