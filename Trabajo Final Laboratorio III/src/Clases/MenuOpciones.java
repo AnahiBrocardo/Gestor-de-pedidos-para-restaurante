@@ -108,7 +108,7 @@ public class MenuOpciones {
                     agregarProductoAPedido(id, miMenu);
                     break;
                 case 2:
-                    //hacer
+                    modificarUnProductoDePedido (id, miMenu);
 
                     break;
                 case 3:
@@ -131,6 +131,7 @@ public class MenuOpciones {
 
     }
 
+
     public static void realizarPagoPedido(int id){
         System.out.println("\nPAGAR\nIndicar: \n1-Pago en efectivo" +
                 "\n2-Pago con tarjeta");
@@ -152,7 +153,45 @@ public class MenuOpciones {
         }
     }
 
+    public static void mostrarUnPedido(int id){
+        System.out.println("\n....PEDIDO....");
+        RevolutionBurgers.listarTodounPedido(id);
+    }
 
+    //FUNCIONES MODIFICAR---------------------------------------------------
+
+    public static void modificarUnProductoDePedido(int id, Menu miMenu)
+    {
+       //falta mostrar lista de existentes y en base a la opcion valida modificar. 
+        System.out.println("Indique que producto desea modificar del pedido: \n1- Burger" +
+                "\n2- Bebida"+ "\n3- Postre");
+        int opcion= scanner.nextInt();
+        switch (opcion){
+            case 1:
+                modificarBurger(id, miMenu);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            default:
+                System.out.println("Opción no valida");
+                break;
+        }
+    }
+
+    public static void modificarBurger (int id, Menu miMenu)
+    {
+        limpiarConsola();
+
+
+    }
+//FIN DE FUNCIONES MODIFICAR...
+
+
+//FUNCIONES DE AGREGAR--------------------------------------------------
     public static void agregarProductoAPedido(int id, Menu miMenu){
         System.out.println("Indique que producto desea agregar al pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
@@ -173,10 +212,6 @@ public class MenuOpciones {
         }
     }
 
-    public static void mostrarUnPedido(int id){
-        System.out.println("\n....PEDIDO....");
-        RevolutionBurgers.listarTodounPedido(id);
-    }
 
     public static void agregarBebida(int id, Menu miMenu)
     {
@@ -333,6 +368,7 @@ public class MenuOpciones {
         }while (repetir=='s');
 
     }
+//FIN DE FUNCIONES AGREGAR
 
 
     public static Persona cargarDatosPersona () {
