@@ -36,7 +36,7 @@ public class MenuOpciones {
         limpiarConsola();
         System.out.println("Ingrese la opcion que desee: " +
                 "\n1- Crear nuevo pedido" +
-                "\n2-Ver pedidos existentes");
+                "\n2- Ver pedidos existentes");
         int opcion= scanner.nextInt();
         switch (opcion){
             case 1:
@@ -93,35 +93,42 @@ public class MenuOpciones {
 
     public static void opcionesParaRealizarEnPedidosNoPagos(int id, Menu miMenu){ //se recibe por parametro el id del pedido
         int opcion;
+        char seguir = 's';
 
-        System.out.println("Elija una opcion: \n1- Agregar un producto" +
-                "\n2.Modificar pedido\n" +
-                "\n3. Mostrar el pedido completo" +
-                "\n4.Eliminar un producto del pedido" +
-                "\n5. Realiza pago");
+        do {
+            System.out.println("Elija una opcion: \n1- Agregar un producto" +
+                    "\n2.Modificar pedido" +
+                    "\n3.Mostrar el pedido completo" +
+                    "\n4.Eliminar un producto del pedido" +
+                    "\n5.Realiza pago");
 
-        opcion = scanner.nextInt();
-        switch (opcion) {
-            case 1:
-                agregarProductoAPedido(id, miMenu);
-                break;
-            case 2:
-                //hacer
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    agregarProductoAPedido(id, miMenu);
+                    break;
+                case 2:
+                    //hacer
 
-                break;
-            case 3:
-                mostrarUnPedido(id);
-                break;
-            case 4:
+                    break;
+                case 3:
+                    mostrarUnPedido(id);
+                    break;
+                case 4:
 
-                break;
-            case 5:
-                limpiarConsola();
-                realizarPagoPedido(id);
-                break;
-            default:
-                System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
-        }
+                    break;
+                case 5:
+                    realizarPagoPedido(id);
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+
+            System.out.println("Presione 's' para volver al menu de PEDIDOS ACTIVOS...");
+            seguir = scanner.next().charAt(0);
+        }while (seguir=='s');
+
     }
 
     public static void realizarPagoPedido(int id){
@@ -148,30 +155,77 @@ public class MenuOpciones {
 
     public static void agregarProductoAPedido(int id, Menu miMenu){
         System.out.println("Indique que producto desea agregar al pedido: \n1- Burger" +
-                "\n2- Bebida"+ "\n 3-Postre");
+                "\n2- Bebida"+ "\n3-Postre");
         int opcion= scanner.nextInt();
         switch (opcion){
             case 1:
                 agregarBurger(id, miMenu);
                 break;
             case 2:
-                //agregarBebida(id, miMenu);
-                System.out.println("Aca iria la funcion para agregar bebida");
+                agregarBebida(id, miMenu);
                 break;
             case 3:
                 agregarPostre(id, miMenu);
                 break;
-
+            default:
+                System.out.println("Opción no valida");
+                break;
         }
 
     }
-
 
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
         RevolutionBurgers.listarTodounPedido(id);
     }
 
+    public static void agregarBebida(int id, Menu miMenu)
+    {
+        limpiarConsola();
+
+        System.out.println("Que tipo de bebida desea agregar \n1- Cerveza" +
+                "\n2- Gaseosa"+ "\n3- Agua saborizada");
+         int opcion= scanner.nextInt();
+
+        switch (opcion){
+            case 1:
+                agregarBedidaCerveza (id, miMenu);
+                break;
+            case 2:
+               // agregarBebidaGaseosa(id, miMenu);
+                break;
+            case 3:
+                //agregarBebidaAguaSaborizada(id, miMenu);
+                break;
+
+        }
+    }
+
+    public static void agregarBedidaCerveza (int id, Menu miMenu) {
+
+        ArrayList<ElementoMenu> arregloDeCervezas= miMenu.devolverArrayListPorClaveDeMenu("cerveza");
+        int tamaño= arregloDeCervezas.size();
+        char repetir='s';
+        int opcion;
+
+        do{
+            limpiarConsola();
+            System.out.println(miMenu.listarMenuPorDigitos("cerveza"));
+            do{
+                System.out.println("Indique una opcion: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu nuevaC= arregloDeCervezas.get(opcion-1);
+            System.out.println(nuevaC.toString());
+            Cerveza nuevaCerveza= (Cerveza) nuevaC;
+            String tipo= nuevaCerveza.getTipoBebida();
+            RevolutionBurgers.agregarPedido(tipo, id,nuevaCerveza);
+            System.out.println("Para agregar otra cerveza presione 's'");
+            repetir= scanner.next().charAt(0);
+        }while (repetir=='s');
+
+    }
 
     public static void agregarBurger(int id, Menu miMenu){
         limpiarConsola();
