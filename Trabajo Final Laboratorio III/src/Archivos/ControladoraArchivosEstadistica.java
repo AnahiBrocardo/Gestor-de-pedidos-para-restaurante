@@ -67,22 +67,6 @@ public class ControladoraArchivosEstadistica {
         {
             ex.printStackTrace();
         }
-        finally
-        {
-            try
-            {
-                if (fileInputStream!=null)
-                    fileInputStream.close();
-
-                if (objectInputStream!=null)
-                    objectInputStream.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
-
-        }
 
         return estadisticasArrayList;
     }

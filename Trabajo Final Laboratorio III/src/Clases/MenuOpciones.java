@@ -4,6 +4,7 @@ import Archivos.ControladoraArchivoCaja;
 import Excepciones.InvalidCardNumberException;
 import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
+import FuncionesMapa.GenericidadArray;
 
 import javax.swing.*;
 import java.text.ParseException;
@@ -12,8 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class MenuOpciones {
     static Scanner scanner;
+    private static ArrayList<Caja> arrayCajas;
 
     public static void iniciarScanner(){
         scanner = new Scanner(System.in);
@@ -24,17 +27,32 @@ public class MenuOpciones {
     }
 
    public static void abrirLaCajaDelDia(Menu miMenu){
+       abrirCajaDelDia();
+       opcionesPedido(miMenu);
        if (ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
-           abrirCajaDelDia();
-           opcionesPedido(miMenu);
-           Caja cajaDia= RevolutionBurgers.getCajaDia();
-           ControladoraArchivoCaja.grabarArchivoCaja(cajaDia);
+           arrayCajas= new ArrayList<>();
+           //Caja cajaDia= RevolutionBurgers.getCajaDia();
+           //ControladoraArchivoCaja.grabarArchivoCaja(cajaDia);
        }else{
-           System.out.println("Ya existe una caja del dia...");
+           //arrayCajas=ControladoraArchivoCaja.grabarArchivoCaja();
+           arrayCajas= ControladoraArchivoCaja.leerArchivoCaja();
        }
+       //System.out.println(listararraycajas());
+       //opcionesPedido(miMenu);
+       //Caja cajaDia= RevolutionBurgers.getCajaDia();
 
    }
 
+
+    public static String listararraycajas() {
+        String rta= "";
+        for(int i=0; i< arrayCajas.size(); i++)
+        {
+            System.out.println( arrayCajas.get(i));
+            rta += arrayCajas.get(i);
+        }
+        return rta;
+    }
     public static void limpiarConsola() { //funcion que imprime varias líneas en blanco en la consola
         for (int i = 0; i < 50; i++) {
             System.out.println();
@@ -45,6 +63,14 @@ public class MenuOpciones {
         System.out.println("Abriendo caja...");
         RevolutionBurgers.abrirCaja();
         System.out.println("Caja abierta exitosamente");
+    }
+    public static void cerrarCajadia(){
+        System.out.println("Cerrando la caja...");
+        RevolutionBurgers.cerrarCaja();
+        System.out.println("Caja cerrada exitosamente");
+        arrayCajas.add(RevolutionBurgers.getCajaDia());
+        System.out.println(arrayCajas.toString());
+        ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);
     }
 
     public static void opcionesPedido(Menu miMenu){

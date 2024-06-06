@@ -10,7 +10,6 @@ public class Main {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
 
-
      int opcion;
         char seguir = 's';
 
@@ -38,12 +37,12 @@ public class Main {
                     System.out.println(miMenu.listarTodoMenu());
                     break;
                 case 2:
-                    RevolutionBurgers.abrirCaja();
-                   // MenuOpciones.abrirLaCajaDelDia(miMenu);
+                    //RevolutionBurgers.abrirCaja();
+                    MenuOpciones.abrirLaCajaDelDia(miMenu);
                     //codigo para avisar que hay una caja del dia abierta
                     break;
                 case 3:
-                        MenuOpciones.opcionesPedido(miMenu);
+                    MenuOpciones.opcionesPedido(miMenu);
 
                     break;
                 case 4:
@@ -53,7 +52,7 @@ public class Main {
                     MenuOpciones.verRecaudacionCajaDelDia();
                     break;
                 case 6:
-                    //logica cerrar caja
+                    MenuOpciones.cerrarCajadia();
                     break;
                 case 7:
                     System.out.println("Saliendo del programa...");
@@ -62,7 +61,7 @@ public class Main {
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción válida...2");
             }
-            System.out.println("Para volver al menu de opciones presione 's': ");
+            System.out.println("Para volver al menu de opciones presione 's' o para salir: 'c'");
             seguir= scanner.next().charAt(0);
             MenuOpciones.limpiarConsola();
 
