@@ -156,6 +156,17 @@ public class Caja extends GenericidadArray {
     }
 
 
+    public int cantPedidosNoPagos (){
+        ArrayList<Pedido> arrayPedidos= getNuevoArreglo();
+        int cant=0;
+
+        for (int i=0; i<arrayPedidos.size(); i++){
+            if(!arrayPedidos.get(i).isPagado()){
+                cant++;
+            }
+        }
+        return cant;
+    }
     public void cambiarEstadoDePago (int id){
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;

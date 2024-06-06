@@ -39,8 +39,8 @@ public class RevolutionBurgers {
         idpedido = idpedido + 1;
     }
     public static void crearPedido(){
-        cajaDia.crearPedido(idpedido);
         incrementador();
+        cajaDia.crearPedido(idpedido);
     }
 
     public static boolean agregarPedido(String key, int idPedido, ElementoMenu nuevoElementoMenu){
@@ -83,7 +83,6 @@ public class RevolutionBurgers {
         return pedido;
     }
 
-
     public static int obtenerIdDeOpcionPedido (int opcion){
         HashMap<Integer,Integer>mapaPedidos= cajaDia.mapaPedidosOpcionID();
         int id= mapaPedidos.get(opcion);
@@ -97,6 +96,10 @@ public class RevolutionBurgers {
     }
 
 
+    public static int cantPedidosNoPagos(){
+        int cant= cajaDia.cantPedidosNoPagos();
+        return cant;
+    }
     ///ESTADISTICAS
 
     public static void deCajaaEstadistica() {
@@ -154,7 +157,7 @@ public class RevolutionBurgers {
     }
 
     public static int obtenerUltimoIdPedido() {
-        return idpedido - 1;
+        return idpedido;
     }
 
     public static void cambiarEstadoDePago(int id){

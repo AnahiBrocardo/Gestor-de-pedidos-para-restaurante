@@ -49,4 +49,11 @@ public class Menu{
         }
         return rta;
     }
+
+    public ArrayList<ElementoMenu> devolverArrayListPorClaveDeMenu(String key){
+        ArrayList<ElementoMenu> arregloElementos= mapaDelMenu.get(key);
+        return  arregloElementos;
+    }
+
+
 }

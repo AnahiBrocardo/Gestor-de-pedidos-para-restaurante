@@ -1,11 +1,6 @@
 
 import Clases.*;
-import Excepciones.InvalidCardNumberException;
-import Excepciones.InvalidDniExcepcion;
-import Excepciones.InvalidNameExcepcion;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -15,6 +10,7 @@ public class Main {
      Menu miMenu=  new Menu();
         int opcion;
         char seguir = 's';
+
 
 
         while (seguir=='s') {
@@ -27,6 +23,7 @@ public class Main {
             System.out.print("Seleccione una opción: ");
 
              opcion = scanner.nextInt();
+             MenuOpciones.iniciarScanner();
 
             switch (opcion) {
                 case 1:
@@ -38,8 +35,7 @@ public class Main {
                     //codigo para avisar que hay una caja del dia abierta
                     break;
                 case 3:
-                    MenuOpciones.opcionesPedido(miMenu);
-                    //funcion pedidos
+                      MenuOpciones.opcionesPedido(miMenu);
                     break;
                 case 4:
                    //logica estadisticas
@@ -57,7 +53,7 @@ public class Main {
 
         }
 
-
+       MenuOpciones.cerrarScanner();
         scanner.close();
     }
 
