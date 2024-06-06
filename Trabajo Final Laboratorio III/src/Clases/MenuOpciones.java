@@ -143,8 +143,9 @@ public class MenuOpciones {
                 break;
             case 2:
                 double montoTotal= RevolutionBurgers.obtenerMontoPedido(id);
-                Pago nuevoPago= obtenerPago();
+                Pago nuevoPago= obtenerPago(montoTotal);
                 RevolutionBurgers.agregarPagoAlPedido(nuevoPago, id);
+
                 System.out.println("..pago exitoso..");
                 break;
             default:
@@ -153,9 +154,36 @@ public class MenuOpciones {
         }
     }
 
+<<<<<<< HEAD
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
         RevolutionBurgers.listarTodounPedido(id);
+=======
+    public static Cuota obtenerCuotas(){
+        Cuota nuevaC=null;
+        int cantCuotas;
+        int opcion;
+        System.out.println("Elija una opcion: \n1-Pago en UNA CUOTA" +
+                "\n2-Pago en TRES CUOTAS" +
+                "\n3-Pago en SEIS");
+        opcion= scanner.nextInt();
+        switch (opcion){
+            case 1:
+                nuevaC= Cuota.UNPAGO;
+                break;
+            case 2:
+                nuevaC= Cuota.TRESPAGOS;
+                break;
+            case 3:
+                nuevaC= Cuota.SEISPAGOS;
+                break;
+            default:
+                System.out.println("Opcion no valida..");
+                obtenerCuotas();
+                break;
+        }
+        return  nuevaC;
+>>>>>>> ModificarPagos
     }
 
     //FUNCIONES MODIFICAR---------------------------------------------------
@@ -384,22 +412,22 @@ public class MenuOpciones {
     }
 
     public static String cargarDatoNombre(){
-        String nombre;
+        String nombreYapellido;
 
         System.out.println("\nPresione enter....");
         scanner.nextLine();
-        System.out.println("Ingrese su nombre y apellido completo");
-        nombre = scanner.nextLine();
+        System.out.println("Ingrese nombre y apellido completo: ");
+        nombreYapellido = scanner.nextLine();
 
         try  {
-            Persona.validarNombrePersona(nombre);
+            Persona.validarNombrePersona(nombreYapellido);
         }
         catch (InvalidNameExcepcion ex){
             System.out.println(ex.getMessage());
-            nombre= cargarDatoNombre();
+            nombreYapellido= cargarDatoNombre();
 
         }
-        return nombre;
+        return nombreYapellido;
     }
 
     public static String cargarDatosDni(){
@@ -423,8 +451,6 @@ public class MenuOpciones {
 
     public static String cargarDatosTelefono(){
         String telefono;
-        System.out.println("\nPresione enter....");
-        scanner.nextLine();
         System.out.println("Ingrese numero de telefono incluyendo la caracteristica (Ej: 223)");
         telefono = scanner.nextLine();
 
@@ -449,16 +475,37 @@ public class MenuOpciones {
         return direccion;
     }
 
-    public static Pago obtenerPago() { //ACHICAR
-        double monto = 0;
+    public static Pago obtenerPago(double montoTotal) {
         int opcion;
-        Tarjeta tipo= null;
-        TipoCuenta tipoC= null;
+        Tarjeta tipoTarjeta= null;
+        TipoCuenta tipoCuenta= null;
         String numTarjeta;
         Persona cliente= cargarDatosPersona();
 
+        numTarjeta= ingresarTarjeta();
+        tipoCuenta= ingresarTipoCuenta();
+        tipoTarjeta= ingresarTipoTarjeta();
+        Pago tarjeta= new PagoTarjeta(montoTotal,cliente, numTarjeta,tipoTarjeta,tipoCuenta);
+
+        if(tipoCuenta.equals(TipoCuenta.CREDITO)){
+            if(tarjeta instanceof PagoTarjeta){
+               PagoTarjeta tarjetaP= (PagoTarjeta) tarjeta;
+               Cuota cuota= obtenerCuotas();
+               tarjetaP.establecerCuotas(cuota);
+               double montoCuota= tarjetaP.calcularMontoCuotasAPagar();
+                System.out.println("Monto total: $"+montoTotal);
+                System.out.println("Monto de cuotas: $"+montoCuota);
+            }
+        }
+
+        return tarjeta;
+    }
+
+    public static Tarjeta ingresarTipoTarjeta(){
+        int opcion;
         System.out.println("Tipo de tarjeta: 1.VISA | 2.MASTERCARD | 3.NARANJA | 4.FAVACARD | 5.CABAL");
         opcion = scanner.nextInt();
+        Tarjeta tipo=null;
         switch (opcion) {
             case 1:
                 tipo = Tarjeta.VISA;
@@ -482,11 +529,19 @@ public class MenuOpciones {
 
             default:
                 System.out.println("Opcion invalida");
+                ingresarTipoTarjeta();
                 break;
         }
+        return tipo;
+    }
 
+    public static TipoCuenta ingresarTipoCuenta(){
+        int opcion;
+        TipoCuenta tipoC= null;
         System.out.println("Tipo de cuenta: 1.CREDITO | 2.DEBITO");
         opcion = scanner.nextInt();
+
+
         switch (opcion) {
             case 1:
                 tipoC = TipoCuenta.CREDITO;
@@ -498,12 +553,10 @@ public class MenuOpciones {
 
             default:
                 System.out.println("Opcion invalida");
+                ingresarTipoCuenta();
                 break;
         }
-
-        numTarjeta= ingresarTarjeta();
-        Pago tarjeta= new PagoTarjeta(monto,cliente, numTarjeta,tipo,tipoC);
-        return tarjeta;
+        return tipoC;
     }
 
     public static String ingresarTarjeta(){
