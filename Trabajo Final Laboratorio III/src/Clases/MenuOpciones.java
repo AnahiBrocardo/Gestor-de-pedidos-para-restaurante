@@ -310,7 +310,7 @@ public class MenuOpciones {
         return direccion;
     }
 
-    public static Pago obtenerPago() { //ACHICAR
+    public static Pago obtenerPago() { 
         double monto = 0;
         int opcion;
         Tarjeta tipo= null;
