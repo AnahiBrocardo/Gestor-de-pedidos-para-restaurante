@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.Map.Entry;
 
-public class Pedido {
+public class Pedido{
     private int id; //
     private LocalDate fecha;
     private Pago tipoDePago;
@@ -84,7 +84,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" +
+        return "Pedido" +
                 "id=" + id +
                 ", fecha=" + fecha +
                 ", tipoDePago=" + tipoDePago +
@@ -142,6 +142,7 @@ public class Pedido {
         rta=conjuntoDeElementos.listarTodo();
         return rta;
     }
+
 
 
 }
