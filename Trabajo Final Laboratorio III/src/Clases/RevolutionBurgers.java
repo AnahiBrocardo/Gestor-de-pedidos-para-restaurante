@@ -39,8 +39,8 @@ public class RevolutionBurgers {
         idpedido = idpedido + 1;
     }
     public static void crearPedido(){
-        incrementador();
         cajaDia.crearPedido(idpedido);
+        incrementador();
     }
 
     public static boolean agregarPedido(String key, int idPedido, ElementoMenu nuevoElementoMenu){
@@ -53,6 +53,16 @@ public class RevolutionBurgers {
     public static boolean buscarPedido(String key, int idPedido, ElementoMenu aBuscado){
         return valor= cajaDia.buscarPedido(key, idPedido, aBuscado);
     }
+
+    public static double obtenerMontoPedido(int idPedido){
+        double monto;
+        return monto= cajaDia.obtenerMontoP(idPedido);
+    }
+
+    public static void agregarPagoAlPedido(Pago nuevoPago, int id){
+        cajaDia.agregarPago(nuevoPago,id);
+    }
+
     public static boolean eliminardelPedido(String key, int idPedido, ElementoMenu aEliminar){
         return valor= cajaDia.eliminardePedido(key, idPedido, aEliminar);
     }
@@ -73,7 +83,19 @@ public class RevolutionBurgers {
         return pedido;
     }
 
-    ///PAGOS
+
+    public static int obtenerIdDeOpcionPedido (int opcion){
+        HashMap<Integer,Integer>mapaPedidos= cajaDia.mapaPedidosOpcionID();
+        int id= mapaPedidos.get(opcion);
+        return id;
+    }
+
+    public static int cantOpcionesValidasPedido(){
+        HashMap<Integer,Integer>mapaPedidos= cajaDia.mapaPedidosOpcionID();
+        int numeroEntradas = mapaPedidos.size();
+        return numeroEntradas;
+    }
+
 
     ///ESTADISTICAS
 
@@ -131,6 +153,13 @@ public class RevolutionBurgers {
         return rta;
     }
 
+    public static int obtenerUltimoIdPedido() {
+        return idpedido - 1;
+    }
+
+    public static void cambiarEstadoDePago(int id){
+        cajaDia.cambiarEstadoDePago(id);
+    }
 
 
 }
