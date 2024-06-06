@@ -7,6 +7,7 @@ import Clases.Caja;
 
 public class ControladoraArchivoCaja {
     public static void grabarArchivoCaja (Caja caja){
+
         FileOutputStream fileOutputStream= null;
         ObjectOutputStream objectOutputStream= null;
 
@@ -45,13 +46,13 @@ public class ControladoraArchivoCaja {
             fileInputStream = new FileInputStream("caja.dat");
             objectInputStream = new ObjectInputStream(fileInputStream);
 
-            while (true)
-            {
+          //  while (true)
+            //{
                 /*El objectInputStream se utiliza para leer objetos serializados y con el metodo readObject me devuelve (retorna) ese objeto leido.
                 Se guarda y castea en una variable caja ya que el objeto retornado esta Bytes.*/
                 Caja aux = (Caja) objectInputStream.readObject();
 
-            }
+            //}
         }
         catch (EOFException ex)
         {
@@ -84,4 +85,39 @@ public class ControladoraArchivoCaja {
 
         return caja;
     }
+
+    public static boolean existeArchivoCaja (String rutaArchivo)
+    {
+        File archivo = new File(rutaArchivo);
+        return archivo.exists();
+    }
+
+
+    public static void vaciarArchivoCaja (){
+
+        FileOutputStream fileOutputStream= null;
+        ObjectOutputStream objectOutputStream= null;
+
+        try{
+            fileOutputStream= new FileOutputStream("caja.dat");
+            objectOutputStream= new ObjectOutputStream(fileOutputStream);
+
+            objectOutputStream.writeObject(" ");
+
+        }catch (IOException exception){
+            exception.printStackTrace();
+        }
+        finally {
+            try {
+                if (fileOutputStream != null)
+                    fileOutputStream.close();
+
+                if (objectOutputStream != null)
+                    objectOutputStream.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 }
