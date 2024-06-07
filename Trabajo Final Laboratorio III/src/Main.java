@@ -51,7 +51,6 @@ public class Main {
                     break;
                 case 5:
                     MenuOpciones.verRecaudacionCajaDelDia();
-                    //logica recaudacion
                     break;
                 case 6:
                     //logica cerrar caja
