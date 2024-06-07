@@ -108,7 +108,6 @@ public class RevolutionBurgers {
     ///ESTADISTICAS
 
     public static void deCajaaEstadistica() {
-        //ingresar a la caja del dia
         mapaEstadisticas = new HashMap<>();
         for (int i = 0; i < cajaDia.getNuevoArreglo().size(); i++) {
             //Antes de castear if(instanceof Pedido)ap
@@ -134,6 +133,11 @@ public class RevolutionBurgers {
                     }
                 }
             }
+        }
+
+        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
+        agregarEstadisticadelDiaAlArchivo();
+        guardarArchivoEstadistico();
         }
 
         nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
