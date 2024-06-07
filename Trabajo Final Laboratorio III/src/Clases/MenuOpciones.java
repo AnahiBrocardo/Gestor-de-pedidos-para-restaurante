@@ -6,7 +6,10 @@ import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
 
 import javax.swing.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MenuOpciones {
@@ -699,4 +702,19 @@ public class MenuOpciones {
         System.out.println("Recaudacion total del dia..........$"+recaudacionT);
     }
 
+    public static Date devolverDate(int dia, int mes, int anio) {
+        Date fecha = null;
+        if (RevolutionBurgers.validarFecha(dia, mes, anio)) {
+            String fechaString = dia + "/" + mes + "/" + anio;
+            try {
+                fecha=RevolutionBurgers.convertirFecha(fechaString);
+            } catch (ParseException e) {
+                System.out.println("Error al convertir la fecha.");
+            }
+        } else {
+            System.out.println("Fecha inválida.");
+        }
+        return fecha;
+    }
+    SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
 }
