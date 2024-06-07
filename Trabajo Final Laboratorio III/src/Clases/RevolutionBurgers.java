@@ -55,7 +55,7 @@ public class RevolutionBurgers {
     }
 
     public static boolean buscarPorClavePedido(String clave, int id){
-        boolean existe= cajaDia.buscarPorClavePedido(clave, id);
+        boolean existe= cajaDia.buscarSiExisteProductoPedido(clave, id);
         return  existe;
     }
 
@@ -79,6 +79,12 @@ public class RevolutionBurgers {
     public static String listarTodounPedido(int idPedido){
         String pedido= "";
         pedido=cajaDia.listarTodounPedido(idPedido);
+        return pedido;
+    }
+
+    public static String listarElementosDePedidoPorDigitos(int idPedido){
+        String pedido = "";
+        pedido = cajaDia.listarElementosPedidosNoPagos(idPedido);
         return pedido;
     }
 
