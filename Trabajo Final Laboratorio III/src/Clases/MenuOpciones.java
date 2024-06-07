@@ -1,5 +1,6 @@
 package Clases;
 
+import Archivos.ControladoraArchivoCaja;
 import Excepciones.InvalidCardNumberException;
 import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
@@ -19,7 +20,17 @@ public class MenuOpciones {
         scanner.close();
     }
 
+   public static void abrirLaCajaDelDia(Menu miMenu){
+       if (ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
+           abrirCajaDelDia();
+           opcionesPedido(miMenu);
+           Caja cajaDia= RevolutionBurgers.getCajaDia();
+           ControladoraArchivoCaja.grabarArchivoCaja(cajaDia);
+       }else{
+           System.out.println("Ya existe una caja del dia...");
+       }
 
+   }
 
     public static void limpiarConsola() { //funcion que imprime varias líneas en blanco en la consola
         for (int i = 0; i < 50; i++) {
@@ -35,20 +46,24 @@ public class MenuOpciones {
 
     public static void opcionesPedido(Menu miMenu){
         limpiarConsola();
-        System.out.println("Ingrese la opcion que desee: " +
-                "\n1- Crear nuevo pedido" +
-                "\n2- Ver pedidos existentes");
-        int opcion= scanner.nextInt();
-        switch (opcion){
-            case 1:
-                crearNuevoPedido(miMenu);
-                break;
-            case 2:
-                opcionesPedidosExistentes(miMenu);
-                break;
-            default:
-                System.out.println("\nOpcion no valida");
-                break;
+        if(!ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
+            System.out.println("Ingrese la opcion que desee: " +
+                    "\n1- Crear nuevo pedido" +
+                    "\n2- Ver pedidos existentes");
+            int opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    crearNuevoPedido(miMenu);
+                    break;
+                case 2:
+                    opcionesPedidosExistentes(miMenu);
+                    break;
+                default:
+                    System.out.println("\nOpcion no valida");
+                    break;
+            }
+        }else {
+            System.out.println("Para acceder a los pedidos, primero debe abrir la caja del dia...");
         }
     }
 
