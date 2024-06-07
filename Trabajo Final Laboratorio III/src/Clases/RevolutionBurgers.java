@@ -13,6 +13,9 @@ public class RevolutionBurgers {
     private static HashMap<String, Integer> mapaEstadisticas;
     private static Estadistica nuevaEstadistica;
 
+    private static HashMap<String, Integer> acumulador= new HashMap<>();
+    private static ArrayList<Estadistica> archivoEstadisticas = new ArrayList<>();
+
     ////CAJA DEL DIA
     public static void abrirCaja(){
         cajaDia = new Caja();
@@ -142,9 +145,6 @@ public class RevolutionBurgers {
 
 
 
-        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-        //System.out.println(nuevaEstadistica.toString());
-        //System.out.println(listarEstatidistica());
 
         private static void agregarElementos(String key){
             if (mapaEstadisticas.containsKey(key)) {
@@ -158,6 +158,18 @@ public class RevolutionBurgers {
 
         }
 
+    public static void guardarArchivoEstadistico(){
+        ControladoraArchivosEstadistica.grabarArchivo(archivoEstadisticas);
+    }
+    /// agregar la estadistica del dia al arreglo de estadistica
+    public static void agregarEstadisticadelDiaAlArchivo(){
+        archivoEstadisticas.add(nuevaEstadistica);
+    }
+
+    public static void leerArchi(){
+        archivoEstadisticas= ControladoraArchivosEstadistica.leerArchivo();
+    }
+
     public static void agregaralacumulador(String key, int valor) {
 
         if(acumulador.containsKey(key)){
@@ -169,7 +181,7 @@ public class RevolutionBurgers {
         }
 
     }
-    
+
     public static String listarEstatidistica(){
         String rta="";
         rta= nuevaEstadistica.toString();
