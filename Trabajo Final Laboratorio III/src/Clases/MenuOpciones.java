@@ -41,7 +41,7 @@ public class MenuOpciones {
         }
     }
 
-    public static void abrirCajaDelDia(){ 
+    public static void abrirCajaDelDia(){
         System.out.println("Abriendo caja...");
         RevolutionBurgers.abrirCaja();
         System.out.println("Caja abierta exitosamente");
@@ -399,7 +399,6 @@ public class MenuOpciones {
 
     public static void modificarUnProductoDePedido(int id, Menu miMenu)
     {
-       //falta mostrar lista de existentes y en base a la opcion valida modificar.
         System.out.println("Indique que producto desea modificar del pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
         int opcion= scanner.nextInt();
@@ -408,10 +407,10 @@ public class MenuOpciones {
                 modificarBurger(id, miMenu);
                 break;
             case 2:
-
+               modificarBebida(id,miMenu);
                 break;
             case 3:
-
+                 modificarPostre(id,miMenu);
                 break;
             default:
                 System.out.println("Opción no valida");
@@ -422,8 +421,25 @@ public class MenuOpciones {
     public static void modificarBurger (int id, Menu miMenu)
     {
         limpiarConsola();
+        System.out.println("..Modificar producto burger..");
+        eliminarBurgerPedido(id);
+        agregarBurger(id,miMenu);
+    }
 
+    public static void modificarPostre (int id, Menu miMenu)
+    {
+        limpiarConsola();
+        System.out.println("..Modificar producto postre..");
+        eliminarPostrePedido(id);
+        agregarPostre(id, miMenu);
+    }
 
+    public static void modificarBebida(int id, Menu miMenu)
+    {
+        limpiarConsola();
+        System.out.println("..Modificar producto bebida..");
+        eliminarBebidaPedido(id);
+        agregarBebida(id,miMenu);
     }
 //FIN DE FUNCIONES MODIFICAR...
 
@@ -558,6 +574,7 @@ public class MenuOpciones {
         ArrayList<ElementoMenu> arregloHamburguesas= miMenu.devolverArrayListPorClaveDeMenu("burger");
         int tamaño= arregloHamburguesas.size();
         char repetir='s';
+        System.out.println("..Agregar un nuevo pedido...");
 
         do{
             limpiarConsola();
