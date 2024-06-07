@@ -1,4 +1,5 @@
 
+import Archivos.ControladoraArchivoCaja;
 import Clases.*;
 
 import java.util.Scanner;
@@ -35,11 +36,12 @@ public class Main {
                     System.out.println(miMenu.listarTodoMenu());
                     break;
                 case 2:
-                    MenuOpciones.abrirCajaDelDia();
+                    MenuOpciones.abrirLaCajaDelDia(miMenu);
                     //codigo para avisar que hay una caja del dia abierta
                     break;
                 case 3:
-                      MenuOpciones.opcionesPedido(miMenu);
+                        MenuOpciones.opcionesPedido(miMenu);
+
                     break;
                 case 4:
                    //logica estadisticas
