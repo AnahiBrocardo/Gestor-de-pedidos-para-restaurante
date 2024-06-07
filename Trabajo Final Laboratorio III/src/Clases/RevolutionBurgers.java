@@ -172,4 +172,9 @@ public class RevolutionBurgers {
     public static Caja getCajaDia() {
         return cajaDia;
     }
+
+    public static double obtenerMontoTotalCajaDia(){
+        double recaudacionT= cajaDia.calcularTotalCaja();
+        return recaudacionT;
+    }
 }
