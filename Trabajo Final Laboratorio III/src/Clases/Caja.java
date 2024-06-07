@@ -120,15 +120,20 @@ public class Caja extends GenericidadArray {
         }
         return buscado;
     }
-    public boolean buscarPorClavePedido(String clave, int id){
-        boolean buscado= false;
-        for (int i=0; i<getNuevoArreglo().size(); i++) {
-            Pedido pedido= (Pedido) getPos(i) ;
-            if((pedido.getId() == id) && (!pedido.isPagado()) ){
-                buscado=pedido.buscarClavePedido(clave);
+
+    public boolean buscarSiExisteProductoPedido (String key, int id)
+    {
+        boolean rta = false;
+        for (int i=0; i<getNuevoArreglo().size(); i++)
+        {
+            Pedido pedido= (Pedido)getNuevoArreglo().get(i);
+            if (pedido.getId() == id )
+            {
+                rta = pedido.getConjuntoDeElementos().buscarPorClave(key);
             }
         }
-        return buscado;
+
+        return rta;
     }
 
 
@@ -161,6 +166,17 @@ public class Caja extends GenericidadArray {
             Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == idbuscado) ){
                 rta=pedido.listarTodoelPedido();
+            }
+        }
+        return rta;
+    }
+
+    public String listarElementosPedidosNoPagos(int id){
+        String rta="";
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if(!pedido.isPagado() && pedido.getId() == id){
+                rta+=pedido.listarProductosDelPedidoPorDigito ();
             }
         }
         return rta;
