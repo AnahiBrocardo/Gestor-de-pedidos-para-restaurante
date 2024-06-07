@@ -86,7 +86,7 @@ public class ControladoraArchivoCaja {
         return caja;
     }
 
-    public static boolean verificarSiEstaVacioArchivoCaja ()
+    public static boolean verificarSiEstaVacioArchivoCaja ()//true si esta vacia
     {
         boolean rta = false;
         File archivo = new File("caja.dat");
