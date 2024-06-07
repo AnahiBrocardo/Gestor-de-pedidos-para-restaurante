@@ -140,11 +140,42 @@ public class RevolutionBurgers {
         guardarArchivoEstadistico();
         }
 
+
+
         nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
         //System.out.println(nuevaEstadistica.toString());
         //System.out.println(listarEstatidistica());
 
+        private static void agregarElementos(String key){
+            if (mapaEstadisticas.containsKey(key)) {
+                // Si la llave ya existe, incrementar su valor en 1
+                int valorActual = mapaEstadisticas.get(key);
+                mapaEstadisticas.put(key, valorActual + 1);
+            } else {
+                // Si la llave no existe, crearla con un valor inicial de 1
+                mapaEstadisticas.put(key, 1);
+            }
+
+        }
+
+    public static void agregaralacumulador(String key, int valor) {
+
+        if(acumulador.containsKey(key)){
+            int aux=acumulador.get(key);
+            aux +=valor;
+            acumulador.put(key, aux);
+        } else {
+            acumulador.put(key,valor);
+        }
+
     }
+    
+    public static String listarEstatidistica(){
+        String rta="";
+        rta= nuevaEstadistica.toString();
+        return rta;
+    }
+
 
 
     private static void agregarElementos(String key){
