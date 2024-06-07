@@ -110,7 +110,6 @@ public class MenuOpciones {
                     break;
                 case 2:
                     modificarUnProductoDePedido (id, miMenu);
-
                     break;
                 case 3:
                     mostrarUnPedido(id);
@@ -157,14 +156,14 @@ public class MenuOpciones {
 
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
-        RevolutionBurgers.listarTodounPedido(id);
+        System.out.println(RevolutionBurgers.listarTodounPedido(id));
     }
 
     public static void eliminarProductoDePedido(int id, Menu miMenu){
         limpiarConsola();
-        System.out.println(RevolutionBurgers.listarTodounPedido(id));
+        System.out.println(RevolutionBurgers.listarElementosDePedidoPorDigitos(id));
         int opcion;
-        System.out.println("Elija que desea modificar: \n1- Burger" +
+        System.out.println("Elija que desea eliminar del pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
         opcion= scanner.nextInt();
 
@@ -191,9 +190,9 @@ public class MenuOpciones {
 
     public static void eliminarBurgerPedido(int id, Menu miMenu){
         boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("burger", id);
+        System.out.println("Existe? "+existeProductoEnPedido);
 
-
-        //if(existeProductoEnPedido){
+        if(existeProductoEnPedido){
             int opcion;
             ArrayList<ElementoMenu> arregloHamburguesas= miMenu.devolverArrayListPorClaveDeMenu("burger");
             int tamaño= arregloHamburguesas.size();
@@ -206,19 +205,20 @@ public class MenuOpciones {
                     opcion= scanner.nextInt();
                 }while (opcion<=0 || opcion>tamaño);
 
+                agregarProductoAPedido(id, miMenu);
 
                 ElementoMenu burgerElminar= arregloHamburguesas.get(opcion-1);
                 System.out.println(burgerElminar.toString());
                 Burger burger= (Burger) burgerElminar;
                 String estilo= burger.getTipoHamburguesa();
                 RevolutionBurgers.eliminardelPedido(estilo, id,burgerElminar);
-                System.out.println("Para eliminar otra hamburgesa presione 's'");
+                System.out.println("Para eliminar otra hamburguesa presione 's'");
                 repetir= scanner.next().charAt(0);
             }while (repetir=='s');
 
-        /*}else {
+        }else {
             System.out.println("No existe ningun producto burger en el pedido...");
-        }*/
+        }
     }
 
     public static Cuota obtenerCuotas(){
@@ -251,7 +251,8 @@ public class MenuOpciones {
 
     public static void modificarUnProductoDePedido(int id, Menu miMenu)
     {
-       //falta mostrar lista de existentes y en base a la opcion valida modificar. 
+       //falta mostrar lista de existentes y en base a la opcion valida modificar.
+        System.out.println(RevolutionBurgers.listarTodounPedido(id));
         System.out.println("Indique que producto desea modificar del pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
         int opcion= scanner.nextInt();
@@ -274,7 +275,36 @@ public class MenuOpciones {
     public static void modificarBurger (int id, Menu miMenu)
     {
         limpiarConsola();
+        int opcion, opcion2;
+        ArrayList<ElementoMenu> arregloHamburguesas= miMenu.devolverArrayListPorClaveDeMenu("burger");
+        int tamaño= arregloHamburguesas.size();
+        char repetir='s';
 
+        do{
+            do{
+                System.out.println(RevolutionBurgers.listarTodounPedido(id));
+                System.out.println("Indique el estilo de hamburguesa que desea modificar: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu burgerAmodificar= arregloHamburguesas.get(opcion-1);
+            System.out.println(burgerAmodificar.toString());
+
+            do{
+                System.out.println(miMenu.listarMenuPorDigitos("burger"));
+                System.out.println("Indique el estilo de hamburguesa a agregar: ");
+                opcion2= scanner.nextInt();
+            }while (opcion2<=0 || opcion2>tamaño);
+
+            ElementoMenu nuevaBurger= arregloHamburguesas.get(opcion-1);
+            System.out.println(nuevaBurger.toString());
+
+            Burger burger= (Burger) burgerAmodificar;
+            String estilo= burger.getTipoHamburguesa();
+            RevolutionBurgers.modificarPedido(estilo, id,burgerAmodificar, nuevaBurger);
+            System.out.println("Para modificar otra hamburguesa presione 's'");
+            repetir= scanner.next().charAt(0);
+        }while (repetir=='s');
 
     }
 //FIN DE FUNCIONES MODIFICAR...
