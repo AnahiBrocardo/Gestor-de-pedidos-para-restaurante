@@ -21,10 +21,12 @@ public class Main {
             System.out.println("1. Ver menú");
             System.out.println("2. Abrir caja");
             System.out.println("3. Pedidos");
-            System.out.println("3. Ver estadisticas");
+            System.out.println("4. Ver estadisticas");
             //falta opcion cerrar caja
             //ver monto recaudado del dia, funcion de caja ver total recaudado, ver pago tarjeta y efectivo
-            System.out.println("4. Salir");
+            System.out.println("5. Ver recaudacion");
+            System.out.println("6. Cerrar caja del dia");
+            System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
 
              opcion = scanner.nextInt();
@@ -47,6 +49,13 @@ public class Main {
                    //logica estadisticas
                     break;
                 case 5:
+                    MenuOpciones.verRecaudacionCajaDelDia();
+                    //logica recaudacion
+                    break;
+                case 6:
+                    //logica cerrar caja
+                    break;
+                case 7:
                     System.out.println("Saliendo del programa...");
                     seguir = 'c';
                     break;
