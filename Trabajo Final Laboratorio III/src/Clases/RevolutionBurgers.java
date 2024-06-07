@@ -14,9 +14,10 @@ public class RevolutionBurgers {
     private static int idpedido= 100;
     private static HashMap<String, Integer> mapaEstadisticas;
     private static Estadistica nuevaEstadistica;
-
     private static HashMap<String, Integer> acumulador= new HashMap<>();
     private static ArrayList<Estadistica> archivoEstadisticas = new ArrayList<>();
+    private static ArrayList<Estadistica> auxarraylist= ControladoraArchivosEstadistica.leerArchivo();
+    //Esta funcion devuelve un mapa con los datos acumulados de fecha a fecha //
 
     ////CAJA DEL DIA
     public static void abrirCaja(){
@@ -241,5 +242,32 @@ public class RevolutionBurgers {
     public static Date convertirFecha(String fechaString) throws ParseException {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         return formatoFecha.parse(fechaString);
+    }
+
+    public static void mostrarEstadisticas(){
+
+        for(Estadistica estadistica : auxarraylist){
+            Iterator<Map.Entry<String, Integer>> iterator = estadistica.getMapaEstadisticas().entrySet().iterator();
+            //System.out.println("probando");
+            while (iterator.hasNext())
+            {
+                Map.Entry<String, Integer> entry = iterator.next();
+                String clave= iterator.next().getKey();
+                int valor= iterator.next().getValue();
+                // Agrega al valor acumulado existente o crea uno nuevo
+                agregaralacumulador(clave, valor);
+            }
+        }
+    }
+
+    public static String listarTodoelAcumulador(){
+        String resultado = "";
+        Iterator<Map.Entry<String, Integer>> iteratormap= acumulador.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, Integer> entry = iteratormap.next();
+            String key = entry.getKey();
+            resultado += key+ ": "+ entry.getValue()+"///";
+        }
+        return resultado;
     }
 }
