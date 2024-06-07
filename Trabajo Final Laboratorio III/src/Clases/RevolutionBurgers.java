@@ -1,5 +1,6 @@
 package Clases;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -176,5 +177,15 @@ public class RevolutionBurgers {
     public static double obtenerMontoTotalCajaDia(){
         double recaudacionT= cajaDia.calcularTotalCaja();
         return recaudacionT;
+    }
+
+    public static double obtenerRecudacionPagoEfectivo(){
+        double recaudacion= cajaDia.calcularTotalEfectivo();
+        return recaudacion;
+    }
+
+    public static double obtenerRecudacionPagoTarjeta(){
+        double recaudacion= cajaDia.calcularTotalTarjeta();
+        return recaudacion;
     }
 }

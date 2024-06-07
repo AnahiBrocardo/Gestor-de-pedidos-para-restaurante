@@ -38,7 +38,8 @@ public class Main {
                     System.out.println(miMenu.listarTodoMenu());
                     break;
                 case 2:
-                    MenuOpciones.abrirLaCajaDelDia(miMenu);
+                    RevolutionBurgers.abrirCaja();
+                   // MenuOpciones.abrirLaCajaDelDia(miMenu);
                     //codigo para avisar que hay una caja del dia abierta
                     break;
                 case 3:

@@ -46,7 +46,7 @@ public class MenuOpciones {
 
     public static void opcionesPedido(Menu miMenu){
         limpiarConsola();
-        if(!ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
+        //if(!ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
             System.out.println("Ingrese la opcion que desee: " +
                     "\n1- Crear nuevo pedido" +
                     "\n2- Ver pedidos existentes");
@@ -62,9 +62,9 @@ public class MenuOpciones {
                     System.out.println("\nOpcion no valida");
                     break;
             }
-        }else {
-            System.out.println("Para acceder a los pedidos, primero debe abrir la caja del dia...");
-        }
+       // }else {
+       //     System.out.println("Para acceder a los pedidos, primero debe abrir la caja del dia...");
+        //}
     }
 
     public static void crearNuevoPedido(Menu miMenu){
@@ -96,6 +96,7 @@ public class MenuOpciones {
                 }while (opcion<0 || opcion>numOpciones); //se valida que la opcion elegida este dentro de las opciones validas
 
                 int id= RevolutionBurgers.obtenerIdDeOpcionPedido(opcion);//obtengo el id asociado a la opcion
+                System.out.println(id);
                 opcionesParaRealizarEnPedidosNoPagos(id, miMenu);
 
                 limpiarConsola();
@@ -149,30 +150,33 @@ public class MenuOpciones {
 
 
     public static void realizarPagoPedido(int id){
+        double montoTotal= RevolutionBurgers.obtenerMontoPedido(id);
         System.out.println("\nPAGAR\nIndicar: \n1-Pago en efectivo" +
                 "\n2-Pago con tarjeta");
         int opcion= scanner.nextInt();
         switch (opcion){
             case 1:
                 RevolutionBurgers.cambiarEstadoDePago(id);
-                System.out.println("..pago exitoso..");
+                Pago nuevoPagoE= new PagoEfectivo(montoTotal,0);
+                RevolutionBurgers.agregarPagoAlPedido(nuevoPagoE, id);
+
+
                 break;
             case 2:
-                double montoTotal= RevolutionBurgers.obtenerMontoPedido(id);
-                Pago nuevoPago= obtenerPago(montoTotal);
-                RevolutionBurgers.agregarPagoAlPedido(nuevoPago, id);
-
-                System.out.println("..pago exitoso..");
+                Pago nuevoPagoT= obtenerPago(montoTotal);
+                RevolutionBurgers.agregarPagoAlPedido(nuevoPagoT, id);
+                RevolutionBurgers.cambiarEstadoDePago(id);
                 break;
             default:
                 System.out.println("Opcion no valida");
                 break;
         }
+        System.out.println("..pago exitoso..");
     }
 
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
-        RevolutionBurgers.listarTodounPedido(id);
+        System.out.println(RevolutionBurgers.listarTodounPedido(id));
     }
 
     public static void eliminarProductoDePedido(int id, Menu miMenu){
@@ -668,8 +672,10 @@ public class MenuOpciones {
                 mostrarRecaudacionTotal();
                 break;
             case 2:
+                mostrarRecaudacionEfectivo();
                 break;
             case 3:
+                mostrarRecaudacionTarjeta();
                 break;
             default:
                 System.out.println("Opcion no valida......");
@@ -679,7 +685,17 @@ public class MenuOpciones {
     }
 
     public static void mostrarRecaudacionTotal(){
-        double recaudacionT= RevolutionBurgers.obtenerMontoTotalCajaDia();
+        double recaudacionTotal= RevolutionBurgers.obtenerMontoTotalCajaDia();
+        System.out.println("Recaudacion total del dia..........$"+recaudacionTotal);
+    }
+
+    public static void mostrarRecaudacionEfectivo(){
+        double recaudacionE= RevolutionBurgers.obtenerRecudacionPagoEfectivo();
+        System.out.println("Recaudacion total del dia..........$"+recaudacionE);
+    }
+
+    public static void mostrarRecaudacionTarjeta(){
+        double recaudacionT= RevolutionBurgers.obtenerRecudacionPagoTarjeta();
         System.out.println("Recaudacion total del dia..........$"+recaudacionT);
     }
 

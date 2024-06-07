@@ -2,6 +2,7 @@ package Clases;
 
 import FuncionesMapa.GenericidadArray;
 
+import javax.swing.*;
 import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
@@ -211,8 +212,7 @@ public class Caja extends GenericidadArray {
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
             if(!pedido.isPagado()){
-
-                     mapPedidos.put(opcion,pedido.getId());
+               mapPedidos.put(opcion,pedido.getId());
             }
             opcion++;
         }
