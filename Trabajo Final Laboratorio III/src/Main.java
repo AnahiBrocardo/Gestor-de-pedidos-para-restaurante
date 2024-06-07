@@ -60,7 +60,7 @@ public class Main {
                     seguir = 'c';
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, seleccione una opción válida...2");
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida...");
             }
             System.out.println("Para volver al menu de opciones presione 's': ");
             seguir= scanner.next().charAt(0);
