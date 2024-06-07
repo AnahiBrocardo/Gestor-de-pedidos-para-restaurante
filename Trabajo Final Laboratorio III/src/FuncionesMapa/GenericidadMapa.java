@@ -84,6 +84,27 @@ public class GenericidadMapa <E> implements IFunciones<E> {
         return rta;
     }
 
+
+    public String listarPorDigitoYllave(String key)
+    {
+        String rta="";
+        int opcion=1;
+        ArrayList<E> nuevoArreglo= nuevomapa.get(key);
+        //Iterator<Object> iterator= nuevoArreglo.iterator();
+        for(int i=0; i< nuevoArreglo.size(); i++)
+        {
+            rta += "  Opcion"+opcion+nuevoArreglo.get(i).toString() + "\n";
+            opcion++;
+        }
+        return rta;
+    }
+
+    public ArrayList<E>  devolverArregloPorClave (String key)
+    {
+        ArrayList<E> nuevoArreglo= nuevomapa.get(key);
+
+        return nuevoArreglo;
+    }
     @Override
     public void eliminar(E o, String key) {
         ArrayList<E> datosArreglo;
@@ -105,6 +126,20 @@ public class GenericidadMapa <E> implements IFunciones<E> {
 
         return rta;
     }
+
+    public String listarTodoPorDigito(){
+        String rta="";
+        Iterator<Map.Entry<String, ArrayList<E>>> iteratormap= nuevomapa.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, ArrayList<E>> entry = iteratormap.next();
+            String key = entry.getKey();
+
+            rta += listar(key);
+        }
+
+        return rta;
+    }
+
 
     public HashMap<String, ArrayList<E>> getNuevomapa() {
         return nuevomapa;

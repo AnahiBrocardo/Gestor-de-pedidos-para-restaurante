@@ -135,7 +135,7 @@ public class MenuOpciones {
                     mostrarUnPedido(id);
                     break;
                 case 4:
-                    eliminarProductoDePedido(id, miMenu);
+                    eliminarProductoDePedido(id);
                     break;
                 case 5:
                     realizarPagoPedido(id);
@@ -182,67 +182,194 @@ public class MenuOpciones {
         System.out.println(RevolutionBurgers.listarTodounPedido(id));
     }
 
-    public static void eliminarProductoDePedido(int id, Menu miMenu){
+    public static void eliminarProductoDePedido(int id){
         limpiarConsola();
         System.out.println(RevolutionBurgers.listarTodounPedido(id));
         int opcion;
-        System.out.println("Elija que desea modificar: \n1- Burger" +
+        System.out.println("Elija que desea eliminar: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
         opcion= scanner.nextInt();
 
         switch (opcion){
             case 1:
-                /*System.out.println(RevolutionBurgers.listarTodounPedido(id));
-                boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("burger",id);
-                System.out.println(existeProductoEnPedido);*/
-
-                eliminarBurgerPedido(id,miMenu);
+                eliminarBurgerPedido(id);
                 break;
             case 2:
-                System.out.println("funciones ");
+                eliminarBebidaPedido(id);
                 break;
             case 3:
-                System.out.println("funciones ");
+                eliminarPostrePedido(id);
                 break;
             default:
                 System.out.println("Opcion no valida");
-                eliminarBurgerPedido(id, miMenu);
+                eliminarProductoDePedido(id);
                 break;
         }
     }
 
-    public static void eliminarBurgerPedido(int id, Menu miMenu){
+    public static void eliminarBurgerPedido(int id){
+        limpiarConsola();
+        int opcion;
         boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("burger", id);
 
+            if(existeProductoEnPedido){
+                ArrayList<ElementoMenu> arregloHamburguesas= RevolutionBurgers.getCajaDia().devolverArregloProductosPorClave("burger",id);
+                int tamaño= arregloHamburguesas.size();
+                    do{
+                        System.out.println("---Productos burger en pedido---");
+                        System.out.println(RevolutionBurgers.listarDeCajaPedidoPorDigitoYllave(id, "burger"));
+                        System.out.println("Indique la opcion de estilo de hamburgesa: ");
+                        opcion= scanner.nextInt();
+                    }while (opcion<=0 || opcion>tamaño);
 
-        //if(existeProductoEnPedido){
-            int opcion;
-            ArrayList<ElementoMenu> arregloHamburguesas= miMenu.devolverArrayListPorClaveDeMenu("burger");
-            int tamaño= arregloHamburguesas.size();
-            char repetir='s';
+                    ElementoMenu burgerEliminar= arregloHamburguesas.get(opcion-1);
+                    System.out.println("Opcion seleccionada: "+burgerEliminar.toString());
+                    RevolutionBurgers.eliminardelPedido("burger", id,burgerEliminar);
+                System.out.println("Producto eliminado exitosamente.....");
 
+                }else {
+                System.out.println(mensajeNoExisteBurger());
+                }
+    } //funcion que elimina un producto burger del pedido
+
+    public static void eliminarPostrePedido(int id){//funcion que elimina un producto postre del pedido
+        limpiarConsola();
+        int opcion;
+        boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("postre", id);
+
+        if(existeProductoEnPedido){
+            ArrayList<ElementoMenu> arregloPostre= RevolutionBurgers.getCajaDia().devolverArregloProductosPorClave("postre",id);
+            int tamaño= arregloPostre.size();
             do{
-                do{
-                    System.out.println(RevolutionBurgers.listarTodounPedido(id));
-                    System.out.println("Indique el estilo de hamburgesa: ");
-                    opcion= scanner.nextInt();
-                }while (opcion<=0 || opcion>tamaño);
+                System.out.println("---Productos postre en pedido---");
+                System.out.println(RevolutionBurgers.listarDeCajaPedidoPorDigitoYllave(id, "postre"));
+                System.out.println("Indique la opcion del postre: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
 
+            ElementoMenu postreEliminar= arregloPostre.get(opcion-1);
+            System.out.println("Opcion seleccionada: "+postreEliminar.toString());
+            RevolutionBurgers.eliminardelPedido("postre", id,postreEliminar);
+            System.out.println("Producto eliminado exitosamente.....");
 
-                ElementoMenu burgerElminar= arregloHamburguesas.get(opcion-1);
-                System.out.println(burgerElminar.toString());
-                Burger burger= (Burger) burgerElminar;
-                String estilo= burger.getTipoHamburguesa();
-                RevolutionBurgers.eliminardelPedido(estilo, id,burgerElminar);
-                System.out.println("Para eliminar otra hamburgesa presione 's'");
-                repetir= scanner.next().charAt(0);
-            }while (repetir=='s');
-
-        /*}else {
-            System.out.println("No existe ningun producto burger en el pedido...");
-        }*/
+        }else {
+            System.out.println(mensajeNoExistePostre());
+        }
     }
 
+    public static void eliminarBebidaPedido(int id){//funcion que elimina un producto bebida del pedido
+        int opcion;
+
+        System.out.println("Elija que desea eliminar: \n1- Cerveza" +
+                "\n2- Agua Saborizada"+ "\n3- Gaseosa");
+        opcion= scanner.nextInt();
+        switch (opcion){
+            case 1: eliminarCerveza(id);
+                    break;
+            case 2: eliminarAguaSaborizada(id);
+                break;
+            case 3: eliminarGaseosa(id);
+                break;
+            default:
+                System.out.println("Opcion no valida");
+                eliminarPostrePedido(id);
+        }
+
+    }
+
+    public static void eliminarCerveza(int id){//funcion que elimina un producto postre del pedido
+        limpiarConsola();
+        int opcion;
+        boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("cerveza", id);
+
+        if(existeProductoEnPedido){
+            ArrayList<ElementoMenu> arregloCerveza= RevolutionBurgers.getCajaDia().devolverArregloProductosPorClave("cerveza",id);
+            int tamaño= arregloCerveza.size();
+            do{
+                System.out.println("---Productos cerveza en pedido---");
+                System.out.println(RevolutionBurgers.listarDeCajaPedidoPorDigitoYllave(id, "cerveza"));
+                System.out.println("Indique la opcion de cerveza: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu cervezaEliminar= arregloCerveza.get(opcion-1);
+            System.out.println("Opcion seleccionada: "+arregloCerveza.toString());
+            RevolutionBurgers.eliminardelPedido("cerveza", id,cervezaEliminar);
+            System.out.println("Producto eliminado exitosamente.....");
+
+        }else {
+            System.out.println(mensajeNoExisteCerveza());
+        }
+    }
+
+    public static void eliminarGaseosa(int id){//funcion que elimina un producto postre del pedido
+        limpiarConsola();
+        int opcion;
+        boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("gaseosa", id);
+
+        if(existeProductoEnPedido){
+            ArrayList<ElementoMenu> arregloGaseosa= RevolutionBurgers.getCajaDia().devolverArregloProductosPorClave("gaseosa",id);
+            int tamaño= arregloGaseosa.size();
+            do{
+                System.out.println("---Productos gaseosa en pedido---");
+                System.out.println(RevolutionBurgers.listarDeCajaPedidoPorDigitoYllave(id, "gaseosa"));
+                System.out.println("Indique la opcion de gaseosa: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu gaseosaEliminar= arregloGaseosa.get(opcion-1);
+            System.out.println("Opcion seleccionada: "+arregloGaseosa.toString());
+            RevolutionBurgers.eliminardelPedido("gaseosa", id,gaseosaEliminar);
+            System.out.println("Producto eliminado exitosamente.....");
+
+        }else {
+            System.out.println(mensajeNoExisteGaseosa());
+        }
+    }
+
+    public static void eliminarAguaSaborizada(int id){//funcion que elimina un producto postre del pedido
+        limpiarConsola();
+        int opcion;
+        boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("aguaSaborizada", id);
+
+        if(existeProductoEnPedido){
+            ArrayList<ElementoMenu> arregloAguaSaborizada= RevolutionBurgers.getCajaDia().devolverArregloProductosPorClave("aguaSaborizada",id);
+            int tamaño= arregloAguaSaborizada.size();
+            do{
+                System.out.println("---Productos tipo agua saborizada en pedido---");
+                System.out.println(RevolutionBurgers.listarDeCajaPedidoPorDigitoYllave(id, "aguaSaborizada"));
+                System.out.println("Indique la opcion de agua saborizada: ");
+                opcion= scanner.nextInt();
+            }while (opcion<=0 || opcion>tamaño);
+
+            ElementoMenu aguaSaborizadaEliminar= arregloAguaSaborizada.get(opcion-1);
+            System.out.println("Opcion seleccionada: "+arregloAguaSaborizada.toString());
+            RevolutionBurgers.eliminardelPedido("arregloAguaSaborizada", id,aguaSaborizadaEliminar);
+            System.out.println("Producto eliminado exitosamente.....");
+
+        }else {
+            System.out.println(mensajeNoExisteAguaSaborizada());
+        }
+    }
+    public static String mensajeNoExisteBurger(){
+        return "No existe ningun producto burger en el pedido..." ;
+    }
+
+
+    public static String mensajeNoExisteCerveza(){
+        return "No existe ningun producto de tipo cerveza en el pedido..." ;
+    }
+    public static String mensajeNoExistePostre(){
+        return "No existe ningun producto postre en el pedido...";
+    }
+
+    public static String mensajeNoExisteGaseosa(){
+        return "No existe ningun producto tipo gaseosa en el pedido...";
+    }
+
+    public static String mensajeNoExisteAguaSaborizada(){
+        return "No existe ningun producto tipo agua saborizada en el pedido...";
+    }
     public static Cuota obtenerCuotas(){
         Cuota nuevaC=null;
         int cantCuotas;
@@ -273,7 +400,7 @@ public class MenuOpciones {
 
     public static void modificarUnProductoDePedido(int id, Menu miMenu)
     {
-       //falta mostrar lista de existentes y en base a la opcion valida modificar. 
+       //falta mostrar lista de existentes y en base a la opcion valida modificar.
         System.out.println("Indique que producto desea modificar del pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
         int opcion= scanner.nextInt();
@@ -304,23 +431,33 @@ public class MenuOpciones {
 
 //FUNCIONES DE AGREGAR--------------------------------------------------
     public static void agregarProductoAPedido(int id, Menu miMenu){
-        System.out.println("Indique que producto desea agregar al pedido: \n1- Burger" +
+        char seguir='s';
+        int opcion;
+
+        do{
+            limpiarConsola();
+            System.out.println("Indique que producto desea agregar al pedido: \n1- Burger" +
                 "\n2- Bebida"+ "\n3- Postre");
-        int opcion= scanner.nextInt();
-        switch (opcion){
-            case 1:
-                agregarBurger(id, miMenu);
-                break;
-            case 2:
-                agregarBebida(id, miMenu);
-                break;
-            case 3:
-                agregarPostre(id, miMenu);
-                break;
-            default:
-                System.out.println("Opción no valida");
-                break;
-        }
+              opcion= scanner.nextInt();
+
+            switch (opcion){
+                case 1:
+                    agregarBurger(id, miMenu);
+                    break;
+                case 2:
+                    agregarBebida(id, miMenu);
+                    break;
+                case 3:
+                    agregarPostre(id, miMenu);
+                    break;
+                default:
+                    System.out.println("Opción no valida");
+                    break;
+            }
+            System.out.println("Para agregar otro producto al pedido presione s: ");
+            seguir= scanner.next().charAt(0);
+        }while(seguir=='s');
+
     }
 
 
@@ -363,9 +500,7 @@ public class MenuOpciones {
 
             ElementoMenu nuevaAgua= arregloDeAguasSab.get(opcion-1);
             System.out.println(nuevaAgua.toString());
-            AguaSaborizada aguaSab= (AguaSaborizada) nuevaAgua;
-            String tipo= aguaSab.getTipoBebida();
-            RevolutionBurgers.agregarPedido(tipo, id,nuevaAgua);
+            RevolutionBurgers.agregarPedido("aguaSaborizada", id,nuevaAgua);
             System.out.println("Presione 's' para agregar una gaseosa...");
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
@@ -388,9 +523,7 @@ public class MenuOpciones {
 
             ElementoMenu nuevaGaseosa= arregloDeGaseosas.get(opcion-1);
             System.out.println(nuevaGaseosa.toString());
-            Gaseosa gaseosa= (Gaseosa) nuevaGaseosa;
-            String tipo= gaseosa.getTipoBebida();
-            RevolutionBurgers.agregarPedido(tipo, id,nuevaGaseosa);
+            RevolutionBurgers.agregarPedido("gaseosa", id,nuevaGaseosa);
             System.out.println("Presione 's' para agregar una gaseosa...");
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
@@ -413,9 +546,7 @@ public class MenuOpciones {
 
             ElementoMenu nuevaC= arregloDeCervezas.get(opcion-1);
             System.out.println(nuevaC.toString());
-            Cerveza nuevaCerveza= (Cerveza) nuevaC;
-            String tipo= nuevaCerveza.getTipoBebida();
-            RevolutionBurgers.agregarPedido(tipo, id,nuevaCerveza);
+            RevolutionBurgers.agregarPedido("cerveza", id,nuevaC);
             System.out.println("Para agregar otra cerveza presione 's'");
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
@@ -442,7 +573,7 @@ public class MenuOpciones {
             System.out.println(nuevaBurger.toString());
             Burger nuevaB= (Burger) nuevaBurger;
             String estilo= nuevaB.getTipoHamburguesa();
-            RevolutionBurgers.agregarPedido(estilo, id,nuevaBurger);
+            RevolutionBurgers.agregarPedido("burger", id,nuevaBurger);
             System.out.println("Para agregar otra hamburgesa presione 's'");
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
@@ -471,7 +602,7 @@ public class MenuOpciones {
             ElementoMenu postreN= arregloPostres.get(opcion-1);
             Postre nuevoP= (Postre) postreN;
             String nombreP= nuevoP.getNombreDelPostre();
-            RevolutionBurgers.agregarPedido(nombreP, id,postreN);
+            RevolutionBurgers.agregarPedido("postre", id,postreN);
             System.out.println(RevolutionBurgers.buscarPedido("postre", id,postreN));
             System.out.println("Pedido: "+RevolutionBurgers.listarTodounPedido(id));
             System.out.println("Para agregar otro postre presione 's'");

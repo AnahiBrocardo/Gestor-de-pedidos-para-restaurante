@@ -87,6 +87,16 @@ public class RevolutionBurgers {
         return pedido;
     }
 
+
+    public ArrayList<ElementoMenu> devolverArregloPedidoPorClave(int id, String clave){
+        ArrayList<ElementoMenu> arregloPorClave= cajaDia.devolverArregloProductosPorClave(clave,id);
+        return arregloPorClave;
+    }
+    public static String listarDeCajaPedidoPorDigitoYllave(int id, String clave){
+        String info="";
+        info= cajaDia.listarPedidoPorDigitiYllave(id,clave);
+        return info;
+    }
     public static String listarTodosLosPedidosNoPagos(){
         String pedido= "";
         pedido=cajaDia.listarPedidosNoPagos();

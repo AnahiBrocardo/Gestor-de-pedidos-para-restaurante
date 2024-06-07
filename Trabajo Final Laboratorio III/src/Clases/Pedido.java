@@ -149,6 +149,17 @@ public class Pedido{
         return rta;
     }
 
+    //lista los elementos del pedido por la clave y opciones
+    public String listarPorDigitoYllave(String key){
+        String rta="";
+        rta= conjuntoDeElementos.listarPorDigitoYllave(key);
+        return rta;
+    }
+
+    public ArrayList<ElementoMenu> devolverArrayProductosPorClave(String clave){
+        ArrayList<ElementoMenu> arregloPorLLave= conjuntoDeElementos.devolverArregloPorClave(clave);
+        return arregloPorLLave;
+    }
 
 }
 
