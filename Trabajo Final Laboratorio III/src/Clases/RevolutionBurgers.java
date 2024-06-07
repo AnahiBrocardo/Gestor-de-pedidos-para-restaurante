@@ -169,5 +169,7 @@ public class RevolutionBurgers {
         cajaDia.cambiarEstadoDePago(id);
     }
 
-
+    public static Caja getCajaDia() {
+        return cajaDia;
+    }
 }
