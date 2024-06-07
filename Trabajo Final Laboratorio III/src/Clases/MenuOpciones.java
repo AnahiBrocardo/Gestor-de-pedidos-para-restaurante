@@ -293,7 +293,7 @@ public class MenuOpciones {
             }while (opcion<=0 || opcion>tamaño);
 
             ElementoMenu cervezaEliminar= arregloCerveza.get(opcion-1);
-            System.out.println("Opcion seleccionada: "+arregloCerveza.toString());
+            System.out.println("Opcion seleccionada: "+cervezaEliminar.toString());
             RevolutionBurgers.eliminardelPedido("cerveza", id,cervezaEliminar);
             System.out.println("Producto eliminado exitosamente.....");
 
@@ -318,7 +318,7 @@ public class MenuOpciones {
             }while (opcion<=0 || opcion>tamaño);
 
             ElementoMenu gaseosaEliminar= arregloGaseosa.get(opcion-1);
-            System.out.println("Opcion seleccionada: "+arregloGaseosa.toString());
+            System.out.println("Opcion seleccionada: "+gaseosaEliminar.toString());
             RevolutionBurgers.eliminardelPedido("gaseosa", id,gaseosaEliminar);
             System.out.println("Producto eliminado exitosamente.....");
 
@@ -343,7 +343,7 @@ public class MenuOpciones {
             }while (opcion<=0 || opcion>tamaño);
 
             ElementoMenu aguaSaborizadaEliminar= arregloAguaSaborizada.get(opcion-1);
-            System.out.println("Opcion seleccionada: "+arregloAguaSaborizada.toString());
+            System.out.println("Opcion seleccionada: "+aguaSaborizadaEliminar.toString());
             RevolutionBurgers.eliminardelPedido("arregloAguaSaborizada", id,aguaSaborizadaEliminar);
             System.out.println("Producto eliminado exitosamente.....");
 
