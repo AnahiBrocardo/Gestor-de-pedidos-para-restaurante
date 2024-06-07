@@ -655,5 +655,32 @@ public class MenuOpciones {
         return numTarjeta;
     }
 
+    //VER RECAUDACION DEL DIA
+    public static void verRecaudacionCajaDelDia(){
+        limpiarConsola();
+        int opcion;
+        System.out.println("Indique que tipo de recaudacion del dia quiere ver: \n1- Recaudacion total del dia" +
+                "\n2- Recaudación total de pagos en efectivo"+ "\n3- Recaudación total de pagos con tarjeta");
+        opcion= scanner.nextInt();
+
+        switch (opcion){
+            case 1:
+                mostrarRecaudacionTotal();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Opcion no valida......");
+                verRecaudacionCajaDelDia();
+                break;
+        }
+    }
+
+    public static void mostrarRecaudacionTotal(){
+        double recaudacionT= RevolutionBurgers.obtenerMontoTotalCajaDia();
+        System.out.println("Recaudacion total del dia..........$"+recaudacionT);
+    }
 
 }
