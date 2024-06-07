@@ -28,7 +28,7 @@ public class MenuOpciones {
 
    public static void abrirLaCajaDelDia(Menu miMenu){
        abrirCajaDelDia();
-       opcionesPedido(miMenu);
+
        if (ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
            arrayCajas= new ArrayList<>();
            //Caja cajaDia= RevolutionBurgers.getCajaDia();
@@ -64,13 +64,22 @@ public class MenuOpciones {
         RevolutionBurgers.abrirCaja();
         System.out.println("Caja abierta exitosamente");
     }
+    public static void abrirEstadisticadesdemenus(){
+        RevolutionBurgers.abrirarchivoEstadistico();
+    }
     public static void cerrarCajadia(){
         System.out.println("Cerrando la caja...");
         RevolutionBurgers.cerrarCaja();
         System.out.println("Caja cerrada exitosamente");
-        arrayCajas.add(RevolutionBurgers.getCajaDia());
+       // arrayCajas.add(RevolutionBurgers.getCajaDia());
         System.out.println(arrayCajas.toString());
         ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);
+    }
+    public static void AgregarCajaaEstadistica(){
+          arrayCajas.add(RevolutionBurgers.getCajaDia());
+    }
+    public static void cerrarEstadisticadesdemenu(){
+        RevolutionBurgers.cerrarEstadistica();
     }
 
     public static void opcionesPedido(Menu miMenu){
@@ -146,7 +155,8 @@ public class MenuOpciones {
                     "\n2.Modificar pedido" +
                     "\n3.Mostrar el pedido completo" +
                     "\n4.Eliminar un producto del pedido" +
-                    "\n5.Realiza pago");
+                    "\n5.Realiza pago" +
+                    "\n6.Poner 'c' para volver al menu principal");
 
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -166,12 +176,15 @@ public class MenuOpciones {
                 case 5:
                     realizarPagoPedido(id);
                     break;
+                case 6:
+                    //seguir= 'c';
+                    break;
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
                     break;
             }
 
-            System.out.println("Presione 's' para volver al menu de PEDIDOS ACTIVOS...");
+            System.out.println("Presione 's' para volver al menu de PEDIDOS ACTIVOS... o 'c' para SALIR");
             seguir = scanner.next().charAt(0);
         }while (seguir=='s');
 
@@ -743,4 +756,33 @@ public class MenuOpciones {
         return fecha;
     }
     SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+
+
+    public static void opcionesEstadistica()
+    {
+        limpiarConsola();
+        int opcion;
+        System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por fecha" +
+                "\n2- Ranking de productos");
+        opcion= scanner.nextInt();
+        RevolutionBurgers.deCajaaEstadistica();
+
+        switch (opcion){
+            case 1:
+                break;
+            case 2:
+                RevolutionBurgers.generarEstadisticas();
+                System.out.println(RevolutionBurgers.listarTodoelAcumulador());
+                break;
+            default:
+                System.out.println("Opcion no valida......");
+                break;
+        }
+
+
+
+
+
+    }
+
 }

@@ -71,6 +71,16 @@ public class ControladoraArchivosEstadistica {
         return estadisticasArrayList;
     }
 
+    public static boolean verificarSiEstaVacioArchivoEstadistica ()//true si esta vacia
+    {
+        boolean rta = false;
+        File archivo = new File("estadisticas.dat");
+        if (archivo.length()==0)
+        {
+            rta= true;
+        }
+        return rta;
+    }
 
 
 
