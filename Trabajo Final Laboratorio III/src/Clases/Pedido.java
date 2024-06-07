@@ -149,6 +149,35 @@ public class Pedido{
         return rta;
     }
 
+    public String listarProductosDelPedidoPorDigito ()
+    {
+       HashMap<String, ArrayList<ElementoMenu>> mapaProducto = conjuntoDeElementos.getNuevomapa();
+        String rta="";
+        int opcion=1;
+
+        Iterator<Map.Entry<String, ArrayList<ElementoMenu>>> iteratormap= mapaProducto.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, ArrayList<ElementoMenu>> entry = iteratormap.next();
+            String key = entry.getKey();
+
+            ArrayList<ElementoMenu> nuevoArreglo = entry.getValue();
+
+            for(int i=0; i< nuevoArreglo.size(); i++)
+            {
+                rta += "Opcion "+opcion+nuevoArreglo.get(i).toString() + "\n";
+                opcion++;
+            }
+        }
+        return rta;
+
+    }
+
+    public boolean validarTipoDeProductoPedido(String key)
+    {
+        boolean existe = conjuntoDeElementos.buscarPorClave(key);
+        return existe;
+    }
+
 
 }
 
