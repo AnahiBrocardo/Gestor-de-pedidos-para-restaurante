@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
-        int opcion;
+
+
+     int opcion;
         char seguir = 's';
 
 
@@ -19,6 +21,8 @@ public class Main {
             System.out.println("2. Abrir caja");
             System.out.println("3. Pedidos");
             System.out.println("3. Ver estadisticas");
+            //falta opcion cerrar caja
+            //ver monto recaudado del dia, funcion de caja ver total recaudado, ver pago tarjeta y efectivo
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
 

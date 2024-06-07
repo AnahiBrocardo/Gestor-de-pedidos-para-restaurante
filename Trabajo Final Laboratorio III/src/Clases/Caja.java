@@ -120,6 +120,17 @@ public class Caja extends GenericidadArray {
         }
         return buscado;
     }
+    public boolean buscarPorClavePedido(String clave, int id){
+        boolean buscado= false;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if((pedido.getId() == id) && (!pedido.isPagado()) ){
+                buscado=pedido.buscarClavePedido(clave);
+            }
+        }
+        return buscado;
+    }
+
 
     public double obtenerMontoP(int id){
         double monto=0;

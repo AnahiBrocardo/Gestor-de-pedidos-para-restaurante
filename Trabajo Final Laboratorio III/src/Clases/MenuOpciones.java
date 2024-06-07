@@ -4,6 +4,7 @@ import Excepciones.InvalidCardNumberException;
 import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -115,7 +116,7 @@ public class MenuOpciones {
                     mostrarUnPedido(id);
                     break;
                 case 4:
-
+                    eliminarProductoDePedido(id, miMenu);
                     break;
                 case 5:
                     realizarPagoPedido(id);
@@ -157,6 +158,67 @@ public class MenuOpciones {
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
         RevolutionBurgers.listarTodounPedido(id);
+    }
+
+    public static void eliminarProductoDePedido(int id, Menu miMenu){
+        limpiarConsola();
+        System.out.println(RevolutionBurgers.listarTodounPedido(id));
+        int opcion;
+        System.out.println("Elija que desea modificar: \n1- Burger" +
+                "\n2- Bebida"+ "\n3- Postre");
+        opcion= scanner.nextInt();
+
+        switch (opcion){
+            case 1:
+                /*System.out.println(RevolutionBurgers.listarTodounPedido(id));
+                boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("burger",id);
+                System.out.println(existeProductoEnPedido);*/
+
+                eliminarBurgerPedido(id,miMenu);
+                break;
+            case 2:
+                System.out.println("funciones ");
+                break;
+            case 3:
+                System.out.println("funciones ");
+                break;
+            default:
+                System.out.println("Opcion no valida");
+                eliminarBurgerPedido(id, miMenu);
+                break;
+        }
+    }
+
+    public static void eliminarBurgerPedido(int id, Menu miMenu){
+        boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("burger", id);
+
+
+        //if(existeProductoEnPedido){
+            int opcion;
+            ArrayList<ElementoMenu> arregloHamburguesas= miMenu.devolverArrayListPorClaveDeMenu("burger");
+            int tamaño= arregloHamburguesas.size();
+            char repetir='s';
+
+            do{
+                do{
+                    System.out.println(RevolutionBurgers.listarTodounPedido(id));
+                    System.out.println("Indique el estilo de hamburgesa: ");
+                    opcion= scanner.nextInt();
+                }while (opcion<=0 || opcion>tamaño);
+
+
+                ElementoMenu burgerElminar= arregloHamburguesas.get(opcion-1);
+                System.out.println(burgerElminar.toString());
+                Burger burger= (Burger) burgerElminar;
+                String estilo= burger.getTipoHamburguesa();
+                RevolutionBurgers.eliminardelPedido(estilo, id,burgerElminar);
+                System.out.println("Para eliminar otra hamburgesa presione 's'");
+                repetir= scanner.next().charAt(0);
+            }while (repetir=='s');
+
+        /*}else {
+            System.out.println("No existe ningun producto burger en el pedido...");
+        }*/
     }
 
     public static Cuota obtenerCuotas(){

@@ -60,6 +60,17 @@ public class GenericidadMapa <E> implements IFunciones<E> {
         }
         return existencia;
     }
+
+
+    public boolean buscarPorClave(String key) {
+        boolean existe= false;
+        if(nuevomapa.containsKey(key)){
+            existe= true;
+        }
+        return existe;
+    }
+
+
     @Override
     public String listar(String key)
     {

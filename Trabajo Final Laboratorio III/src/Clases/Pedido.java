@@ -128,6 +128,12 @@ public class Pedido{
         return rta;
     }
 
+
+    public boolean buscarClavePedido(String clave){
+        boolean rta= conjuntoDeElementos.buscarPorClave(clave) ;
+        return rta;
+    }
+
     public String listar(String key){
         String rta= conjuntoDeElementos.listar(key);
         return rta;
@@ -142,7 +148,6 @@ public class Pedido{
         rta=conjuntoDeElementos.listarTodo();
         return rta;
     }
-
 
 
 }

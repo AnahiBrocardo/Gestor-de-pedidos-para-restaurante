@@ -54,6 +54,11 @@ public class RevolutionBurgers {
         return valor= cajaDia.buscarPedido(key, idPedido, aBuscado);
     }
 
+    public static boolean buscarPorClavePedido(String clave, int id){
+        boolean existe= cajaDia.buscarPorClavePedido(clave, id);
+        return  existe;
+    }
+
     public static double obtenerMontoPedido(int idPedido){
         double monto;
         return monto= cajaDia.obtenerMontoP(idPedido);
