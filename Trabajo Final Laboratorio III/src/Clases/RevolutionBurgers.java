@@ -1,10 +1,9 @@
 package Clases;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 //cuando lo queremos usar en el main hacemos: RevolutionBurguer + . y el metodo global
 public class RevolutionBurgers {
@@ -187,5 +186,27 @@ public class RevolutionBurgers {
     public static double obtenerRecudacionPagoTarjeta(){
         double recaudacion= cajaDia.calcularTotalTarjeta();
         return recaudacion;
+    }
+
+    public static boolean validarFecha(int dia, int mes, int anio) {
+        // Validación del día y mes
+        boolean rta= true;
+        if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+            rta= false;
+        }
+        // Validación específica para febrero (considerando años bisiestos)
+        if (mes == 2 && dia > 29) {
+            rta=  false;
+        }
+        // Validación del año (puedes ajustar el rango según tus necesidades)
+        if (anio < 1900 || anio > 2100) {
+            rta= false;
+        }
+
+        return rta;
+    }
+    public static Date convertirFecha(String fechaString) throws ParseException {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return formatoFecha.parse(fechaString);
     }
 }
