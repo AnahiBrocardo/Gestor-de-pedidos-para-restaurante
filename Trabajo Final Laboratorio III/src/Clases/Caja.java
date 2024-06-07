@@ -5,6 +5,7 @@ import FuncionesMapa.GenericidadArray;
 import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Caja extends GenericidadArray {
     private double totalRecuadado;
@@ -88,6 +89,15 @@ public class Caja extends GenericidadArray {
         return agregado;
     }
 
+    public void agregarPago(Pago nuevoPago,int id) {
+        for (int i = 0; i < getNuevoArreglo().size(); i++) {
+            Pedido pedido = (Pedido) getPos(i);
+            if (pedido.getId() == id) {
+                pedido.setTipoDePago(nuevoPago);
+            }
+        }
+    }
+
     public boolean modificarPedido(String key, int idbuscado, ElementoMenu aCambiar, ElementoMenu aAgregar) {
         boolean agregado = false;
         for (int i = 0; i < getNuevoArreglo().size(); i++) {
@@ -109,6 +119,28 @@ public class Caja extends GenericidadArray {
             }
         }
         return buscado;
+    }
+    public boolean buscarPorClavePedido(String clave, int id){
+        boolean buscado= false;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if((pedido.getId() == id) && (!pedido.isPagado()) ){
+                buscado=pedido.buscarClavePedido(clave);
+            }
+        }
+        return buscado;
+    }
+
+
+    public double obtenerMontoP(int id){
+        double monto=0;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if(pedido.getId() == id){
+               monto= pedido.calcularTotaldelPedido();
+            }
+        }
+        return monto;
     }
 
 
@@ -132,6 +164,59 @@ public class Caja extends GenericidadArray {
             }
         }
         return rta;
+    }
+
+
+    public int cantPedidosNoPagos (){
+        ArrayList<Pedido> arrayPedidos= getNuevoArreglo();
+        int cant=0;
+
+        for (int i=0; i<arrayPedidos.size(); i++){
+            if(!arrayPedidos.get(i).isPagado()){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    public void cambiarEstadoDePago (int id){
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if((pedido.getId() == id) ){
+               pedido.setPagado();
+            }
+        }
+
+    }
+
+    public String listarPedidosNoPagos(){
+        String rta="";
+        int opcion=1;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if(!pedido.isPagado()){
+                rta+="Opcion "+ opcion +pedido.listarTodoelPedido();//ver
+                opcion++;
+            }
+        }
+        return rta;
+    }
+
+
+
+
+     public HashMap<Integer,Integer> mapaPedidosOpcionID() {
+        HashMap<Integer,Integer> mapPedidos= new HashMap<>();
+        int opcion = 1;
+        int id;
+        for (int i=0; i<getNuevoArreglo().size(); i++) {
+            Pedido pedido= (Pedido) getPos(i) ;
+            if(!pedido.isPagado()){
+
+                     mapPedidos.put(opcion,pedido.getId());
+            }
+            opcion++;
+        }
+        return mapPedidos;
     }
 
     public boolean eliminardePedido(String key, int idbuscado, ElementoMenu aEliminar){

@@ -49,6 +49,8 @@ public class GenericidadArray <E> implements IFuncionesArreglos<E> {
         return rta;
     }
 
+
+
     @Override
     public void eliminarElemento(E o) {
         nuevoArreglo.remove(o);

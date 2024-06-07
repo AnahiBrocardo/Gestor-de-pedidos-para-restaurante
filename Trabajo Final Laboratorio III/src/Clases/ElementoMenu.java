@@ -32,7 +32,7 @@ public abstract class ElementoMenu {
     @Override
     public String toString() {
         return "...................................................................................................................................................................\n "
-                +nombreElementoMenu + "\n" +"Precio : $" + precioElementoMenu;
+                +nombreElementoMenu + "\n" +"Precio: $" + precioElementoMenu;
 
     }
 }
