@@ -41,7 +41,7 @@ public class MenuOpciones {
         }
     }
 
-    public static void abrirCajaDelDia(){
+    public static void abrirCajaDelDia(){ 
         System.out.println("Abriendo caja...");
         RevolutionBurgers.abrirCaja();
         System.out.println("Caja abierta exitosamente");
@@ -70,7 +70,7 @@ public class MenuOpciones {
         //}
     }
 
-    public static void crearNuevoPedido(Menu miMenu){
+    public static void crearNuevoPedido(Menu miMenu){ //se crea un nuevo pedido
         limpiarConsola();
         RevolutionBurgers.crearPedido();
         System.out.println("Pedido creado exitosamente....");
@@ -149,26 +149,26 @@ public class MenuOpciones {
             seguir = scanner.next().charAt(0);
         }while (seguir=='s');
 
-    }
+    } //muestra opciones solo para pedidos no pagos
 
 
-    public static void realizarPagoPedido(int id){
+    public static void realizarPagoPedido(int id){ //se realiza el pago de un pedido seleccionado
         double montoTotal= RevolutionBurgers.obtenerMontoPedido(id);
         System.out.println("\nPAGAR\nIndicar: \n1-Pago en efectivo" +
                 "\n2-Pago con tarjeta");
         int opcion= scanner.nextInt();
         switch (opcion){
             case 1:
-                RevolutionBurgers.cambiarEstadoDePago(id);
+                RevolutionBurgers.cambiarEstadoDePago(id); //se cambia el estado del pago a true, pago realizado
                 Pago nuevoPagoE= new PagoEfectivo(montoTotal,0);
-                RevolutionBurgers.agregarPagoAlPedido(nuevoPagoE, id);
+                RevolutionBurgers.agregarPagoAlPedido(nuevoPagoE, id);// se agrega el pago al pedido
 
 
                 break;
             case 2:
                 Pago nuevoPagoT= obtenerPago(montoTotal);
                 RevolutionBurgers.agregarPagoAlPedido(nuevoPagoT, id);
-                RevolutionBurgers.cambiarEstadoDePago(id);
+                RevolutionBurgers.cambiarEstadoDePago(id);//se cambia el estado del pago a true, pago realizado
                 break;
             default:
                 System.out.println("Opcion no valida");
@@ -180,7 +180,7 @@ public class MenuOpciones {
     public static void mostrarUnPedido(int id){
         System.out.println("\n....PEDIDO....");
         System.out.println(RevolutionBurgers.listarTodounPedido(id));
-    }
+    } //se muestra un pedido seleccionado, por id
 
     public static void eliminarProductoDePedido(int id){
         limpiarConsola();
@@ -205,7 +205,7 @@ public class MenuOpciones {
                 eliminarProductoDePedido(id);
                 break;
         }
-    }
+    } //muestra menu de opciones para eliminar un producto
 
     public static void eliminarBurgerPedido(int id){
         limpiarConsola();
@@ -255,7 +255,7 @@ public class MenuOpciones {
         }else {
             System.out.println(mensajeNoExistePostre());
         }
-    }
+    }//funcion que elimina un postre  del pedido
 
     public static void eliminarBebidaPedido(int id){//funcion que elimina un producto bebida del pedido
         int opcion;
@@ -275,7 +275,7 @@ public class MenuOpciones {
                 eliminarPostrePedido(id);
         }
 
-    }
+    }//funcion que elimina una bebida del pedido
 
     public static void eliminarCerveza(int id){//funcion que elimina un producto postre del pedido
         limpiarConsola();
@@ -300,9 +300,9 @@ public class MenuOpciones {
         }else {
             System.out.println(mensajeNoExisteCerveza());
         }
-    }
+    }//funcion que elimina una cerveza del pedido
 
-    public static void eliminarGaseosa(int id){//funcion que elimina un producto postre del pedido
+    public static void eliminarGaseosa(int id){//funcion que elimina una gaseosa del pedido
         limpiarConsola();
         int opcion;
         boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("gaseosa", id);
@@ -325,9 +325,9 @@ public class MenuOpciones {
         }else {
             System.out.println(mensajeNoExisteGaseosa());
         }
-    }
+    }//funcion que elimina una gaseosa del pedido
 
-    public static void eliminarAguaSaborizada(int id){//funcion que elimina un producto postre del pedido
+    public static void eliminarAguaSaborizada(int id){
         limpiarConsola();
         int opcion;
         boolean existeProductoEnPedido= RevolutionBurgers.buscarPorClavePedido("aguaSaborizada", id);
@@ -350,11 +350,10 @@ public class MenuOpciones {
         }else {
             System.out.println(mensajeNoExisteAguaSaborizada());
         }
-    }
+    }//funcion que elimina un producto  agua saborizada del pedido
     public static String mensajeNoExisteBurger(){
         return "No existe ningun producto burger en el pedido..." ;
     }
-
 
     public static String mensajeNoExisteCerveza(){
         return "No existe ningun producto de tipo cerveza en el pedido..." ;
@@ -370,7 +369,7 @@ public class MenuOpciones {
     public static String mensajeNoExisteAguaSaborizada(){
         return "No existe ningun producto tipo agua saborizada en el pedido...";
     }
-    public static Cuota obtenerCuotas(){
+    public static Cuota obtenerCuotas(){ //se le pregunta al usuario en cuantas cuotas desea pagar y se retona la Cuota
         Cuota nuevaC=null;
         int cantCuotas;
         int opcion;
@@ -458,10 +457,10 @@ public class MenuOpciones {
             seguir= scanner.next().charAt(0);
         }while(seguir=='s');
 
-    }
+    }//se le da un menu al usuario para que elija que producto agregar
 
 
-    public static void agregarBebida(int id, Menu miMenu)
+    public static void agregarBebida(int id, Menu miMenu) //se agrega una bebida al pedido indicado
     {
         limpiarConsola();
 
@@ -483,7 +482,7 @@ public class MenuOpciones {
         }
     }
 
-    public static void agregarBebidaAguaSaborizada (int id, Menu miMenu)
+    public static void agregarBebidaAguaSaborizada (int id, Menu miMenu) //se agrega una  BebidaAguaSaborizada al pedido indicado
     {
         ArrayList<ElementoMenu> arregloDeAguasSab= miMenu.devolverArrayListPorClaveDeMenu("aguaSaborizada");
         int tamaño= arregloDeAguasSab.size();
@@ -506,7 +505,7 @@ public class MenuOpciones {
         }while (repetir=='s');
     }
 
-    public static void agregarBebidaGaseosa (int id, Menu miMenu)
+    public static void agregarBebidaGaseosa (int id, Menu miMenu) //se agrega una  Bebida gaseosa al pedido indicado
     {
         ArrayList<ElementoMenu> arregloDeGaseosas= miMenu.devolverArrayListPorClaveDeMenu("gaseosa");
         int tamaño= arregloDeGaseosas.size();
@@ -551,7 +550,7 @@ public class MenuOpciones {
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
 
-    }
+    }//se agrega una  Bebida cerveza al pedido indicado
 
     public static void agregarBurger(int id, Menu miMenu){
         limpiarConsola();
@@ -578,9 +577,7 @@ public class MenuOpciones {
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
 
-    }
-
-
+    }//se agrega una  burger al pedido indicado
 
 
     public static void agregarPostre(int id, Menu miMenu){
@@ -609,7 +606,7 @@ public class MenuOpciones {
             repetir= scanner.next().charAt(0);
         }while (repetir=='s');
 
-    }
+    }//se agrega un postre al pedido indicado
 //FIN DE FUNCIONES AGREGAR
 
 
@@ -623,7 +620,7 @@ public class MenuOpciones {
         Persona cliente = new Persona(nombre, dni, direccion, telefono);
 
         return cliente;
-    }
+    } //se cargan los datos de el cliente que va a pagar el pedido
 
     public static String cargarDatoNombre(){
         String nombreYapellido;
@@ -634,9 +631,9 @@ public class MenuOpciones {
         nombreYapellido = scanner.nextLine();
 
         try  {
-            Persona.validarNombrePersona(nombreYapellido);
+            Persona.validarNombrePersona(nombreYapellido); //intenta validar el nombre de la persona
         }
-        catch (InvalidNameExcepcion ex){
+        catch (InvalidNameExcepcion ex){ //si el nombre no es valido se lanza la excepcion
             System.out.println(ex.getMessage());
             nombreYapellido= cargarDatoNombre();
 
@@ -653,9 +650,9 @@ public class MenuOpciones {
         dni = scanner.nextLine();
 
         try  {
-            Persona.validarDniPersona(dni);
+            Persona.validarDniPersona(dni); //se valida el dni de la persona
         }
-        catch (InvalidDniExcepcion ex){
+        catch (InvalidDniExcepcion ex){ //si no es valido se lanza la excepcion
             System.out.println(ex.getMessage());
             dni= cargarDatosDni();
 
@@ -669,9 +666,9 @@ public class MenuOpciones {
         telefono = scanner.nextLine();
 
         try  {
-            Persona.validarTelefonoPersona(telefono);
+            Persona.validarTelefonoPersona(telefono); //se valida el num telefono
         }
-        catch (InvalidCardNumberException ex){
+        catch (InvalidCardNumberException ex){ // si  no es valido se lanza la excepcion
             System.out.println(ex.getMessage());
             telefono= cargarDatosTelefono();
 
@@ -689,7 +686,7 @@ public class MenuOpciones {
         return direccion;
     }
 
-    public static Pago obtenerPago(double montoTotal) {
+    public static Pago obtenerPago(double montoTotal) { //se piden los datos de pago
         int opcion;
         Tarjeta tipoTarjeta= null;
         TipoCuenta tipoCuenta= null;
@@ -818,7 +815,7 @@ public class MenuOpciones {
         }
     }
 
-    public static void mostrarRecaudacionTotal(){
+    public static void mostrarRecaudacionTotal(){ //se muestra la recaudacion total del dia
         double recaudacionTotal= RevolutionBurgers.obtenerMontoTotalCajaDia();
         System.out.println("Recaudacion total del dia..........$"+recaudacionTotal);
     }
@@ -826,12 +823,12 @@ public class MenuOpciones {
     public static void mostrarRecaudacionEfectivo(){
         double recaudacionE= RevolutionBurgers.obtenerRecudacionPagoEfectivo();
         System.out.println("Recaudacion total del dia..........$"+recaudacionE);
-    }
+    }//se muestra la recaudacion del dia pero solo de pagos en efectivo
 
     public static void mostrarRecaudacionTarjeta(){
         double recaudacionT= RevolutionBurgers.obtenerRecudacionPagoTarjeta();
         System.out.println("Recaudacion total del dia..........$"+recaudacionT);
-    }
+    }//se muestra la recaudacion del dia pero solo de pagos con tarjeta
 
     public static Date devolverDate(int dia, int mes, int anio) {
         Date fecha = null;
