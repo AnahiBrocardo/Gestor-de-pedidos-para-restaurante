@@ -211,10 +211,10 @@ public class Caja extends GenericidadArray {
         int id;
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
-            if(!pedido.isPagado()){
-               mapPedidos.put(opcion,pedido.getId());
+            if(!pedido.isPagado()) {
+                mapPedidos.put(opcion, pedido.getId());
+                opcion++;
             }
-            opcion++;
         }
         return mapPedidos;
     }
