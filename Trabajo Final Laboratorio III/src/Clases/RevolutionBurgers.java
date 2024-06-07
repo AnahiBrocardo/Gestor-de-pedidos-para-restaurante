@@ -1,5 +1,7 @@
 package Clases;
 
+import Archivos.ControladoraArchivosEstadistica;
+
 import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -146,18 +148,6 @@ public class RevolutionBurgers {
 
 
 
-        private static void agregarElementos(String key){
-            if (mapaEstadisticas.containsKey(key)) {
-                // Si la llave ya existe, incrementar su valor en 1
-                int valorActual = mapaEstadisticas.get(key);
-                mapaEstadisticas.put(key, valorActual + 1);
-            } else {
-                // Si la llave no existe, crearla con un valor inicial de 1
-                mapaEstadisticas.put(key, 1);
-            }
-
-        }
-
     public static void guardarArchivoEstadistico(){
         ControladoraArchivosEstadistica.grabarArchivo(archivoEstadisticas);
     }
@@ -202,11 +192,7 @@ public class RevolutionBurgers {
 
     }
     
-    public static String listarEstatidistica(){
-        String rta="";
-        rta= nuevaEstadistica.toString();
-        return rta;
-    }
+
 
     public static int obtenerUltimoIdPedido() {
         return idpedido;
