@@ -12,7 +12,7 @@ public class Main {
 
         MenuOpciones.mensajeInicio();
 
-     //MenuOpciones.abrirEstadisticadesdemenus();
+     MenuOpciones.abrirEstadisticadesdemenus();
      MenuOpciones.abrirCajaDelDia();
 
      int opcion;
@@ -45,7 +45,7 @@ public class Main {
 
                     break;
                 case 3:
-                    MenuOpciones.abrirEstadisticadesdemenus();
+                    
                     MenuOpciones.opcionesEstadistica();
                     break;
                 case 4:
