@@ -45,7 +45,7 @@ public class Main {
 
                     break;
                 case 3:
-                    
+
                     MenuOpciones.opcionesEstadistica();
                     break;
                 case 4:
