@@ -1,4 +1,5 @@
 package Archivos;
+import Clases.Caja;
 import Clases.Estadistica;
 
 import java.io.*;
@@ -35,7 +36,7 @@ public class ControladoraArchivosEstadistica {
         }
     }
 
-    public static ArrayList<Estadistica> leerArchivo()
+   /* public static ArrayList<Estadistica> leerArchivo()
     {
         ArrayList<Estadistica> estadisticasArrayList = new ArrayList<>();
 
@@ -50,9 +51,10 @@ public class ControladoraArchivosEstadistica {
             while (true)
             {
                 /*El objectInputStream se utiliza para leer objetos serializados y con el metodo readObject me devuelve (retorna) ese objeto leido.
-                Se guarda y castea en una variable estadistica ya que el objeto retornado esta Bytes.*/
+                Se guarda y castea en una variable estadistica ya que el objeto retornado esta Bytes
                 Estadistica aux = (Estadistica) objectInputStream.readObject();
                 estadisticasArrayList.add(aux);
+
             }
         }
         catch (EOFException ex)
@@ -67,26 +69,42 @@ public class ControladoraArchivosEstadistica {
         {
             ex.printStackTrace();
         }
-        finally
-        {
-            try
-            {
-                if (fileInputStream!=null)
-                    fileInputStream.close();
 
-                if (objectInputStream!=null)
-                    objectInputStream.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
+        return estadisticasArrayList;
+    }*/
 
+    public static ArrayList<Estadistica> leerArchivo() {
+        ArrayList<Estadistica> estadisticasArrayList = new ArrayList<>();
+
+        try (FileInputStream fileInputStream = new FileInputStream("estadisticas.dat");
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+
+            while (true) {
+                Estadistica aux = (Estadistica) objectInputStream.readObject();
+                estadisticasArrayList.add(aux);
+            }
+        } catch (EOFException ex) {
+            // Se alcanzó el final del archivo, lo cual es normal.
+            // No necesitas hacer nada aquí.
+        } catch (ClassNotFoundException | IOException ex) {
+            ex.printStackTrace();
         }
 
         return estadisticasArrayList;
     }
 
+
+
+    public static boolean verificarSiEstaVacioArchivoEstadistica ()//true si esta vacia
+    {
+        boolean rta = false;
+        File archivo = new File("estadisticas.dat");
+        if (archivo.length()==0)
+        {
+            rta= true;
+        }
+        return rta;
+    }
 
 
 

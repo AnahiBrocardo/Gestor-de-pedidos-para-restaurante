@@ -3,12 +3,13 @@ package Clases;
 import FuncionesMapa.GenericidadArray;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Caja extends GenericidadArray {
+public class Caja extends GenericidadArray implements Serializable {
     private double totalRecuadado;
     private Date fecha;
     private Boolean estado; //Esto nos permite ver si la caja esta activa o ya la cerramos
@@ -241,6 +242,7 @@ public class Caja extends GenericidadArray {
         return eliminado;
     }
 
+
     public ArrayList<ElementoMenu> devolverArregloProductosPorClave(String clave, int id){
         ArrayList<ElementoMenu> arrayProductosClave= new ArrayList<>();
         for (int i=0; i<getNuevoArreglo().size(); i++) {
@@ -252,7 +254,12 @@ public class Caja extends GenericidadArray {
         return arrayProductosClave;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Caja:{" +
+                "\ntotalRecuadado=" + totalRecuadado +
+                "\nfecha=" + fecha +
+                "\nestado=" + estado +
+                '}';
+    }
 }

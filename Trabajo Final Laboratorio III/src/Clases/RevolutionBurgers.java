@@ -3,17 +3,20 @@ package Clases;
 import Archivos.ControladoraArchivosEstadistica;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 //cuando lo queremos usar en el main hacemos: RevolutionBurguer + . y el metodo global
-public class RevolutionBurgers {
+public class RevolutionBurgers implements Serializable {
     private static Caja cajaDia;
     private static boolean valor;
     private static int idpedido= 100;
     private static HashMap<String, Integer> mapaEstadisticas;
     private static Estadistica nuevaEstadistica;
+    private static ArrayList<Estadistica> auxarraylist;
+    //Esta funcion devuelve un mapa con los datos acumulados de fecha a fecha //
 
     private static HashMap<String, Integer> acumulador= new HashMap<>();
     private static ArrayList<Estadistica> archivoEstadisticas = new ArrayList<>();
@@ -150,14 +153,13 @@ public class RevolutionBurgers {
             }
         }
 
-        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-        agregarEstadisticadelDiaAlArchivo();
-        guardarArchivoEstadistico();
-        }
+        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.calcularTotalCaja());
+        agregarDatoalaEstadistica();
+    }
 
 
 
-
+/*
     public static void guardarArchivoEstadistico(){
         ControladoraArchivosEstadistica.grabarArchivo(archivoEstadisticas);
     }
@@ -169,19 +171,7 @@ public class RevolutionBurgers {
     public static void leerArchi(){
         archivoEstadisticas= ControladoraArchivosEstadistica.leerArchivo();
     }
-
-    public static void agregaralacumulador(String key, int valor) {
-
-        if(acumulador.containsKey(key)){
-            int aux=acumulador.get(key);
-            aux +=valor;
-            acumulador.put(key, aux);
-        } else {
-            acumulador.put(key,valor);
-        }
-
-    }
-
+    */;
     public static String listarEstatidistica(){
         String rta="";
         rta= nuevaEstadistica.toString();
@@ -252,4 +242,87 @@ public class RevolutionBurgers {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         return formatoFecha.parse(fechaString);
     }
+
+    public static void agregaralacumulador(String key, int valor) {
+
+        if(acumulador.containsKey(key)){
+            int aux=acumulador.get(key);
+            aux +=valor;
+            acumulador.put(key, aux);
+        } else {
+            acumulador.put(key,valor);
+        }
+
+    }
+
+    public static void generarEstadisticas(){
+
+        for(Estadistica estadistica : auxarraylist){
+            Iterator<Map.Entry<String, Integer>> iterator = estadistica.getMapaEstadisticas().entrySet().iterator();
+            //System.out.println("probando");
+            while (iterator.hasNext())
+            {
+                Map.Entry<String, Integer> entry = iterator.next();
+                String clave= entry.getKey();
+                int valor= entry.getValue();
+                // Agrega al valor acumulado existente o crea uno nuevo
+                agregaralacumulador(clave, valor);
+            }
+        }
+    }
+
+    public static String listarTodoelAcumulador(){
+        String resultado = "";
+        Iterator<Map.Entry<String, Integer>> iteratormap= acumulador.entrySet().iterator();
+        while (iteratormap.hasNext()){
+            Map.Entry<String, Integer> entry = iteratormap.next();
+            String key = entry.getKey();
+            resultado += key+ ": "+ entry.getValue()+"///";
+        }
+        return resultado;
+    }
+
+    public static void abrirarchivoEstadistico(){
+        //System.out.println(ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica());
+        if (ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica()) {
+            crearArregloEstadistica();
+            System.out.println("estoy vacio!!!!!!!!!!!!!!!!");
+        }else{
+            auxarraylist= ControladoraArchivosEstadistica.leerArchivo();
+            //System.out.println("tengo datos!!!!!!!!!!!!!!!! "+auxarraylist.size());
+            //System.out.println(listarTodaslasestadisticas());
+        }
+    }
+
+    public static void cerrarEstadistica(){
+        deCajaaEstadistica();
+        //System.out.println(auxarraylist.toString());
+        ControladoraArchivosEstadistica.grabarArchivo(auxarraylist);
+    }
+
+    public static String listarTodaslasestadisticas(){
+        StringBuilder rta= new StringBuilder();
+
+            for (Estadistica estadistica : auxarraylist) {
+
+                System.out.println(estadistica.getTotalRecaudacion());
+                    rta.append(estadistica.toString());
+
+            }
+
+
+        return rta.toString();
+    }
+    public static void crearArregloEstadistica(){
+        auxarraylist= new ArrayList<>();
+    }
+
+    public static void agregarDatoalaEstadistica(){
+        if(auxarraylist ==null){
+            crearArregloEstadistica();
+        }
+        auxarraylist.add(nuevaEstadistica);
+
+    }
+
 }

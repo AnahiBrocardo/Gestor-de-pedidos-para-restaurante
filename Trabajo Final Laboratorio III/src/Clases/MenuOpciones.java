@@ -4,6 +4,7 @@ import Archivos.ControladoraArchivoCaja;
 import Excepciones.InvalidCardNumberException;
 import Excepciones.InvalidDniExcepcion;
 import Excepciones.InvalidNameExcepcion;
+import FuncionesMapa.GenericidadArray;
 
 import javax.swing.*;
 import java.text.ParseException;
@@ -12,8 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class MenuOpciones {
     static Scanner scanner;
+    private static ArrayList<Caja> arrayCajas;
 
     public static void iniciarScanner(){
         scanner = new Scanner(System.in);
@@ -23,18 +26,16 @@ public class MenuOpciones {
         scanner.close();
     }
 
-   public static void abrirLaCajaDelDia(Menu miMenu){
-       if (ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
-           abrirCajaDelDia();
-           opcionesPedido(miMenu);
-           Caja cajaDia= RevolutionBurgers.getCajaDia();
-           ControladoraArchivoCaja.grabarArchivoCaja(cajaDia);
-       }else{
-           System.out.println("Ya existe una caja del dia...");
-       }
 
-   }
-
+    public static String listararraycajas() {
+        String rta= "";
+        for(int i=0; i< arrayCajas.size(); i++)
+        {
+            System.out.println( arrayCajas.get(i));
+            rta += arrayCajas.get(i);
+        }
+        return rta;
+    }
     public static void limpiarConsola() { //funcion que imprime varias líneas en blanco en la consola
         for (int i = 0; i < 50; i++) {
             System.out.println();
@@ -45,6 +46,23 @@ public class MenuOpciones {
         System.out.println("Abriendo caja...");
         RevolutionBurgers.abrirCaja();
         System.out.println("Caja abierta exitosamente");
+    }
+    public static void abrirEstadisticadesdemenus(){
+        RevolutionBurgers.abrirarchivoEstadistico();
+    }
+    public static void cerrarCajadia(){
+        System.out.println("Cerrando la caja...");
+        RevolutionBurgers.cerrarCaja();
+        System.out.println("Caja cerrada exitosamente");
+        /*arrayCajas.add(RevolutionBurgers.getCajaDia());
+        System.out.println(arrayCajas.toString());
+        ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);*/
+    }
+    public static void AgregarCajaaEstadistica(){
+          arrayCajas.add(RevolutionBurgers.getCajaDia());
+    }
+    public static void cerrarEstadisticadesdemenu(){
+        RevolutionBurgers.cerrarEstadistica();
     }
 
     public static void opcionesPedido(Menu miMenu){
@@ -120,7 +138,8 @@ public class MenuOpciones {
                     "\n2.Modificar pedido" +
                     "\n3.Mostrar el pedido completo" +
                     "\n4.Eliminar un producto del pedido" +
-                    "\n5.Realiza pago");
+                    "\n5.Realiza pago" +
+                    "\n6.Poner 'c' para volver al menu principal");
 
             opcion = scanner.nextInt();
             switch (opcion) {
@@ -140,12 +159,15 @@ public class MenuOpciones {
                 case 5:
                     realizarPagoPedido(id);
                     break;
+                case 6:
+                    //seguir= 'c';
+                    break;
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
                     break;
             }
 
-            System.out.println("Presione 's' para volver al menu de PEDIDOS ACTIVOS...");
+            System.out.println("Presione 's' para volver al menu de PEDIDOS ACTIVOS... o 'c' para SALIR");
             seguir = scanner.next().charAt(0);
         }while (seguir=='s');
 
@@ -862,4 +884,35 @@ public class MenuOpciones {
         return fecha;
     }
     SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+
+
+    public static void opcionesEstadistica()
+    {
+        limpiarConsola();
+        //RevolutionBurgers.deCajaaEstadistica(); //funciona
+        //System.out.println(RevolutionBurgers.listarTodaslasestadisticas());//funciona
+        int opcion;
+        System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por fecha" +
+                "\n2- Ranking de productos");
+        opcion= scanner.nextInt();
+        //RevolutionBurgers.crearArregloEstadistica(); funciones
+        switch (opcion){
+            case 1:
+
+                break;
+            case 2:
+                RevolutionBurgers.generarEstadisticas();
+                System.out.println(RevolutionBurgers.listarTodoelAcumulador());
+                break;
+            default:
+                System.out.println("Opcion no valida......");
+                break;
+        }
+
+
+
+
+
+    }
+
 }

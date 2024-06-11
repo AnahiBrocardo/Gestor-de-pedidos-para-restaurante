@@ -10,7 +10,9 @@ public class Main {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
 
-
+     //MenuOpciones.abrirEstadisticadesdemenus();
+     MenuOpciones.abrirCajaDelDia();
+     MenuOpciones.abrirEstadisticadesdemenus();
      int opcion;
         char seguir = 's';
 
@@ -19,14 +21,13 @@ public class Main {
         while (seguir=='s') {
             System.out.println("...Menú de opciones...");
             System.out.println("1. Ver menú");
-            System.out.println("2. Abrir caja");
-            System.out.println("3. Pedidos");
-            System.out.println("4. Ver estadisticas");
+            System.out.println("2. Pedidos");
+            System.out.println("3. Ver estadisticas");
             //falta opcion cerrar caja
             //ver monto recaudado del dia, funcion de caja ver total recaudado, ver pago tarjeta y efectivo
-            System.out.println("5. Ver recaudacion");
-            System.out.println("6. Cerrar caja del dia");
-            System.out.println("7. Salir");
+            System.out.println("4. Ver recaudacion");
+
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
 
              opcion = scanner.nextInt();
@@ -37,38 +38,34 @@ public class Main {
                     System.out.println("MENU");
                     System.out.println(miMenu.listarTodoMenu());
                     break;
+
                 case 2:
-                    RevolutionBurgers.abrirCaja();
-                   // MenuOpciones.abrirLaCajaDelDia(miMenu);
-                    //codigo para avisar que hay una caja del dia abierta
-                    break;
-                case 3:
-                        MenuOpciones.opcionesPedido(miMenu);
+                    MenuOpciones.opcionesPedido(miMenu);
 
                     break;
-                case 4:
-                   //logica estadisticas
+                case 3:
+                    MenuOpciones.opcionesEstadistica();
                     break;
-                case 5:
+                case 4:
                     MenuOpciones.verRecaudacionCajaDelDia();
                     break;
-                case 6:
-                    //logica cerrar caja
-                    break;
-                case 7:
+
+                case 5:
                     System.out.println("Saliendo del programa...");
                     seguir = 'c';
+                    MenuOpciones.cerrarCajadia();
+                    MenuOpciones.cerrarEstadisticadesdemenu();
                     break;
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción válida...");
             }
-            System.out.println("Para volver al menu de opciones presione 's': ");
+            System.out.println("Para volver al menu de opciones presione 's' o para salir: 'c'");
             seguir= scanner.next().charAt(0);
             MenuOpciones.limpiarConsola();
 
         }
 
-       MenuOpciones.cerrarScanner();
+        MenuOpciones.cerrarScanner();
         scanner.close();
     }
 

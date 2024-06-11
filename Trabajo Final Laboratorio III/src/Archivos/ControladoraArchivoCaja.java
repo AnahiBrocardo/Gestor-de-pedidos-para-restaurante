@@ -4,9 +4,10 @@ package Archivos;
 import java.io.*;
 import java.util.ArrayList;
 import Clases.Caja;
+import Clases.Estadistica;
 
 public class ControladoraArchivoCaja {
-    public static void grabarArchivoCaja (Caja caja){
+    public static void grabarArchivoCaja (ArrayList<Caja> cajas){
 
         FileOutputStream fileOutputStream= null;
         ObjectOutputStream objectOutputStream= null;
@@ -15,7 +16,10 @@ public class ControladoraArchivoCaja {
             fileOutputStream= new FileOutputStream("caja.dat");
             objectOutputStream= new ObjectOutputStream(fileOutputStream);
 
-            objectOutputStream.writeObject(caja);
+            for(int i=0;i<cajas.size(); i++){ //recorre el arreglo, obtiene el objeto caja por el indice
+                Caja elementoCaja= cajas.get(i);
+                objectOutputStream.writeObject(elementoCaja);
+            }
 
 
         }catch (IOException exception){
@@ -34,9 +38,9 @@ public class ControladoraArchivoCaja {
         }
     }
 
-    public static Caja leerArchivoCaja()
+    public static ArrayList<Caja> leerArchivoCaja()
     {
-        Caja caja= new Caja();
+        ArrayList<Caja> cajas= new ArrayList<>();
 
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -46,13 +50,17 @@ public class ControladoraArchivoCaja {
             fileInputStream = new FileInputStream("caja.dat");
             objectInputStream = new ObjectInputStream(fileInputStream);
 
-          //  while (true)
-            //{
+
+            while (true)
+            {
+                Caja aux = (Caja) objectInputStream.readObject();
+                cajas.add(aux);
+            }
+
                 /*El objectInputStream se utiliza para leer objetos serializados y con el metodo readObject me devuelve (retorna) ese objeto leido.
                 Se guarda y castea en una variable caja ya que el objeto retornado esta Bytes.*/
-                Caja aux = (Caja) objectInputStream.readObject();
 
-            //}
+
         }
         catch (EOFException ex)
         {
@@ -66,24 +74,9 @@ public class ControladoraArchivoCaja {
         {
             ex.printStackTrace();
         }
-        finally
-        {
-            try
-            {
-                if (fileInputStream!=null)
-                    fileInputStream.close();
 
-                if (objectInputStream!=null)
-                    objectInputStream.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
 
-        }
-
-        return caja;
+        return cajas;
     }
 
     public static boolean verificarSiEstaVacioArchivoCaja ()//true si esta vacia
