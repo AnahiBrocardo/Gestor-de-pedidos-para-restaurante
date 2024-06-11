@@ -10,12 +10,13 @@ public class Main {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
 
+        MenuOpciones.mensajeInicio();
+
      //MenuOpciones.abrirEstadisticadesdemenus();
      MenuOpciones.abrirCajaDelDia();
      MenuOpciones.abrirEstadisticadesdemenus();
      int opcion;
         char seguir = 's';
-
 
 
         while (seguir=='s') {
