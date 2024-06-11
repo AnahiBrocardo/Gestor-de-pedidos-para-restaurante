@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Estadistica implements Serializable {
-    private static Date fecha; //fecha de la caja del dia
+    private Date fecha; //fecha de la caja del dia
     private double totalRecaudacion; //total de la recaudacion de la caja del dia
     private HashMap <String, Integer> mapaEstadisticas;// clave-> tipo de producto y el valor cant de ese producto
     /* cuando se cierra caja se crea un new de estadistica y se guarda en el archivo*/
@@ -59,7 +59,7 @@ public class Estadistica implements Serializable {
         return resultado;
     }
 
-    public static String fechaFormateada() {
+    public String fechaFormateada() {
         // Crear un formato personalizado (DIA MES AÑO HORA:MINUTOS)
         SimpleDateFormat formato = new SimpleDateFormat("dd MMM yyyy HH:mm");
 

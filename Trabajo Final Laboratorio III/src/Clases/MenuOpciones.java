@@ -26,23 +26,6 @@ public class MenuOpciones {
         scanner.close();
     }
 
-   public static void abrirLaCajaDelDia(Menu miMenu){
-       abrirCajaDelDia();
-
-       if (ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
-           arrayCajas= new ArrayList<>();
-           //Caja cajaDia= RevolutionBurgers.getCajaDia();
-           //ControladoraArchivoCaja.grabarArchivoCaja(cajaDia);
-       }else{
-           //arrayCajas=ControladoraArchivoCaja.grabarArchivoCaja();
-           arrayCajas= ControladoraArchivoCaja.leerArchivoCaja();
-       }
-       //System.out.println(listararraycajas());
-       //opcionesPedido(miMenu);
-       //Caja cajaDia= RevolutionBurgers.getCajaDia();
-
-   }
-
 
     public static String listararraycajas() {
         String rta= "";
@@ -71,9 +54,9 @@ public class MenuOpciones {
         System.out.println("Cerrando la caja...");
         RevolutionBurgers.cerrarCaja();
         System.out.println("Caja cerrada exitosamente");
-       // arrayCajas.add(RevolutionBurgers.getCajaDia());
+        /*arrayCajas.add(RevolutionBurgers.getCajaDia());
         System.out.println(arrayCajas.toString());
-        ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);
+        ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);*/
     }
     public static void AgregarCajaaEstadistica(){
           arrayCajas.add(RevolutionBurgers.getCajaDia());
@@ -761,14 +744,16 @@ public class MenuOpciones {
     public static void opcionesEstadistica()
     {
         limpiarConsola();
+        //RevolutionBurgers.deCajaaEstadistica(); //funciona
+        //System.out.println(RevolutionBurgers.listarTodaslasestadisticas());//funciona
         int opcion;
         System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por fecha" +
                 "\n2- Ranking de productos");
         opcion= scanner.nextInt();
-        RevolutionBurgers.deCajaaEstadistica();
-
+        //RevolutionBurgers.crearArregloEstadistica(); funciones
         switch (opcion){
             case 1:
+
                 break;
             case 2:
                 RevolutionBurgers.generarEstadisticas();

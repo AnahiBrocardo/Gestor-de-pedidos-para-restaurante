@@ -64,7 +64,7 @@ public class ControladoraArchivoCaja {
         }
         catch (EOFException ex)
         {
-        //    ex.printStackTrace();
+            ex.printStackTrace();
         }
         catch (ClassNotFoundException ex)
         {

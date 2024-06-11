@@ -3,12 +3,13 @@ package Clases;
 import Archivos.ControladoraArchivosEstadistica;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 //cuando lo queremos usar en el main hacemos: RevolutionBurguer + . y el metodo global
-public class RevolutionBurgers {
+public class RevolutionBurgers implements Serializable {
     private static Caja cajaDia;
     private static boolean valor;
     private static int idpedido= 100;
@@ -142,9 +143,8 @@ public class RevolutionBurgers {
             }
         }
 
-        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.getTotalRecuadado());
-        auxarraylist.add(nuevaEstadistica);
-
+        nuevaEstadistica = new Estadistica(cajaDia.getFecha(), mapaEstadisticas, cajaDia.calcularTotalCaja());
+        agregarDatoalaEstadistica();
     }
 
 
@@ -273,20 +273,46 @@ public class RevolutionBurgers {
     }
 
     public static void abrirarchivoEstadistico(){
+        //System.out.println(ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica());
         if (ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica()) {
-            auxarraylist= new ArrayList<>();
-
+            crearArregloEstadistica();
+            System.out.println("estoy vacio!!!!!!!!!!!!!!!!");
         }else{
             auxarraylist= ControladoraArchivosEstadistica.leerArchivo();
+            //System.out.println("tengo datos!!!!!!!!!!!!!!!! "+auxarraylist.size());
+            //System.out.println(listarTodaslasestadisticas());
         }
     }
 
     public static void cerrarEstadistica(){
-        auxarraylist.add(nuevaEstadistica);
-        System.out.println(auxarraylist.toString());
+        deCajaaEstadistica();
+        //System.out.println(auxarraylist.toString());
         ControladoraArchivosEstadistica.grabarArchivo(auxarraylist);
     }
 
+    public static String listarTodaslasestadisticas(){
+        StringBuilder rta= new StringBuilder();
 
+            for (Estadistica estadistica : auxarraylist) {
+
+                System.out.println(estadistica.getTotalRecaudacion());
+                    rta.append(estadistica.toString());
+
+            }
+
+
+        return rta.toString();
+    }
+    public static void crearArregloEstadistica(){
+        auxarraylist= new ArrayList<>();
+    }
+
+    public static void agregarDatoalaEstadistica(){
+        if(auxarraylist ==null){
+            crearArregloEstadistica();
+        }
+        auxarraylist.add(nuevaEstadistica);
+
+    }
 
 }

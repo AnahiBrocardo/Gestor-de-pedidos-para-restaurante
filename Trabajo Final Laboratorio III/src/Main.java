@@ -9,8 +9,10 @@ public class Main {
     public static void main(String[] args) {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
+
      //MenuOpciones.abrirEstadisticadesdemenus();
-     MenuOpciones.abrirLaCajaDelDia(miMenu);
+     MenuOpciones.abrirCajaDelDia();
+     MenuOpciones.abrirEstadisticadesdemenus();
      int opcion;
         char seguir = 's';
 
@@ -63,7 +65,7 @@ public class Main {
 
         }
 
-       MenuOpciones.cerrarScanner();
+        MenuOpciones.cerrarScanner();
         scanner.close();
     }
 
