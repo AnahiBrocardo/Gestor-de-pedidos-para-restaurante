@@ -18,7 +18,7 @@ public class RevolutionBurgers implements Serializable {
     private static ArrayList<Estadistica> auxarraylist;
     //Esta funcion devuelve un mapa con los datos acumulados de fecha a fecha //
 
-    private static HashMap<String, Integer> acumulador= new HashMap<>();
+    private static HashMap<String, Integer> acumulador= new HashMap<>(); //poner dentro de una funcion no en los atributos
     private static ArrayList<Estadistica> archivoEstadisticas = new ArrayList<>();
 
     ////CAJA DEL DIA
