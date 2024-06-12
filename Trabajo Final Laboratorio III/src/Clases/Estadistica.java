@@ -47,6 +47,8 @@ public class Estadistica implements Serializable {
                 "\nTotalRecaudacion=" + totalRecaudacion +
                 "\nMapaEstadisticas=" + listarTodoEstadistica();
     }
+
+
     public String listarTodoEstadistica() {
         String resultado = "";
 
@@ -66,6 +68,7 @@ public class Estadistica implements Serializable {
         // Formatear la fecha
         return formato.format(fecha);
     }
+
 
 
 }

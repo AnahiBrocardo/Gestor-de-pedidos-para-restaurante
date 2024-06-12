@@ -906,13 +906,17 @@ public class MenuOpciones {
         //RevolutionBurgers.deCajaaEstadistica(); //funciona
         //System.out.println(RevolutionBurgers.listarTodaslasestadisticas());//funciona
         int opcion;
-        System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por fecha" +
+        System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por rango de fechas" +
                 "\n2- Ranking de productos");
         opcion= scanner.nextInt();
         //RevolutionBurgers.crearArregloEstadistica();
+
         switch (opcion){
             case 1:
+                // mostrar fechhas disponibles
+                System.out.println(RevolutionBurgers.mostarEstadisticasporfechas());
                 System.out.println("---- DESDE----");
+                scanner.nextLine();
                 Date fechainicio= pedirFecha();
                 System.out.println("---- HASTA----");
                 Date fechafin= pedirFecha();
@@ -943,6 +947,7 @@ public class MenuOpciones {
             }
         } catch (ParseException e) {
             System.out.println("Error al convertir la fecha. Asegúrate de usar el formato dd/mm/yyyy.");
+            fecha= pedirFecha();
         }
 
         return fecha;

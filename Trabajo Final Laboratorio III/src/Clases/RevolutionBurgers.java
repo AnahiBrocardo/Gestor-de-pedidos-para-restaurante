@@ -239,7 +239,7 @@ public class RevolutionBurgers implements Serializable {
 
 
     public static void agregaralacumulador(String key, int valor) {
-        crearAcumulador();
+        //crearAcumulador();
         if(acumulador.containsKey(key)){
             int aux=acumulador.get(key);
             aux +=valor;
@@ -251,7 +251,7 @@ public class RevolutionBurgers implements Serializable {
     }
 
     public static void generarEstadisticas(){
-
+        crearAcumulador();
         for(Estadistica estadistica : auxarraylist){
             Iterator<Map.Entry<String, Integer>> iterator = estadistica.getMapaEstadisticas().entrySet().iterator();
             //System.out.println("probando");
@@ -330,10 +330,11 @@ public class RevolutionBurgers implements Serializable {
 
     public static void procesarEstadisticasporfecha( Date fechaInicio, Date fechaFin) {
         int acumuladorTotal = 0;
-
+        crearAcumulador();
+        
         for (Estadistica estadistica : auxarraylist) {
             Date fechaActual = estadistica.getFecha();
-
+            System.out.println(estadistica.getFecha());
             if (fechaActual != null && fechaActual.compareTo(fechaInicio) >= 0 && fechaActual.compareTo(fechaFin) <= 0) {
                 // Realiza las operaciones necesarias con los atributos de la estadística
                 Iterator<Map.Entry<String, Integer>> iterator = estadistica.getMapaEstadisticas().entrySet().iterator();
@@ -349,7 +350,20 @@ public class RevolutionBurgers implements Serializable {
 
             }
         }
+        //return listarTodoelAcumulador();
+    }
+    public static String mostarEstadisticasporfechas(){
+        return "-----------FECHAS DISPONIBLES-----------\n" +
+                listarFechadeEstadisticas();
 
+    }
+    public static String listarFechadeEstadisticas() {
+        String rta= "";
+        for(int i=0; i<  auxarraylist.size(); i++)
+        {
+            rta += auxarraylist.get(i).getFecha() + "\n";
+        }
+        return rta;
     }
 
 }
