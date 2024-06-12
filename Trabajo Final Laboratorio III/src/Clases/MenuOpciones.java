@@ -887,7 +887,7 @@ public class MenuOpciones {
         if (RevolutionBurgers.validarFecha(dia, mes, anio)) {
             String fechaString = dia + "/" + mes + "/" + anio;
             try {
-                fecha = RevolutionBurgers.convertirFecha(fechaString);
+                fecha = convertirFecha(fechaString);
             } catch (ParseException e) {
                 System.out.println("Error al convertir la fecha.");
             }
@@ -909,10 +909,15 @@ public class MenuOpciones {
         System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por fecha" +
                 "\n2- Ranking de productos");
         opcion= scanner.nextInt();
-        //RevolutionBurgers.crearArregloEstadistica(); funciones
+        //RevolutionBurgers.crearArregloEstadistica();
         switch (opcion){
             case 1:
-
+                System.out.println("---- DESDE----");
+                Date fechainicio= pedirFecha();
+                System.out.println("---- HASTA----");
+                Date fechafin= pedirFecha();
+                RevolutionBurgers.procesarEstadisticasporfecha(fechainicio, fechafin);
+                System.out.println(RevolutionBurgers.listarTodoelAcumulador());
                 break;
             case 2:
                 RevolutionBurgers.generarEstadisticas();
@@ -922,6 +927,29 @@ public class MenuOpciones {
                 System.out.println("Opcion no valida......");
                 break;
         }
+    }
+
+    public static Date pedirFecha(){
+        Date fecha = null;
+        System.out.print("\nPor favor, ingresa una fecha en formato dd/mm/yyyy: ");
+        String fechaIngresada = scanner.nextLine();
+        try {
+            fecha = convertirFecha(fechaIngresada);
+            if (fecha != null) {
+                System.out.println("Fecha ingresada: " + fecha);
+                // Aquí puedes continuar con las operaciones necesarias
+            } else {
+                System.out.println("Fecha no válida. Asegúrate de usar el formato dd/mm/yyyy.");
+            }
+        } catch (ParseException e) {
+            System.out.println("Error al convertir la fecha. Asegúrate de usar el formato dd/mm/yyyy.");
+        }
+
+        return fecha;
+    }
+    public static Date convertirFecha(String fechaString) throws ParseException {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return formatoFecha.parse(fechaString);
     }
 
 

@@ -14,7 +14,7 @@ public class Main {
 
      //MenuOpciones.abrirEstadisticadesdemenus();
      MenuOpciones.abrirCajaDelDia();
-     MenuOpciones.abrirEstadisticadesdemenus();
+
      int opcion;
         char seguir = 's';
 
@@ -45,6 +45,7 @@ public class Main {
 
                     break;
                 case 3:
+                    MenuOpciones.abrirEstadisticadesdemenus();
                     MenuOpciones.opcionesEstadistica();
                     break;
                 case 4:

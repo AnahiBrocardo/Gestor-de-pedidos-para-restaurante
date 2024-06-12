@@ -236,10 +236,7 @@ public class RevolutionBurgers implements Serializable {
 
         return rta;
     }
-    public static Date convertirFecha(String fechaString) throws ParseException {
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-        return formatoFecha.parse(fechaString);
-    }
+
 
     public static void agregaralacumulador(String key, int valor) {
         crearAcumulador();
@@ -298,7 +295,7 @@ public class RevolutionBurgers implements Serializable {
         ControladoraArchivosEstadistica.grabarArchivo(auxarraylist);
     }
 
-    public static String listarTodaslasestadisticas(){
+    /*public static String listarTodaslasestadisticas(){
         StringBuilder rta= new StringBuilder();
 
             for (Estadistica estadistica : auxarraylist) {
@@ -310,7 +307,7 @@ public class RevolutionBurgers implements Serializable {
 
 
         return rta.toString();
-    }
+    }*/
     public static void crearArregloEstadistica(){
         auxarraylist= new ArrayList<>();
     }
@@ -325,6 +322,34 @@ public class RevolutionBurgers implements Serializable {
 
     private static void crearAcumulador(){
         acumulador= new HashMap<>();
+    }
+
+
+
+
+
+    public static void procesarEstadisticasporfecha( Date fechaInicio, Date fechaFin) {
+        int acumuladorTotal = 0;
+
+        for (Estadistica estadistica : auxarraylist) {
+            Date fechaActual = estadistica.getFecha();
+
+            if (fechaActual != null && fechaActual.compareTo(fechaInicio) >= 0 && fechaActual.compareTo(fechaFin) <= 0) {
+                // Realiza las operaciones necesarias con los atributos de la estadística
+                Iterator<Map.Entry<String, Integer>> iterator = estadistica.getMapaEstadisticas().entrySet().iterator();
+                //System.out.println("probando");
+                while (iterator.hasNext())
+                {
+                    Map.Entry<String, Integer> entry = iterator.next();
+                    String clave= entry.getKey();
+                    int valor= entry.getValue();
+                    // Agrega al valor acumulado existente o crea uno nuevo
+                    agregaralacumulador(clave, valor);
+                }
+
+            }
+        }
+
     }
 
 }
