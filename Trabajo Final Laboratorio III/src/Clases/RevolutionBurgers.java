@@ -297,14 +297,10 @@ public class RevolutionBurgers implements Serializable {
     }
 
     public static void abrirarchivoEstadistico(){
-        //System.out.println(ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica());
         if (ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica()) {
             crearArregloEstadistica();
-            System.out.println("estoy vacio!!!!!!!!!!!!!!!!");
         }else{
             auxarraylist= ControladoraArchivosEstadistica.leerArchivo();
-            //System.out.println("tengo datos!!!!!!!!!!!!!!!! "+auxarraylist.size());
-            //System.out.println(listarTodaslasestadisticas());
         }
     }
 
