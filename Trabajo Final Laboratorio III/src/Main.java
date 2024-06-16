@@ -10,11 +10,10 @@ public class Main {
      scanner = new Scanner(System.in);
      Menu miMenu=  new Menu();
 
-        MenuOpciones.mensajeInicio();
+    MenuOpciones.mensajeInicio();
 
      MenuOpciones.abrirEstadisticadesdemenus();
-     MenuOpciones.abrirCajaDelDia();
-
+     MenuOpciones.abrirCajaDelDia();//se abre la caja
      int opcion;
         char seguir = 's';
 
@@ -42,7 +41,6 @@ public class Main {
 
                     break;
                 case 3:
-
                     MenuOpciones.opcionesEstadistica();
                     break;
                 case 4:
