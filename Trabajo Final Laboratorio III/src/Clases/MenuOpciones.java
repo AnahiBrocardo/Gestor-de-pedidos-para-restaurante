@@ -890,8 +890,6 @@ public class MenuOpciones {
         return fecha;
     }
 
-    SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-
 
     public static void opcionesEstadistica() {
 
@@ -917,7 +915,8 @@ public class MenuOpciones {
                 break;
             case 2:
                 RevolutionBurgers.generarEstadisticas();
-                System.out.println(RevolutionBurgers.listarTodoelAcumulador());
+                System.out.println(RevolutionBurgers.mostrarRanking());
+                //System.out.println(RevolutionBurgers.listarTodoelAcumulador());
                 break;
             default:
                 System.out.println("Opcion no valida......");

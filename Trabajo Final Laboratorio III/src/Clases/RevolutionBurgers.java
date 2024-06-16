@@ -276,6 +276,25 @@ public class RevolutionBurgers implements Serializable {
         }
         return resultado;
     }
+    public static String mostrarRanking() {
+        // Crear una lista de entradas ordenadas por valor (acumulado)
+        // Map.Entry.<String, Integer>comparingByValue() -->comparador que compara las entradas (pares clave-valor) del mapa por su valor
+        //.reversed(): Agrega la reversión al comparador. Esto significa que las entradas se ordenarán de mayor a menor (de forma descendente).
+        //listaOrdenada.sort(...): Finalmente, se utiliza el método sort() para ordenar la lista de entradas (listaOrdenada) según el comparador creado.
+        // Como resultado, las entradas se organizan en orden descendente según su valor.
+
+        List<Map.Entry<String, Integer>> listaOrdenada = new ArrayList<>(acumulador.entrySet());
+        listaOrdenada.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+        // Construir la cadena de texto del ranking
+        String resultado = "";
+        int posicion = 1;
+        for (Map.Entry<String, Integer> entry : listaOrdenada) {
+            resultado += "|"+posicion + "| " + entry.getKey() + ": " + entry.getValue() + "\n ";
+            posicion++;
+        }
+
+        return resultado;
+    }
 
     public static void abrirarchivoEstadistico(){
         //System.out.println(ControladoraArchivosEstadistica.verificarSiEstaVacioArchivoEstadistica());
