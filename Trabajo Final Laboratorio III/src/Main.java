@@ -23,7 +23,7 @@ public class Main {
             System.out.println("1. Ver menú");
             System.out.println("2. Pedidos");
             System.out.println("3. Ver estadisticas");
-            System.out.println("4. Ver recaudacion");
+            System.out.println("4. Ver recaudacion del dia");
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
 
