@@ -13,7 +13,6 @@ public class Caja extends GenericidadArray implements Serializable {
     private double totalRecuadado;
     private Date fecha;
     private Boolean estado; //Esto nos permite ver si la caja esta activa o ya la cerramos
-   // private GenericidadArray<Pedido> pedidosDia; -> no va este metodo porque el array esta en el padre
 
     public Caja() {
         totalRecuadado=0;
@@ -41,7 +40,6 @@ public class Caja extends GenericidadArray implements Serializable {
         Pedido nuevoPedido = new Pedido(id);
         agregar(nuevoPedido);
 
-        //pedidosDia.agregar(nuevoPedido);
     }
 
     public Double calcularTotalCaja(){
@@ -134,7 +132,7 @@ public class Caja extends GenericidadArray implements Serializable {
     }
 
 
-    public double obtenerMontoP(int id){
+    public double obtenerMontoP(int id){ //se obtiene el monto total del pedido
         double monto=0;
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
@@ -157,7 +155,7 @@ public class Caja extends GenericidadArray implements Serializable {
         return rta;
     }
 
-    public String listarTodounPedido(int idbuscado){
+    public String listarTodounPedido(int idbuscado){ //se lista todo UN pedido
         String rta="";
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
@@ -168,7 +166,7 @@ public class Caja extends GenericidadArray implements Serializable {
         return rta;
     }
 
-    public String listarPedidoPorDigitiYllave (int idbuscado, String key){
+    public String listarPedidoPorDigitiYllave (int idbuscado, String key){ //se listan los pedidos por digito y clave
         String rta="";
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
@@ -179,7 +177,7 @@ public class Caja extends GenericidadArray implements Serializable {
         return rta;
     }
 
-    public int cantPedidosNoPagos (){
+    public int cantPedidosNoPagos (){ //se devuelve la cantidad de pedidos no pagos
         ArrayList<Pedido> arrayPedidos= getNuevoArreglo();
         int cant=0;
 
@@ -190,7 +188,7 @@ public class Caja extends GenericidadArray implements Serializable {
         }
         return cant;
     }
-    public void cambiarEstadoDePago (int id){
+    public void cambiarEstadoDePago (int id){ //se cambia el estado del pago
         for (int i=0; i<getNuevoArreglo().size(); i++) {
             Pedido pedido= (Pedido) getPos(i) ;
             if((pedido.getId() == id) ){
@@ -200,7 +198,7 @@ public class Caja extends GenericidadArray implements Serializable {
 
     }
 
-    public String listarPedidosNoPagos(){
+    public String listarPedidosNoPagos(){ //funcion para listar todos los pedidos no pagos
         String rta="";
         int opcion=1;
         for (int i=0; i<getNuevoArreglo().size(); i++) {
