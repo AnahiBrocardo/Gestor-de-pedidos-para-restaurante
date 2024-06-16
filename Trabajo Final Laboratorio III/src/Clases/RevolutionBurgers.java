@@ -350,7 +350,6 @@ public class RevolutionBurgers implements Serializable {
 
             }
         }
-        //return listarTodoelAcumulador();
     }
     public static String mostarEstadisticasporfechas(){
         return "-----------FECHAS DISPONIBLES-----------\n" +
