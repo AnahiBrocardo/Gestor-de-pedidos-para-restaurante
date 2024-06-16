@@ -286,10 +286,10 @@ public class RevolutionBurgers implements Serializable {
         List<Map.Entry<String, Integer>> listaOrdenada = new ArrayList<>(acumulador.entrySet());
         listaOrdenada.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
         // Construir la cadena de texto del ranking
-        String resultado = "";
+        String resultado ="";
         int posicion = 1;
         for (Map.Entry<String, Integer> entry : listaOrdenada) {
-            resultado += "|"+posicion + "| " + entry.getKey() + ": " + entry.getValue() + "\n ";
+            resultado += "|"+posicion + "|" + entry.getKey() + ": " + entry.getValue() + "\n";
             posicion++;
         }
 
@@ -378,6 +378,14 @@ public class RevolutionBurgers implements Serializable {
             rta += auxarraylist.get(i).getFecha() + "\n";
         }
         return rta;
+    }
+    public static double totalRecaudadoEstadisticas(){
+        double totalRecaudado=0;
+
+        for(int i=0; i<auxarraylist.size(); i++){
+            totalRecaudado+= auxarraylist.get(i).getTotalRecaudacion();
+        }
+        return totalRecaudado;
     }
 
 }

@@ -897,7 +897,7 @@ public class MenuOpciones {
 
         int opcion;
         System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por rango de fechas" +
-                "\n2- Ranking de productos");
+                "\n2- Ranking de productos" +"\n3- Ver la recaudacion total");
         opcion= scanner.nextInt();
 
 
@@ -917,6 +917,10 @@ public class MenuOpciones {
                 RevolutionBurgers.generarEstadisticas();
                 System.out.println(RevolutionBurgers.mostrarRanking());
                 //System.out.println(RevolutionBurgers.listarTodoelAcumulador());
+                break;
+            case 3:
+                double recaudacionTotal= RevolutionBurgers.totalRecaudadoEstadisticas();
+                System.out.println("Total recaudado: $"+recaudacionTotal);
                 break;
             default:
                 System.out.println("Opcion no valida......");
