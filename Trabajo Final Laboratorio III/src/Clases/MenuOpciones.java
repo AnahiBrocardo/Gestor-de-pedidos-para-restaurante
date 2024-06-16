@@ -37,7 +37,7 @@ public class MenuOpciones {
         );
 
 
-    }
+    } //mensaje de inicio
 
     public static String listararraycajas() {
         String rta = "";
@@ -48,11 +48,11 @@ public class MenuOpciones {
         return rta;
     }
 
-    public static void limpiarConsola() { //funcion que imprime varias líneas en blanco en la consola
+    public static void limpiarConsola() {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-    }
+    }//funcion que imprime varias líneas en blanco en la consola
 
     public static void abrirCajaDelDia() {
         System.out.println("Abriendo caja...");
@@ -68,10 +68,7 @@ public class MenuOpciones {
         System.out.println("Cerrando la caja...");
         RevolutionBurgers.cerrarCaja();
         System.out.println("Caja cerrada exitosamente");
-        /*arrayCajas.add(RevolutionBurgers.getCajaDia());
-        System.out.println(arrayCajas.toString());
-        ControladoraArchivoCaja.grabarArchivoCaja(arrayCajas);*/
-    }
+    } //se cierra la caja del dia
 
     public static void AgregarCajaaEstadistica() {
         arrayCajas.add(RevolutionBurgers.getCajaDia());
@@ -83,7 +80,6 @@ public class MenuOpciones {
 
     public static void opcionesPedido(Menu miMenu) {
         limpiarConsola();
-        //if(!ControladoraArchivoCaja.verificarSiEstaVacioArchivoCaja()) {
         System.out.println("Ingrese la opcion que desee: " +
                 "\n1- Crear nuevo pedido" +
                 "\n2- Ver pedidos existentes");
@@ -99,12 +95,9 @@ public class MenuOpciones {
                 System.out.println("\nOpcion no valida");
                 break;
         }
-        // }else {
-        //     System.out.println("Para acceder a los pedidos, primero debe abrir la caja del dia...");
-        //}
     }
 
-    public static void crearNuevoPedido(Menu miMenu) { //se crea un nuevo pedido
+    public static void crearNuevoPedido(Menu miMenu) {
         limpiarConsola();
         RevolutionBurgers.crearPedido();
         System.out.println("Pedido creado exitosamente....");
@@ -112,7 +105,7 @@ public class MenuOpciones {
         int idNuevoPedido = RevolutionBurgers.obtenerUltimoIdPedido();
         agregarProductoAPedido(idNuevoPedido, miMenu);
         System.out.println("Pedido: \n" + RevolutionBurgers.listarTodounPedido(idNuevoPedido));
-    }
+    }//se crea un nuevo pedido
 
     public static void opcionesPedidosExistentes(Menu miMenu) {
         char continuar = 's';
@@ -190,7 +183,7 @@ public class MenuOpciones {
     } //muestra opciones solo para pedidos no pagos
 
 
-    public static void realizarPagoPedido(int id) { //se realiza el pago de un pedido seleccionado
+    public static void realizarPagoPedido(int id) {
         double montoTotal = RevolutionBurgers.obtenerMontoPedido(id);
         System.out.println("\nPAGAR\nIndicar: \n1-Pago en efectivo" +
                 "\n2-Pago con tarjeta");
@@ -213,7 +206,7 @@ public class MenuOpciones {
                 break;
         }
         System.out.println("..pago exitoso..");
-    }
+    } //se realiza el pago de un pedido seleccionado
 
     public static void mostrarUnPedido(int id) {
         System.out.println("\n....PEDIDO....");
@@ -611,8 +604,8 @@ public class MenuOpciones {
     public static void agregarBurger(int id, Menu miMenu) {
         limpiarConsola();
         int opcion;
-        ArrayList<ElementoMenu> arregloHamburguesas = miMenu.devolverArrayListPorClaveDeMenu("burger");
-        int tamaño = arregloHamburguesas.size();
+        ArrayList<ElementoMenu> arregloHamburguesas = miMenu.devolverArrayListPorClaveDeMenu("burger"); //se obtiene el arreglo de hamburguesas
+        int tamaño = arregloHamburguesas.size(); //se obtiene el tamaño del arreglo de las burgers
         char repetir = 's';
         System.out.println("..Agregar un nuevo pedido...");
 
@@ -621,12 +614,12 @@ public class MenuOpciones {
             System.out.println(miMenu.listarMenuPorDigitos("burger"));
             do {
                 System.out.println("Indique la opcion que desee: ");
-                opcion = scanner.nextInt();//faltaria validar que la opcion ente dento de las validas, leght del arreglo burger
-            } while (opcion <= 0 || opcion > tamaño);
+                opcion = scanner.nextInt();
+            } while (opcion <= 0 || opcion > tamaño); //se valida que la opcion sea valida
 
             //preguntar de tal estilo cuantas desea agregar, hacer un while agregando la cant de burgers indicada, validar que el num sea si o si mayor a 0
-            ElementoMenu nuevaBurger = arregloHamburguesas.get(opcion - 1);
-            System.out.println(nuevaBurger.toString());
+            ElementoMenu nuevaBurger = arregloHamburguesas.get(opcion - 1); //se vincula la opcion con la posicion en el arreglo
+            System.out.println(nuevaBurger.toString()); //se muestra la burger elegida
             Burger nuevaB = (Burger) nuevaBurger;
             String estilo = nuevaB.getTipoHamburguesa();
             RevolutionBurgers.agregarPedido("burger", id, nuevaBurger);
@@ -652,7 +645,7 @@ public class MenuOpciones {
                 opcion = scanner.nextInt();
             } while (opcion <= 0 || opcion > tamaño);
 
-            //preguntar de tal estilo cuantas desea agregar, hacer un while agregando la cant de burgers indicada, validar que el num sea si o si mayor a 0
+
             ElementoMenu postreN = arregloPostres.get(opcion - 1);
             Postre nuevoP = (Postre) postreN;
             String nombreP = nuevoP.getNombreDelPostre();
@@ -767,7 +760,7 @@ public class MenuOpciones {
 
     public static Tarjeta ingresarTipoTarjeta() {
         int opcion;
-        System.out.println("Tipo de tarjeta: 1.VISA | 2.MASTERCARD | 3.NARANJA | 4.FAVACARD | 5.CABAL");
+        System.out.println("Tipo de tarjeta: 1.VISA | 2.MASTERCARD | 3.NARANJA | 4.FAVACARD | 5.CABAL"); //se muestran las opciones de tarjetas
         opcion = scanner.nextInt();
         Tarjeta tipo = null;
         switch (opcion) {
@@ -834,7 +827,7 @@ public class MenuOpciones {
         try {
             PagoTarjeta.validarDigitosNumeroTarjeta(numTarjeta);
 
-        } catch (InvalidCardNumberException ex) {
+        } catch (InvalidCardNumberException ex) { //si la tarjeta no sigue el formato se lanza la excepcion InvalidCardNumberException
             System.out.println(ex.getMessage());
             numTarjeta = ingresarTarjeta();
 
@@ -903,13 +896,12 @@ public class MenuOpciones {
     public static void opcionesEstadistica() {
 
         limpiarConsola();
-        //RevolutionBurgers.deCajaaEstadistica(); //funciona
-        //System.out.println(RevolutionBurgers.listarTodaslasestadisticas());//funciona
+
         int opcion;
         System.out.println("Indique que opcion desea realizar \n1- Ver la estadistica por rango de fechas" +
                 "\n2- Ranking de productos");
         opcion= scanner.nextInt();
-        //RevolutionBurgers.crearArregloEstadistica();
+
 
         switch (opcion){
             case 1:
