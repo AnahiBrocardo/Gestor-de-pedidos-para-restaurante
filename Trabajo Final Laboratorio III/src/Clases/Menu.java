@@ -50,7 +50,7 @@ public class Menu{
         return rta;
     }
 
-    public ArrayList<ElementoMenu> devolverArrayListPorClaveDeMenu(String key){
+    public ArrayList<ElementoMenu> devolverArrayListPorClaveDeMenu(String key){ //se devuelve un array de elementos del menu, segun la clave recibida
         ArrayList<ElementoMenu> arregloElementos= mapaDelMenu.get(key);
         return  arregloElementos;
     }
